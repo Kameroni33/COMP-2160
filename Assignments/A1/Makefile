@@ -1,5 +1,5 @@
 
-all: Duplicates, Solver
+all: Duplicates Solver
 
 Duplicates: Duplicates.c
 	clang -Wall -g Duplicates.c -o Duplicates
