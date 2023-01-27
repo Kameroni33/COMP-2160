@@ -12,6 +12,6 @@
 
 
 int main() {
-    printf("end of process.");
+    printf("end of process.\n");
     return 0;
 }
