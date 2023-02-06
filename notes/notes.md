@@ -123,6 +123,50 @@ Keep in mind that C is not garbage collected. Thus we must be careful to close o
 - _`fgets` lets us specify how much memory we can write to (usually safer)_
 - _Everything is a file (... on a UNIX system)_
 
+### Classes
 
+What is a class?
 
+- A generic representation of a common object
+- Methods to create and modify specific instances of that object
 
+we don't have classes in C, but we do have...
+
+### Structs
+
+- do not methods nor any concept of privacy.
+- contain a fixed number of parts (can be different types)
+
+```c
+struct friendStruct {          // every struct needs a name
+    char name[MAXNAME];     // parts of a struct are known as 'members' 
+    long phoneNumber;
+    char street[MAXSTREET];
+};                          // this declares a _type_ of struct, not an instance
+```
+
+Then to declare a struct
+
+```c
+struct friendStruct kam;
+
+kam.name = "Kameron";       // . operator gives us access to the value of kam's name
+kam.phoneNumber;
+...
+```
+
+We can give our structs  an aliase by using the `typedef` keyword.
+
+```c
+typedef struct friendStruct friend;
+
+friend kam;
+```
+
+Or a shortcut is to define the aliase directly after the struct definition.
+
+```c
+struct friendStruct {
+    ...
+}friend;
+```
