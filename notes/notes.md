@@ -138,11 +138,11 @@ we don't have classes in C, but we do have...
 - contain a fixed number of parts (can be different types)
 
 ```c
-struct friendStruct {          // every struct needs a name
+struct friendStruct {       // every struct needs a name
     char name[MAXNAME];     // parts of a struct are known as 'members' 
     long phoneNumber;
     char street[MAXSTREET];
-};                          // this declares a _type_ of struct, not an instance
+};                          // this declares a `type` of struct, not an instance
 ```
 
 Then to declare a struct
@@ -170,3 +170,5 @@ struct friendStruct {
     ...
 }friend;
 ```
+
+__NOTE:__ _we can actually return a type of struct because it has a fixed size in memory (allocated). Whereas with an array, we don't necessarily know its size and thus cannot return it._
