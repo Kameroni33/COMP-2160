@@ -40,8 +40,8 @@ void test(char tester[], char target[])
 
    // testing start
    printf("cleaned:       '%s'\n", cleaned);
-   printf("length target:  %d\n", strlen(target));
-   printf("length cleaned: %d\n", strlen(cleaned));
+   printf("length target:  %lu\n", strlen(target));
+   printf("length cleaned: %lu\n", strlen(cleaned));
    printf("result:         %d\n", strcmp(cleaned, target));
    // testing end
 
