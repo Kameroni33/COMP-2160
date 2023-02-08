@@ -15,9 +15,9 @@ char last_non_quote_character(char* quote) {
    char last_char = '\0';
    // iterate through string until the end (ie. current character is '\0')
    while(quote[pos] != '\0') {
-      printf("%c\n", quote[pos]);
+      //printf("%c\n", quote[pos]);  // for testing
       // if we find a \" return the previous character (if \" is the first character we will return \0)
-      if (quote[pos] == '"') {
+      if (quote[pos] == '\"') {
          return last_char;
       }
       last_char = quote[pos];
@@ -31,7 +31,6 @@ char last_non_quote_character(char* quote) {
 int main()
 {
    printf("testing: hello world\n");
-   printf("result: %c\n", last_non_quote_character("hello world"));
    assert(last_non_quote_character("hello world") == 'd');
    printf("testing: quote\"\n");
    assert(last_non_quote_character("quote\"") == 'e');
