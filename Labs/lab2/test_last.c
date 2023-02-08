@@ -28,6 +28,8 @@ char last_non_quote_character(char* quote) {
 
 int main()
 {
+   printf("====================\n\n");
+
    printf("testing: hello world\n");
    assert(last_non_quote_character("hello world") == 'd');
    printf("testing: quote\"\n");
