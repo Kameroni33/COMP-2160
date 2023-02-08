@@ -32,6 +32,7 @@ int clean(char dirty[], char cleaned[]) {
    // now remove any trailing non-alphanumerics from our cleaned string (not pretty but it works)
    while (pos_c > 0 && isalnum(cleaned[pos_c-1]) == 0) {
       pos_c--;
+      length--;
    }
 
    // null-terminate our cleaned string
