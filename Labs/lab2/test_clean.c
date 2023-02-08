@@ -36,7 +36,7 @@ void test(char tester[], char target[])
    printf("testing: %s\n", tester);
    result = clean(tester, cleaned);
    printf("cleaned: %s\n", cleaned);  // testing
-   printf("length: %s\n", result);  // testing
+   printf("length: %d\n", result);  // testing
    assert(result == strlen(target));
    assert(result == strlen(cleaned));
    assert(strcmp(cleaned, target) == 0);
