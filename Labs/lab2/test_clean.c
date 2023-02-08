@@ -25,7 +25,7 @@ int clean(char dirty[], char cleaned[]) {
 
          // we've now found an alphabetic so set found_alpha to "true"
          found_alpha = 1;
-         
+
          // clean current character and copy it into the cleaned string
          cleaned[pos_c] = tolower(dirty[pos_d]);
          pos_c++;
@@ -56,13 +56,13 @@ void test(char tester[], char target[])
    printf("testing: %s\n", tester);
    result = clean(tester, cleaned);
 
-   // testing start
-   printf("cleaned:       '%s'\n", cleaned);
-   printf("length result:  %d\n", result);
-   printf("length target:  %lu\n", strlen(target));
-   printf("length cleaned: %lu\n", strlen(cleaned));
-   printf("compare:        %d\n\n", strcmp(cleaned, target));
-   // testing end
+   // [ TESTING: START ]
+   // printf("cleaned:       '%s'\n", cleaned);
+   // printf("length result:  %d\n", result);
+   // printf("length target:  %lu\n", strlen(target));
+   // printf("length cleaned: %lu\n", strlen(cleaned));
+   // printf("compare:        %d\n\n", strcmp(cleaned, target));
+   // [ TESTING: END ]
 
    assert(result == strlen(target));
    assert(result == strlen(cleaned));
