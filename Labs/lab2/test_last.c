@@ -28,10 +28,6 @@ char last_non_quote_character(char* quote) {
 
 int main()
 {
-   printf("\n====================\n");
-   printf("File: test_last.c");
-   printf("\n====================\n\n");
-
    printf("testing: hello world\n");
    assert(last_non_quote_character("hello world") == 'd');
    printf("testing: quote\"\n");
@@ -59,7 +55,7 @@ int main()
    printf("testing: \"\"\"\"\"\"\"\"\"\"\"\n");
    assert(last_non_quote_character("\"\"\"\"\"\"\"\"\"\"\"") == '\0');
    
-   printf("\nSuccessful end of tests.\n\n");
+   printf("\nSuccessful end of tests.\n\n\n");
    
    return EXIT_SUCCESS;
 }
