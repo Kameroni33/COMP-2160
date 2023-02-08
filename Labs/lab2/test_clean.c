@@ -71,6 +71,10 @@ void test(char tester[], char target[])
 
 int main()
 {
+   printf("\n====================\n");
+   printf("File: test_clean.c");
+   printf("\n====================\n\n");
+
    test("hello", "hello");
    test("hello world", "hello world");
    test("isn't", "isn't");
