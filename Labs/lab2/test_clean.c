@@ -12,10 +12,15 @@ int clean(char dirty[], char cleaned[]) {
    int pos_d  = 0;
    int pos_c  = 0;
    int length = 0;
+   // track if we've found any alphanumeric characters
+   int found_char = 0;
+
    // iterate through the dirty string and copy values into the cleaned string
    while (dirty[pos_d] != '\0') {
-      // check if character is alphanumeric (function isalnum() returns a positive int if alphanumeric, otherwise 0)
-      if (isalnum(dirty[pos_d]) != 0) {
+      // if we haven't found the first char ignore non-alphanumerics
+      if (found_char || isalnum(dirty[pos_d]) != 0) {
+         // we've now found an alphanumeric so set found_char to "true"
+         found_char = 1;
          // clean current character and copy it into the cleaned string
          cleaned[pos_c] = tolower(dirty[pos_d]);
          pos_c++;
