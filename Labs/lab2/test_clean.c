@@ -37,6 +37,14 @@ void test(char tester[], char target[])
 
    printf("testing: %s\n", tester);
    result = clean(tester, cleaned);
+
+   // testing start
+   printf("cleaned:       '%s'\n", cleaned);
+   printf("length target:  %d\n", strlen(target));
+   printf("length cleaned: %d\n", strlen(cleaned));
+   printf("result:         %d\n", strcmp(cleaned, target));
+   // testing end
+
    assert(result == strlen(target));
    assert(result == strlen(cleaned));
    assert(strcmp(cleaned, target) == 0);
