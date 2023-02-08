@@ -9,4 +9,4 @@ test_last: test_last.c
 	clang $(FLAGS) test_last.c -o test_last
 
 clean:
-	rm excercise test_clean test_last
+	rm test_clean test_last
