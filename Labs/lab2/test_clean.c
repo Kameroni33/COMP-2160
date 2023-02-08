@@ -17,7 +17,7 @@ int clean(char dirty[], char cleaned[]) {
 
    // iterate through the dirty string and copy values into the cleaned string
    while (dirty[pos_d] != '\0') {
-      // if we haven't found the first char ignore non-alphanumerics
+      // if we haven't found the first char ignore non-alphanumerics (ie. remove leading non-aplanumerics)
       if (found_char || isalnum(dirty[pos_d]) != 0) {
          // we've now found an alphanumeric so set found_char to "true"
          found_char = 1;
@@ -28,8 +28,15 @@ int clean(char dirty[], char cleaned[]) {
       }
       pos_d++;
    }
+
+   // now remove any trailing non-alphanumerics from our cleaned string (not pretty but it works)
+   while (pos_c > 0 && isalnum(cleaned[pos_c-1]) == 0) {
+      pos_c--;
+   }
+
    // null-terminate our cleaned string
    cleaned[pos_c] = '\0';
+
    //return our calculated length of the cleaned string
    return length;
 }
@@ -47,7 +54,7 @@ void test(char tester[], char target[])
    printf("length result:  %d\n", result);
    printf("length target:  %lu\n", strlen(target));
    printf("length cleaned: %lu\n", strlen(cleaned));
-   printf("result:         %d\n", strcmp(cleaned, target));
+   printf("compare:        %d\n\n", strcmp(cleaned, target));
    // testing end
 
    assert(result == strlen(target));
