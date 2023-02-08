@@ -13,22 +13,17 @@ Feb. 08, 2023
 char last_non_quote_character(char* quote) {
    // keep track of current position in string
    int pos = 0;
+   char last_char = '\0';
    // iterate through string until the end (ie. cureent character is '\0')
    while(quote[pos] != '\0') {
       printf("%c\n", quote[pos]);
-      // if we find a \" return depending on our current position in the string
+      // if we find a \" return the previous character (if \" is the first character we will return \0)
       if (quote[pos] == '"') {
-         if (pos > 0) {
-            // case 1: string contains \" that is not the first character
-            return quote[pos-1];
-         } else {
-            // case 2: string contains \" as the first character
-            return '\0';
-         }
+         return last_char;
       }
+      last_char = quote[pos];
       pos++;
    }
-   // case 3: string does not contain an \" characters
    return '\0';
 }
 
