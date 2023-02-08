@@ -24,7 +24,7 @@ int clean(char dirty[], char cleaned[]) {
       pos_d++;
    }
    // null-terminate our cleaned string
-   cleaned[pos_c] = '\n';
+   cleaned[pos_c] = '\0';
    length++;
    //return our calculated length of the cleaned string
    return length;
