@@ -8,5 +8,9 @@ test_clean: test_clean.c
 test_last: test_last.c
 	clang $(FLAGS) test_last.c -o test_last
 
+run:
+	./test_clean
+	./test_last
+
 clean:
 	rm test_clean test_last
