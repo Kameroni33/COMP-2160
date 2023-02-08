@@ -15,7 +15,7 @@ char last_non_quote_character(char* quote) {
    int pos = 0;
    // iterate through string until the end (ie. cureent character is '\0')
    while(quote[pos] != '\0') {
-      printf("%s\n", quote[pos]);
+      printf("%c\n", quote[pos]);
       // if we find a \" return depending on our current position in the string
       if (quote[pos] == '"') {
          if (pos > 0) {
