@@ -36,6 +36,7 @@ char last_non_quote_character(char* quote) {
 int main()
 {
    printf("testing: hello world\n");
+   printf("result: %c\n", last_non_quote_character("hello world"));
    assert(last_non_quote_character("hello world") == 'd');
    printf("testing: quote\"\n");
    assert(last_non_quote_character("quote\"") == 'e');
