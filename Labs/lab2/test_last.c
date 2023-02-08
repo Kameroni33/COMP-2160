@@ -10,21 +10,21 @@ Feb. 08, 2023
 #include <assert.h>
 
 // Write your last_non_quote_character function here
-char* last_non_quote_character(char* quote) {
-   // keep track of current position in string
+char last_non_quote_character(char* quote) {
    int pos = 0;
    char last_char = '\0';
-   // iterate through string until the end (ie. cureent character is '\0')
+   // iterate through string until the end (ie. current character is '\0')
    while(quote[pos] != '\0') {
       printf("%c\n", quote[pos]);
       // if we find a \" return the previous character (if \" is the first character we will return \0)
       if (quote[pos] == '"') {
-         return 'x';
+         return last_char;
       }
       last_char = quote[pos];
       pos++;
    }
-   return '\0';
+   // if no \" is found, return the the last character in string (if string is empty will return \0)
+   return last_char;
 }
 
 
