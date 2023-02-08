@@ -8,29 +8,35 @@
 
 
 int clean(char dirty[], char cleaned[]) {
+
    // keep track our our current position in both string arrays
    int pos_d  = 0;
    int pos_c  = 0;
    int length = 0;
-   // track if we've found any alphanumeric characters
-   int found_char = 0;
+
+   // track if we've found any alphabetic characters
+   int found_alpha = 0;
 
    // iterate through the dirty string and copy values into the cleaned string
    while (dirty[pos_d] != '\0') {
-      // if we haven't found the first char ignore non-alphanumerics (ie. remove leading non-aplanumerics)
-      if (found_char || isalnum(dirty[pos_d]) != 0) {
-         // we've now found an alphanumeric so set found_char to "true"
-         found_char = 1;
+
+      // if we haven't found the first alphabetic char ignore non-alphabetics (ie. remove leading non-alphabetics)
+      if (found_alpha || isalpha(dirty[pos_d]) != 0) {
+
+         // we've now found an alphabetic so set found_alpha to "true"
+         found_alpha = 1;
+         
          // clean current character and copy it into the cleaned string
          cleaned[pos_c] = tolower(dirty[pos_d]);
          pos_c++;
          length++;
       }
+
       pos_d++;
    }
 
-   // now remove any trailing non-alphanumerics from our cleaned string (not pretty but it works)
-   while (pos_c > 0 && isalnum(cleaned[pos_c-1]) == 0) {
+   // now remove any trailing non-alphabetics from our cleaned string (not pretty but it works)
+   while (pos_c > 0 && isalpha(cleaned[pos_c-1]) == 0) {
       pos_c--;
       length--;
    }
