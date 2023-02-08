@@ -25,7 +25,6 @@ int clean(char dirty[], char cleaned[]) {
    }
    // null-terminate our cleaned string
    cleaned[pos_c] = '\0';
-   length++;
    //return our calculated length of the cleaned string
    return length;
 }
@@ -40,6 +39,7 @@ void test(char tester[], char target[])
 
    // testing start
    printf("cleaned:       '%s'\n", cleaned);
+   printf("length result:  %lu\n", strlen(result));
    printf("length target:  %lu\n", strlen(target));
    printf("length cleaned: %lu\n", strlen(cleaned));
    printf("result:         %d\n", strcmp(cleaned, target));
