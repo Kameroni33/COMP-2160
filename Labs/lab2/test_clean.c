@@ -16,14 +16,16 @@ int clean(char dirty[], char cleaned[]) {
    while (dirty[pos_d] != '\0') {
       // check if character is alphanumeric (function isalnum() returns a positive int if alphanumeric, otherwise 0)
       if (isalnum(dirty[pos_d]) != 0) {
+         // clean current character and copy it into the cleaned string
          cleaned[pos_c] = tolower(dirty[pos_d]);
-         length++;
          pos_c++;
+         length++;
       }
       pos_d++;
    }
-   // null-terminate our clean string
+   // null-terminate our cleaned string
    cleaned[pos_c] = '\n';
+   length++;
    //return our calculated length of the cleaned string
    return length;
 }
@@ -35,8 +37,6 @@ void test(char tester[], char target[])
 
    printf("testing: %s\n", tester);
    result = clean(tester, cleaned);
-   printf("cleaned: %s\n", cleaned);  // testing
-   printf("length: %d\n", strlen(cleaned));  // testing
    assert(result == strlen(target));
    assert(result == strlen(cleaned));
    assert(strcmp(cleaned, target) == 0);
