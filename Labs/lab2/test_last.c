@@ -5,16 +5,22 @@
 
 
 char last_non_quote_character(char* quote) {
+
+   // keep track of current position in string and last character
    int pos = 0;
    char last_char = '\0';
+
    // iterate through string (ie. until current character is '\0')
    while(quote[pos] != '\0') {
+
       // check if the current character is a '\"', and update our last_char if it isn't
       if (quote[pos] != '\"') {
          last_char = quote[pos];
       }
+
       pos++;
    }
+   
    // return the last character we found, or '\0' if none were found
    return last_char;
 }
