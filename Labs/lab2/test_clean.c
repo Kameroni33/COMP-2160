@@ -6,7 +6,27 @@
 
 #define MAX_STRING 100
 
-// Write your clean function here
+
+int clean(char dirty[], char cleaned[]) {
+   // keep track our our current position in both string arrays
+   int pos_d  = 0;
+   int pos_c  = 0;
+   int length = 0;
+   // iterate through the dirty string and copy values into the cleaned string
+   while (dirty[pos_d] != '\0') {
+      // check if character is alphanumeric (function isalnum() returns a positive int if alphanumeric, otherwise 0)
+      if (isalnum(dirty[pos_d]) != 0) {
+         cleaned[pos_c] = tolower(dirty[pos_d]);
+         length++;
+         pos_c++;
+      }
+      pos_d++;
+   }
+   // null-terminate our clean string
+   cleaned[pos_c] = '\n';
+   //return our calculated length of the cleaned string
+   return length;
+}
 
 void test(char tester[], char target[])
 {
