@@ -19,7 +19,7 @@ char last_non_quote_character(char* quote) {
       printf("%c\n", quote[pos]);
       // if we find a \" return the previous character (if \" is the first character we will return \0)
       if (quote[pos] == '"') {
-         return last_char;
+         return 'x';
       }
       last_char = quote[pos];
       pos++;
