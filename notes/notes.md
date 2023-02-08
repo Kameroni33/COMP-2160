@@ -95,9 +95,10 @@ struct SCIENTIFIC_NOTATION
 In c we don't have a concept of information hiding. Everything is effectively _public_.
 
 
+
 ---
 
-## More File I/) (feb. 06, 2023)
+## More File I/O (feb. 06, 2023)
 
 ### Writing Files
 
@@ -172,3 +173,57 @@ struct friendStruct {
 ```
 
 __NOTE:__ _we can actually return a type of struct because it has a fixed size in memory (allocated). Whereas with an array, we don't necessarily know its size and thus cannot return it._
+
+
+
+---
+
+## File I/O - Struct (feb. 08, 2023)
+
+### Structures
+
+- for a limited number of elements
+- of varying types
+- which need to be kept together, in one place
+
+In C, a structure is known as `struct`
+
+### Declaring & Accessing Structs
+
+_refer to last class_.
+
+### Operations on Structures
+
+- Assignment of structures
+
+```c
+struct StudentRed studA, studB;
+strudA = studB;
+```
+
+This copies studB.id into studA.id, studB.mark into studA.mark, etc... (_because structures are well defined as far as memory allocation_)
+
+Note: _we can use this to conveniently copy arrays inside structs_
+
+- structs cannot be compared
+- we can compare member comparison only
+
+### Accessing Members with Pointers
+
+- Using the dot operator `.` and dereference operator `*`. Note that the dot operator has higher priority, so we need parenthesis when accessing a struct using a pointer
+
+```c
+(*fptr).numerator++;
+```
+
+- Using the `->` operator
+
+```c
+fptr->numerator++;
+```
+
+### Passing a struct to a function
+
+- As always, the formal parameters are copies of the actual parameters (new allocated memory space).
+- we can return a struct directly
+
