@@ -10,7 +10,7 @@ Feb. 08, 2023
 #include <assert.h>
 
 // Write your last_non_quote_character function here
-char last_non_quote_character(char* quote) {
+char* last_non_quote_character(char* quote) {
    // keep track of current position in string
    int pos = 0;
    char last_char = '\0';
