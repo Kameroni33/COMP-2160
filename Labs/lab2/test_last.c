@@ -1,15 +1,9 @@
-/*
-COMP 2160 - Lab2
-Kameron Ronald (7880495)
-Feb. 08, 2023
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-// Write your last_non_quote_character function here
+
 char last_non_quote_character(char* quote) {
    int pos = 0;
    char last_char = '\0';
