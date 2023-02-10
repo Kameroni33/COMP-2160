@@ -95,17 +95,18 @@ int find_word(char str[], char word[]) {
 // Some of these may be the same as the input
 // parameters.
 //------------------------------------------------------
-int count_duplicate_words(char str[]) {
-    int count = 0;
+int count_duplicate_words(char* str) {
+    uint8_t count = 0;
     char word[MAX_WORD_LENGTH] = "";
-    printf("%s", word);
-    int pos;
+    // printf("%s", word);  // testing
+    uint64_t pos;
     char current_char;
+
     char* sub_string_ptr;
 
     pos = 0;
     while (pos < strlen(str) && count >= 0) {
-        current_char = str[pos];
+        current_char = (*str)[pos];
         if (!isalpha(current_char)) {
             if (strlen(word) > 0) {
                 sub_string_ptr = sub_string(str, pos);
