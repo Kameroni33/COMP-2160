@@ -43,10 +43,9 @@ int main() {
 
         // read next int from stdin
         scanf("%d", &count);
-        printf("int: %d\n", count);
 
         if (count > MAX_COUNT) {
-            printf("Invalid count: %d.", count);
+            printf("Invalid count: %d.\n", count);
         } else {
 
             int array[count];
@@ -66,10 +65,10 @@ int main() {
                 }
                 printf("\n");
             } else {
-                printf("Count = %d: no solution.", count);
+                printf("Count = %d: no solution.\n", count);
             }
         }
-        // newline thingy ???
+        // get rid of the newline at the end (???)
     }
     
 
