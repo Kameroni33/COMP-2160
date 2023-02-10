@@ -6,7 +6,6 @@
 // ASSIGNMENT: assignment 1, QUESTION: question 1
 // 
 // REMARKS: This program is a c implementation of Duplicates.java.
-//
 //-----------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
@@ -134,25 +133,23 @@ int count_duplicate_words(char str[]) {
 }
 
 
-//------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // test_count_duplicate_words
 //
-// PURPOSE: tell me what it does! 
+// PURPOSE: tests that count_duplicate_words returns what we expect
 // INPUT PARAMETERS:
-// Describe those parameters which accept data values.
-// OUTPUT PARAMETERS:
-// Describe those parameters which return values.
-// Include the value returned by the routine if not void.
-// Some of these may be the same as the input
-// parameters.
-//------------------------------------------------------
-void test_count_duplicate_words(int expected, char str[], int* tests_executed, int* tests_failed) {
+//  - (int) "expected" number of duplicate words expected
+//  - (char*) "str" string to test
+//  - (int*) "tests_executed" pointer to int on heap holding number of tests executes so far
+//  - (int*) "tests_faile" pointer to int on heap holding number of tests failed so far
+//-------------------------------------------------------------------------------------------------
+void test_count_duplicate_words(int expected, char* str, int* tests_executed, int* tests_failed) {
     int result = count_duplicate_words(str);
 
     if (result == expected) {
-        printf("Passed: %d from '%s'", result, str);
+        printf("Passed: %d from '%s'\n", result, str);
     } else {
-        printf("FAILED: %d instead of %d from '%s'", result, expected, str);
+        printf("FAILED: %d instead of %d from '%s'\n", result, expected, str);
         *tests_failed++;
     }
 
@@ -197,13 +194,14 @@ int main() {
     test_count_duplicate_words(1, "In Java, the strings may contain \0 in the interior", tests_executed, tests_failed);
     test_count_duplicate_words(0, "In C, the strings cannot contain \0 in the interior", tests_executed, tests_failed);
 
-    printf("\nTotal number of tests executed: %d", *tests_executed);
-    printf("Number of tests passed:         %d", (*tests_executed - *tests_failed));
-    printf("Number of tests failed:         %d", *tests_failed);
+    printf("\nTotal number of tests executed: %d\n", *tests_executed);
+    printf("Number of tests passed:         %d\n", (*tests_executed - *tests_failed));
+    printf("Number of tests failed:         %d\n", *tests_failed);
 
+    // free allocate variables
     free(tests_executed);
     free(tests_failed);
 
-    printf("end of process.");
+    printf("\nEnd of Process.\n\n");
     return 0;
 }
