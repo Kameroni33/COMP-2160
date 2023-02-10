@@ -24,17 +24,19 @@
 // OUTPUT PARAMETERS:
 //------------------------------------------------------
 char* sub_string(char* str, int pos) {
+
+    char* sub_string = malloc(sizeof(char) * 100);
+    sget
+
     int substr_len = strlen(str) - pos;
-    if (substr_len < 0 || pos < 0) {
-        printf("!!! pos: %d index out of bound for string: '%s' !!!\n", pos, str);
-        return "";
-    }
+    
     char* substr = malloc(sizeof (char) * (substr_len + 1));
     for (int i = 0; i < substr_len; i++) {
         substr[i] = str[(i + pos)];
     }
     substr[substr_len] = '\0';
-    return substr;
+
+    return sub_string;
 }
 
 
@@ -103,15 +105,12 @@ int count_duplicate_words(char* str) {
     unsigned long pos;
     char current_char;
 
-    char* sub_string_ptr;
-
     pos = 0;
     while (pos < strlen(str) && count >= 0) {
         current_char = str[pos];
-        if (!isalpha(current_char)) {
+        if (isspace(current_char)) {
             if (strlen(word) > 0) {
-                sub_string_ptr = sub_string(str, pos);
-                if (find_word(sub_string_ptr, word)) {
+                if (find_word(&str[pos], word)) {
                     count++;
                 }
                 strcpy(word, "");
@@ -125,8 +124,6 @@ int count_duplicate_words(char* str) {
         }
         pos++;
     }
-
-    free(sub_string_ptr);
 
     return count;
 }
