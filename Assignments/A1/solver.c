@@ -36,7 +36,6 @@ int main() {
     // int array[], solution[];
     // int solution_count;
 
-    char buffer[100];
 
     while(1) {
         scanf("%d", &count);
