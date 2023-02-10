@@ -1,4 +1,4 @@
-//-----------------------------------------
+//-------------------------------------------------------------------------------------------------
 // NAME:            Kameron Ronald
 // STUDENT NUMBER:  7880495
 // COURSE:          COMP 2160, SECTION: A01
@@ -7,7 +7,7 @@
 // QUESTION:        question 1
 // 
 // REMARKS: This program is a c implementation of Duplicates.java.
-//-----------------------------------------
+//-------------------------------------------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -60,15 +60,15 @@ int find_word(char* str, char* word) {
 }
 
 
-//------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // count_duplicate_words
 //
-// PURPOSE:
+// PURPOSE: counts number of successive duplicate words within a given string
 // INPUT PARAMETERS:
 //  - (char*) "str" string to count duplicate words in
 // OUTPUT PARAMETERS:
 //  - (int) number of duplicate words found
-//------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 int count_duplicate_words(char* str) {
 
     int count                  = 0;
@@ -123,7 +123,9 @@ void test_count_duplicate_words(int expected, char* str, int* tests_executed, in
     (*tests_executed)++;
 }
 
-
+//-------------------------------------------------------------------------------------------------
+// main
+//-------------------------------------------------------------------------------------------------
 int main() {
     int* tests_executed = malloc(sizeof(int));
     int* tests_failed = malloc(sizeof(int));
