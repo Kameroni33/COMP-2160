@@ -16,43 +16,17 @@
 #define MAX_WORD_LENGTH 15
 
 
-// //------------------------------------------------------
-// // sub_string
-// //
-// // PURPOSE: tell me what it does! 
-// // INPUT PARAMETERS:
-// // OUTPUT PARAMETERS:
-// //------------------------------------------------------
-// char* sub_string(char* str, int pos) {
-
-//     char* sub_string = malloc(sizeof(char) * 100);
-//     sget
-
-//     int substr_len = strlen(str) - pos;
-    
-//     char* substr = malloc(sizeof (char) * (substr_len + 1));
-//     for (int i = 0; i < substr_len; i++) {
-//         substr[i] = str[(i + pos)];
-//     }
-//     substr[substr_len] = '\0';
-
-//     return sub_string;
-// }
-
-
-//------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // find_word
 //
-// PURPOSE: tell me what it does! 
+// PURPOSE: returns true if the word exists in the string we're given
 // INPUT PARAMETERS:
-// Describe those parameters which accept data values.
+//  - (char*) "str" string to search
+//  - (char*) "word" word we're looking for
 // OUTPUT PARAMETERS:
-// Describe those parameters which return values.
-// Include the value returned by the routine if not void.
-// Some of these may be the same as the input
-// parameters.
-//------------------------------------------------------
-int find_word(char str[], char word[]) {
+//  - (int) 1 if word found else 0
+//-------------------------------------------------------------------------------------------------
+int find_word(char* str, char* word) {
 
     char check_word[MAX_WORD_LENGTH]    = "";
     unsigned long check_pos             = 0;
@@ -62,7 +36,7 @@ int find_word(char str[], char word[]) {
     dont_check_word = 0;
     while (check_pos < strlen(str) && !found) {
         check_char = str[check_pos];
-        if (!isalpha(check_char)) {
+        if (isspace(check_char)) {
             if ( (strcmp(word, check_word) == 0) && !dont_check_word) {
                 found = 1;
             }
@@ -89,14 +63,11 @@ int find_word(char str[], char word[]) {
 //------------------------------------------------------
 // count_duplicate_words
 //
-// PURPOSE: tell me what it does! 
+// PURPOSE:
 // INPUT PARAMETERS:
-// Describe those parameters which accept data values.
+//  - (char*) "str" string to count duplicate words in
 // OUTPUT PARAMETERS:
-// Describe those parameters which return values.
-// Include the value returned by the routine if not void.
-// Some of these may be the same as the input
-// parameters.
+//  - (int) number of duplicate words found
 //------------------------------------------------------
 int count_duplicate_words(char* str) {
 
