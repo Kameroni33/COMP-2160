@@ -1,7 +1,7 @@
 CFLAGS = -Wall -Wextra -Wpedantic -Werror -g
 CC = clang
 
-all: Duplicates Solver
+all: suplicates solver
 
 duplicates: duplicates.c
 	$(CC) $(CFLAGS) duplicates.c -o duplicates
