@@ -31,11 +31,11 @@ int resolve () {
 //-------------------------------------------------------------------------------------------------
 int main() {
 
-    int read_strdin = 1;  // bool to determine if we should read from the stdin input stream
+    int read_stdin = 1;  // bool to determine if we should read from the stdin input stream
 
     int count = 0;
     int target;
-    int* array, solution;
+    // int* array, solution;
     int solution_count;
 
 
@@ -49,14 +49,14 @@ int main() {
             printf("Invalid count: %d.", count);
         } else {
 
-            array = int[count];
+            int array[count];
 
             for (int i = 0; i < count; i++) {
                 scanf("%d", array[i]);
             }
             scanf("%d", target);
 
-            solution = int[count];
+            int solution[count];
             reverse_sort();
             solution_count = solve();
 
