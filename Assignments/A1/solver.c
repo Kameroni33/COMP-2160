@@ -33,10 +33,10 @@ int main() {
 
     int count = 0;
     int target;
-    int array[], solution[];
+    // int array[], solution[];
     int solution_count;
 
-    scanf("%d", count);
+    scanf("%d", &count);
     printf("int: %d", count);
 
     printf("end of process.\n");
