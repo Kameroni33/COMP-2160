@@ -31,13 +31,18 @@ int resolve () {
 //-------------------------------------------------------------------------------------------------
 int main() {
 
-    int count = 0;
+    // int count = 0;
     // int target;
     // int array[], solution[];
     // int solution_count;
 
-    scanf("%d", &count);
-    printf("int: %d", count);
+    char* buffer[1];
+
+    while( fgets(buffer, 1, stdin) ) {
+        printf("read: %s", buffer)
+    }
+    // scanf("%d", &count);
+    // printf("int: %d", count);
 
     printf("end of process.\n");
     return 0;
