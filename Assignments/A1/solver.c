@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 void reverse_sort(int array[]) {
     int max, maxPos;
-    int array_len = sizeof(array) / sizeof(int);
+    int array_len = sizeof(*array) / sizeof(int);
 
     for (int i = 0; i < array_len - 1; i++) {
         max = array[i];
