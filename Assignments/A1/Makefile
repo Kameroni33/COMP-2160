@@ -1,8 +1,13 @@
+CFLAGS = -Wall -Wextra -Wpedantic -Werror -g
+CC = clang
 
 all: Duplicates Solver
 
-Duplicates: Duplicates.c
-	clang -Wall -g Duplicates.c -o Duplicates
+duplicates: duplicates.c
+	$(CC) $(CFLAGS) duplicates.c -o duplicates
 
-Solver: Solver.c
-	clang -Wall -g Solver.c -o Solver
+solver: solver.c
+	$(CC) $(CFLAGS) solver.c -o solver
+
+clean:
+	rm -f duplicates solver
