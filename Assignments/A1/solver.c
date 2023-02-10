@@ -35,12 +35,6 @@ void reverse_sort(int array[]) {
 }
 
 //-------------------------------------------------------------------------------------------------
-int solve(int array[], int solution[], int target[]) {
-    int array_len = sizeof(*array) / sizeof(int);
-    return rsolve(array, array_len, solution, 0, 0, target);
-}
-
-//-------------------------------------------------------------------------------------------------
 int rsolve (int array[], int unprocessed, int solution[], int solution_count, int so_far, int target) {
     int last_pos, result;
 
@@ -58,6 +52,12 @@ int rsolve (int array[], int unprocessed, int solution[], int solution_count, in
     }
 
     return result;
+}
+
+//-------------------------------------------------------------------------------------------------
+int solve(int array[], int solution[], int target) {
+    int array_len = sizeof(*array) / sizeof(int);
+    return rsolve(array, array_len, solution, 0, 0, target);
 }
 
 //-------------------------------------------------------------------------------------------------
