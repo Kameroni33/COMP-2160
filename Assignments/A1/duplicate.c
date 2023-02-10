@@ -1,9 +1,10 @@
 //-----------------------------------------
-// NAME: Kameron Ronald
-// STUDENT NUMBER: 7880495
-// COURSE: COMP 2160, SECTION: A01
-// INSTRUCTOR: Saulo dos Santos
-// ASSIGNMENT: assignment 1, QUESTION: question 1
+// NAME:            Kameron Ronald
+// STUDENT NUMBER:  7880495
+// COURSE:          COMP 2160, SECTION: A01
+// INSTRUCTOR:      Saulo dos Santos
+// ASSIGNMENT:      assignment 1
+// QUESTION:        question 1
 // 
 // REMARKS: This program is a c implementation of Duplicates.java.
 //-----------------------------------------
@@ -14,17 +15,13 @@
 
 #define MAX_WORD_LENGTH 15
 
+
 //------------------------------------------------------
-// test_count_duplicate_words
+// sub_string
 //
 // PURPOSE: tell me what it does! 
 // INPUT PARAMETERS:
-// Describe those parameters which accept data values.
 // OUTPUT PARAMETERS:
-// Describe those parameters which return values.
-// Include the value returned by the routine if not void.
-// Some of these may be the same as the input
-// parameters.
 //------------------------------------------------------
 char* sub_string(char* str, int pos) {
     int substr_len = strlen(str) - pos;
