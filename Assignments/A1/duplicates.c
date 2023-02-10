@@ -107,7 +107,7 @@ int count_duplicate_words(char* str) {
 
     pos = 0;
     while (pos < strlen(str) && count >= 0) {
-        current_char = *str[pos];
+        current_char = str[pos];
         if (!isalpha(current_char)) {
             if (strlen(word) > 0) {
                 sub_string_ptr = sub_string(str, pos);
