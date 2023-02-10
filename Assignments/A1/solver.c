@@ -38,7 +38,7 @@ int main() {
 
     char buffer[1];
 
-    while( fgets(&buffer, 1, stdin) ) {
+    while( fgets(buffer, 1, stdin) ) {
         printf("read: %s", buffer);
     }
     // scanf("%d", &count);
