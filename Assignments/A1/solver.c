@@ -36,10 +36,10 @@ int main() {
     // int array[], solution[];
     // int solution_count;
 
-    char* buffer[1];
+    char buffer[1];
 
-    while( fgets(buffer, 1, stdin) ) {
-        printf("read: %s", buffer)
+    while( fgets(&buffer, 1, stdin) ) {
+        printf("read: %s", buffer);
     }
     // scanf("%d", &count);
     // printf("int: %d", count);
