@@ -33,8 +33,8 @@ int main() {
 
     int read_stdin = 1;  // bool to determine if we should read from the stdin input stream
 
-    int count = 0;
-    int target;
+    int count  = 0;
+    int target = 0;
     // int* array, solution;
     int solution_count;
 
@@ -52,9 +52,9 @@ int main() {
             int array[count];
 
             for (int i = 0; i < count; i++) {
-                scanf("%d", array[i]);
+                scanf("%d", &array[i]);
             }
-            scanf("%d", target);
+            scanf("%d", &target);
 
             int solution[count];
             reverse_sort();
