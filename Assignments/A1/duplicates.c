@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdint.h>
 
 #define MAX_WORD_LENGTH 15
 
@@ -52,8 +51,9 @@ char* sub_string(char* str, int pos) {
 // parameters.
 //------------------------------------------------------
 int find_word(char str[], char word[]) {
-    char check_word[MAX_WORD_LENGTH] = "";
-    int check_pos = 0;
+    
+    char check_word[MAX_WORD_LENGTH]    = "";
+    unsigned long check_pos             = 0;
     unsigned int dont_check_word, found = 0;
     char check_char;
 
@@ -97,17 +97,17 @@ int find_word(char str[], char word[]) {
 // parameters.
 //------------------------------------------------------
 int count_duplicate_words(char* str) {
-    uint8_t count = 0;
+
+    int count                  = 0;
     char word[MAX_WORD_LENGTH] = "";
-    // printf("%s", word);  // testing
-    uint64_t pos;
+    unsigned long pos;
     char current_char;
 
     char* sub_string_ptr;
 
     pos = 0;
     while (pos < strlen(str) && count >= 0) {
-        current_char = (*str)[pos];
+        current_char = (*str[pos];
         if (!isalpha(current_char)) {
             if (strlen(word) > 0) {
                 sub_string_ptr = sub_string(str, pos);
