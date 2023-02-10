@@ -147,10 +147,10 @@ void test_count_duplicate_words(int expected, char* str, int* tests_executed, in
         printf("Passed: %d from '%s'\n", result, str);
     } else {
         printf("FAILED: %d instead of %d from '%s'\n", result, expected, str);
-        *tests_failed = *tests_failed + 1;
+        (*tests_failed)++;
     }
 
-    *tests_executed = *tests_executed + 1;
+    (*tests_executed)++;
 }
 
 
