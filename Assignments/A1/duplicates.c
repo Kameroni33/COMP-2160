@@ -16,28 +16,28 @@
 #define MAX_WORD_LENGTH 15
 
 
-//------------------------------------------------------
-// sub_string
-//
-// PURPOSE: tell me what it does! 
-// INPUT PARAMETERS:
-// OUTPUT PARAMETERS:
-//------------------------------------------------------
-char* sub_string(char* str, int pos) {
+// //------------------------------------------------------
+// // sub_string
+// //
+// // PURPOSE: tell me what it does! 
+// // INPUT PARAMETERS:
+// // OUTPUT PARAMETERS:
+// //------------------------------------------------------
+// char* sub_string(char* str, int pos) {
 
-    char* sub_string = malloc(sizeof(char) * 100);
-    sget
+//     char* sub_string = malloc(sizeof(char) * 100);
+//     sget
 
-    int substr_len = strlen(str) - pos;
+//     int substr_len = strlen(str) - pos;
     
-    char* substr = malloc(sizeof (char) * (substr_len + 1));
-    for (int i = 0; i < substr_len; i++) {
-        substr[i] = str[(i + pos)];
-    }
-    substr[substr_len] = '\0';
+//     char* substr = malloc(sizeof (char) * (substr_len + 1));
+//     for (int i = 0; i < substr_len; i++) {
+//         substr[i] = str[(i + pos)];
+//     }
+//     substr[substr_len] = '\0';
 
-    return sub_string;
-}
+//     return sub_string;
+// }
 
 
 //------------------------------------------------------
