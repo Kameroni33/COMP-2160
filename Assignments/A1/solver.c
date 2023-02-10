@@ -31,18 +31,48 @@ int resolve () {
 //-------------------------------------------------------------------------------------------------
 int main() {
 
+    int read_strdin = 1;  // bool to determine if we should read from the stdin input stream
+
     int count = 0;
-    // int target;
-    // int array[], solution[];
-    // int solution_count;
+    int target;
+    int* array, solution;
+    int solution_count;
 
 
-    while(1) {
+    while(read_stdin) {
+
+        // read next int from stdin
         scanf("%d", &count);
         printf("int: %d\n", count);
+
+        if (count > MAX_COUNT) {
+            printf("Invalid count: %d.", count);
+        } else {
+
+            array = int[count];
+
+            for (int i = 0; i < count; i++) {
+                scanf("%d", array[i]);
+            }
+            scanf("%d", target);
+
+            solution = int[count];
+            reverse_sort();
+            solution_count = solve();
+
+            if (solution_count > 0) {
+                for (int i = 0; i < solution_count; i++) {
+                    printf("%d ", solution[i]);
+                }
+                printf("\n");
+            } else {
+                printf("Count = %d: no solution.", count);
+            }
+        }
+        // newline thingy ???
     }
     
 
-    printf("end of process.\n");
+    printf("End of Processing.\n");
     return 0;
 }
