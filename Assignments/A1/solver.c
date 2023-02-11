@@ -38,6 +38,9 @@ void reverse_sort(int array[]) {
 int rsolve (int array[], int unprocessed, int solution[], int solution_count, int so_far, int target) {
     int last_pos, result;
 
+    printf("unprocessed: %d\n", unprocessed);
+    printf("array:       %d %d\n", array[0], array[1]);
+
     if (so_far == target) {
         result = solution_count;
     } else if (unprocessed == 0) {
