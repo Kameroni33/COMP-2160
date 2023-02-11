@@ -12,9 +12,8 @@
 #define MAX_COUNT 30
 
 //-------------------------------------------------------------------------------------------------
-void reverse_sort(int array[]) {
+void reverse_sort(int array[], int array_len) {
     int max, max_pos;
-    int array_len = sizeof(array) / sizeof(int);
 
     for (int i = 0; i < array_len - 1; i++) {
         max = array[i];
@@ -58,8 +57,7 @@ int rsolve (int array[], int unprocessed, int solution[], int solution_count, in
 }
 
 //-------------------------------------------------------------------------------------------------
-int solve(int array[], int solution[], int target) {
-    int array_len = sizeof(array) / sizeof( int);
+int solve(int array[], int solution[], int target, array_len) {
     return rsolve(array, array_len, solution, 0, 0, target);
 }
 
@@ -72,7 +70,6 @@ int main() {
 
     int count  = 0;
     int target = 0;
-    // int* array, solution;
     int solution_count;
 
 
@@ -94,8 +91,8 @@ int main() {
             scanf("%d", &target);
 
             int solution[count];
-            reverse_sort(array);
-            solution_count = solve(array, solution, target);
+            reverse_sort(array, count);
+            solution_count = solve(array, solution, target, count);
 
             if (solution_count > 0) {
                 for (int i = 0; i < solution_count; i++) {
