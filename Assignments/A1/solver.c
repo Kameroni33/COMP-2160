@@ -57,7 +57,7 @@ int rsolve (int array[], int unprocessed, int solution[], int solution_count, in
 }
 
 //-------------------------------------------------------------------------------------------------
-int solve(int array[], int solution[], int target, array_len) {
+int solve(int array[], int solution[], int target, int array_len) {
     return rsolve(array, array_len, solution, 0, 0, target);
 }
 
