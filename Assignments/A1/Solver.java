@@ -57,7 +57,7 @@ public class Solver {
       if (maxPos > 0) {
         array[maxPos] = array[i];
         array[i] = max;
-      }2
+      }
     }
   }
   
