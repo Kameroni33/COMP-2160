@@ -6,10 +6,9 @@ ronaldk1@myumanitoba.ca
 
 ## Compiling
 
-I've included a Makefile along with me solution
+I've included a Makefile along with my solution for convenience compiling.
 
 ```shell
 make        // to compile files
 make clean  // to remove compiled files
 ```
-
