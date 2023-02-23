@@ -159,7 +159,7 @@ void loadMaze()
                 mouse.row = i;
                 mouse.column = j;
 
-                printf("> mouse at  (%d, %d)", i, j);
+                printf("> mouse at  (%d, %d)\n", i, j);
             }
 
             // check if cell is the EXIT
@@ -168,7 +168,7 @@ void loadMaze()
                 escape.row = i;
                 escape.column = j;
 
-                printf("> escape at (%d, %d)", i, j);
+                printf("> escape at (%d, %d)\n", i, j);
             }
         }
     }
