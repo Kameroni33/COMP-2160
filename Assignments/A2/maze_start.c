@@ -147,7 +147,9 @@ void loadMaze()
 
 Boolean solveMaze()
 {
+    Boolean result = false;
     printMaze();
+    return result;
 }
 
 void checkState();
