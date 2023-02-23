@@ -150,6 +150,7 @@ void loadMaze()
         {
             // read next cell value into maze array
             maze[i][j] = getchar();
+            printf("[%d, %d]: %c", i, j, maze[i][j]);
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
