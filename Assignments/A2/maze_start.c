@@ -170,6 +170,8 @@ void loadMaze()
             }
         }
     }
+
+    printf("\n");
 }
 
 Boolean solveMaze()
