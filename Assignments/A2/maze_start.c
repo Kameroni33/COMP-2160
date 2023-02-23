@@ -149,7 +149,7 @@ void loadMaze()
         for (int j = 0; j < mazeCols; j++)
         {
             // read next cell value into maze array
-            scanf("%c", &maze[i][j]);
+            maze[i][j] = getchar();
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
