@@ -148,10 +148,9 @@ void loadMaze()
     {
         for (int j = 0; j < mazeCols; j++)
         {
-            scanf("%d", maze[i][j]);
+            scanf("%d", &maze[i][j]);
         }
     }
-
 }
 
 Boolean solveMaze()
