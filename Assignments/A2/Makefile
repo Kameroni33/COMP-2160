@@ -1,4 +1,4 @@
-CFLAGS = -Wall
+CFLAGS = -Wall -Wextra -Wpedantic -Werror -g
 CC = clang
 
 all: maze

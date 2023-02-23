@@ -83,6 +83,9 @@ void checkState();
 
 int main( int argc, char *argv[] )
 {
+
+    printf("argc: %d\nargv: %s\n", argc, argv[0]);
+
     loadMaze();
 
     if ( solveMaze() )
@@ -135,8 +138,8 @@ void printMaze()
 
 void loadMaze()
 {
-    scanf("%d", mazeRows);
-    scanf("%d", mazeCols);
+    scanf("%d", &mazeRows);
+    scanf("%d", &mazeCols);
     printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);
 
 
