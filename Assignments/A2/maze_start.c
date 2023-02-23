@@ -148,7 +148,26 @@ void loadMaze()
     {
         for (int j = 0; j < mazeCols; j++)
         {
+            // read next cell value into maze array
             scanf("%c", &maze[i][j]);
+            
+            // check if cell is the MOUSE
+            if (maze[i][j] == MOUSE)
+            {
+                mouse.row = i;
+                mouse.column = j;
+
+                printf("mouse at  [%d, %d]", i, j);
+            }
+
+            // check if cell is the EXIT
+            if (maze[i][j] == EXIT)
+            {
+                escape.row = i;
+                escape.column = j;
+
+                printf("escape at [%d, %d]", i, j);
+            }
         }
     }
 }
