@@ -227,3 +227,73 @@ fptr->numerator++;
 - As always, the formal parameters are copies of the actual parameters (new allocated memory space).
 - we can return a struct directly
 
+
+---
+
+## Design by Contract (feb. 15, 2023)
+
+### Review
+
+When allocating data with `malloc`:
+- you can allocate memory *without* actually passing it to a pointer (but then we don't know where it is allocated).
+- you can allocate it to *any* type of pointer (technically)
+
+### Design by Contract
+
+An approach for designing software:
+
+- conditions and invariants
+
+A tool to prevent progrming errors (*not* language specific)
+
+- this is code you write that encodes your assumptions about inputs, outputs, and state of your program.
+
+Exceptions come from a violation of our assumptions (usually). There are 3 places our assumptions can be violated:
+
+1. before we startprocessing
+2. after we finish processing 
+3. the state of an object throughout execution
+
+### Conditions
+
+Preconditions:
+
+- check the inputs to a function/block/concept meet certain conditions
+
+Postconditions:
+
+- check the outputs of a function/block/concept meet certain conditions
+
+#### Ex. Preconditions
+
+```c
+void init_list(char *word) {}
+```
+
+Assumptions:
+- head == NULL  (have not initialized the list before)
+- word != NULL  (need actual data to create a list from)
+
+### Invariants
+
+- we're focusing on class and type invariants
+- verify that an object or data meets certain conditions during execution (state)
+- usually implemented as a function
+    - often called in pre- and post-condition (invariants complement conditions)
+
+#### Ex. Invariants
+
+- number of nodes actually in the list reflects the integer variable counting the number of nodes.
+- if the list is empty, head == NULL and count == 0
+
+### Implementing
+
+- encode using `assert`s
+- asserts test for 'truthfullness'
+
+```c
+#include <assert.h>
+
+int value = 10;
+assert( value > 0);
+```
