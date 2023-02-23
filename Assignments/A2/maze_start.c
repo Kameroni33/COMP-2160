@@ -148,7 +148,7 @@ void loadMaze()
     {
         for (int j = 0; j < mazeCols; j++)
         {
-            scanf("%d", &maze[i][j]);
+            scanf("%c", &maze[i][j]);
         }
     }
 }
