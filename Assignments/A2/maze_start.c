@@ -138,6 +138,8 @@ void loadMaze()
     scanf("%d", mazeRows);
     scanf("%d", mazeCols);
     printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);
+
+    
 }
 
 Boolean solveMaze()
