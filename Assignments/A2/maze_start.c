@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <ctype.h>  // for use of isspace() function
 
 //-------------------------------------------------------------------------------------
 // CONSTANTS and TYPES
@@ -148,8 +149,8 @@ void loadMaze()
     {
         for (int j = 0; j < mazeCols; j++)
         {
-            // read next cell value into maze array
-            maze[i][j] = getchar();
+            // read next cell value into maze array (ignoring whitespace and newlines)
+            while (!isspace(maze[i][j] = getchar()));
             printf("[%d, %d]: %c\n", i, j, maze[i][j]);
             
             // check if cell is the MOUSE
