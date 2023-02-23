@@ -138,10 +138,19 @@ void printMaze()
 
 void loadMaze()
 {
+    // read the maze width and height from first line of file
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
     printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);
 
+    // read in the values for the maze
+    for (int i = 0; i < mazeRows; i++)
+    {
+        for (int j = 0; j < mazeCols; j++)
+        {
+            scanf("%d", maze[i][j]);
+        }
+    }
 
 }
 
@@ -150,6 +159,7 @@ Boolean solveMaze()
     Boolean result = false;
     printMaze();
     return result;
+
 }
 
 void checkState();
