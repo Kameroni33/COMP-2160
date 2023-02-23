@@ -85,7 +85,7 @@ void checkState();
 int main( int argc, char *argv[] )
 {
 
-    printf("argc: %d\nargv: %s\n", argc, argv[0]);
+    printf("argc: %d\nargv: %s\n\n", argc, argv[0]);
 
     loadMaze();
 
@@ -108,17 +108,58 @@ int main( int argc, char *argv[] )
 //////////////////////////////////////////////
 // Cell routines
 //////////////////////////////////////////////
-Cell makeCell(const int row, const int col);
-Boolean equalCells(const Cell cell1, const Cell cell2);
-Boolean validCell(const Cell theCell);
+
+Boolean equalCells(const Cell cell1, const Cell cell2)
+{
+    // check if the rows & cloumns match, and return the result as a Boolean
+    return (Boolean)(cell1.row == cell2.row && cell1.column == cell2.column);
+}
+
+Cell makeCell(const int row, const int col)
+{
+    // create a new cell with the given row and col
+    Cell newCell = {row, col};
+    return newCell;
+}
+
+Boolean validCell(const Cell theCell)
+{
+    // check that the cell's row & column are both greater than zero and less than maxeRows and mazeCols respectively
+    return (Boolean)(theCell.row >= 0 && theCell.row < mazeRows && theCell.column >= 0 && theCell.column < mazeCols);
+}
 
 
 //////////////////////////////////////////////
 // List routines
 //////////////////////////////////////////////
-Boolean noMoreCells();
-Cell nextCell();
-void addCell(const Cell cell);
+
+Boolean noMoreCells()
+{
+    return (Boolean)(top->next == NULL);
+}
+
+Cell nextCell()
+{
+    Cell nextCell;
+    if (!noMoreCells())
+    {
+        nextCell = top->cell;
+        top->next = top->next->next;
+    }
+
+    else
+    {
+        printf("tried to get next Cell but list is empty\n");
+    }
+
+    return nextCell;
+}
+
+void addCell(const Cell cell)
+{
+    top->next = top;
+    top->cell = cell;
+}
 
 //////////////////////////////////////////////
 // Maze routines
@@ -151,7 +192,7 @@ void loadMaze()
         {
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
-            printf("[%d, %d]: %c\n", i, j, maze[i][j]);
+            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
@@ -159,7 +200,7 @@ void loadMaze()
                 mouse.row = i;
                 mouse.column = j;
 
-                printf("> mouse at  (%d, %d)\n", i, j);
+                // printf("> mouse at  (%d, %d)\n", i, j);
             }
 
             // check if cell is the EXIT
@@ -168,7 +209,7 @@ void loadMaze()
                 escape.row = i;
                 escape.column = j;
 
-                printf("> escape at (%d, %d)\n", i, j);
+                // printf("> escape at (%d, %d)\n", i, j);
             }
         }
     }
