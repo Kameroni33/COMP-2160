@@ -140,7 +140,7 @@ Boolean noMoreCells()
 
 Cell nextCell()
 {
-    Cell nextCell;
+    Cell nextCell = {0};
     if (!noMoreCells())
     {
         nextCell = top->cell;
