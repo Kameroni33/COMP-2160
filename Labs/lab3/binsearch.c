@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stddef.h>
 
 int binsearch(int target, int array[], int arrayLen)
 {
