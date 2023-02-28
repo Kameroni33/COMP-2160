@@ -1,8 +1,4 @@
-
-all: binsearch testing
-
-binsearch: binsearch.c
-	clang -Wall -g -o binsearch binsearch.c
+all: testing
 
 testing: testing.c binsearch.c
 	clang -include binsearch.h -c binsearch.c
