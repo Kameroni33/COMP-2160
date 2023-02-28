@@ -1,6 +1,6 @@
 #include <stdio.h>
 // include binsearch.c file for testing
-#include "binserach.h"
+#include "binsearch.h"
 
 //-------------------------------------------------------------------------------------
 // CONSTANTS
