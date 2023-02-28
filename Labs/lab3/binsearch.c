@@ -6,9 +6,7 @@ int binsearch(int target, int array[], int arrayLen)
     //---------------------------------------------------------------------------------
     // Pre-Conditions
     //---------------------------------------------------------------------------------
-    assert(target != NULL);
     assert(array != NULL);
-    assert(arrayLen != NULL);
 
     // assert(arrayLen == sizeof(array)/sizeof(array[0]));
 
