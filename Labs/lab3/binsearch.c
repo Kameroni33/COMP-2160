@@ -8,7 +8,7 @@ int binsearch(int target, int array[], int arrayLen)
     //---------------------------------------------------------------------------------
     assert(array != NULL);
 
-    // assert(arrayLen == sizeof(array)/sizeof(array[0]));
+    assert(arrayLen == sizeof(array)/sizeof(array[0]));
 
     //---------------------------------------------------------------------------------
     // Algorithm
