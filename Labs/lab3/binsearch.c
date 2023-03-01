@@ -11,6 +11,12 @@ int binsearch(int target, int array[], int arrayLen)
     // Unable to verify array length parameter due dynamically passed in array
     // assert(arrayLen == sizeof(array)/sizeof(array[0]));
 
+    // assert that array is sorted (least to greatest)
+    for (int i = 0; i < arrayLen-1; i++)
+    {
+        assert(array[i] <= array[i+1]);
+    }
+
     //---------------------------------------------------------------------------------
     // Algorithm
     //---------------------------------------------------------------------------------
