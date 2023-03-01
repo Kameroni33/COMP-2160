@@ -43,6 +43,8 @@ int binsearch(int target, int array[], int arrayLen)
             // Post-Conditions (case 1)
             //-------------------------------------------------------------------------
             assert(array[center] == target);
+            assert(target >= 0);
+            assert(target < arrayLen);
 
             return center;
         }
