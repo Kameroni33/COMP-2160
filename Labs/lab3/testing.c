@@ -54,10 +54,10 @@ void test_typical_cases()
     int array3[] = { 0, 0, 0 };
     int array4[] = { 1 };
     int array5[] = { -3, -2, -1, 0 };
-    
-    int array6[] = NULL;
-    int array7[] = { 3, 2, 1 };
-    int array8[] = { 2, 3, 1 };
+
+    // int array6[] = NULL;
+    // int array7[] = { 3, 2, 1 };
+    // int array8[] = { 2, 3, 1 };
 
     printf("Testing typical cases\n");
 
