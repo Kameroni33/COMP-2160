@@ -7,7 +7,6 @@ int binsearch(int target, int array[], int arrayLen)
     // Pre-Conditions
     //---------------------------------------------------------------------------------
     assert(array != NULL);
-    assert(target != NULL);
 
     // Unable to verify array length parameter due dynamically passed in array
     // assert(arrayLen == sizeof(array)/sizeof(array[0]));
@@ -22,6 +21,11 @@ int binsearch(int target, int array[], int arrayLen)
     while (left <= right)
     {
         center = (left + right) / 2;
+
+        // assert that center is a valid number at this point
+        assert(center >= 0);
+        assert(center >= left);
+        assert(center <= right);
 
         if(target < array[center])
         {
@@ -38,7 +42,7 @@ int binsearch(int target, int array[], int arrayLen)
             //-------------------------------------------------------------------------
             // Post-Conditions (case 1)
             //-------------------------------------------------------------------------
-
+            assert(array[center] == target);
 
             return center;
         }
@@ -47,7 +51,7 @@ int binsearch(int target, int array[], int arrayLen)
     //---------------------------------------------------------------------------------
     // Post-Conditions (case 2)
     //---------------------------------------------------------------------------------
-
+    assert(left > right);
 
     return -1;
 }
