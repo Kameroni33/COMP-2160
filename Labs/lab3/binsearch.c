@@ -50,7 +50,7 @@ int binsearch(int target, int array[], int arrayLen)
             //-------------------------------------------------------------------------
             assert(array[center] == target);
             assert(target >= array[0]);
-            assert(target < array[arrayLen-1]);
+            assert(target <= array[arrayLen-1]);
 
             return center;
         }
