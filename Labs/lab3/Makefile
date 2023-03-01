@@ -7,3 +7,6 @@ testing: testing.c binsearch.c
 prod:
 	clang -include binsearch.h -c binsearch.c
 	clang -Wall -DNDEBUG -g binsearch.c testing.c -o testing
+
+clean:
+	rm -f testing
