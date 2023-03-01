@@ -8,11 +8,9 @@ int binsearch(int target, int array[], int arrayLen)
     //---------------------------------------------------------------------------------
     assert(array != NULL);
     assert(arrayLen > 0);
+    assert(target >= array[0]);
+    assert(target <= array[arrayLen-1]);
 
-    // Unable to verify array length parameter due dynamically passed in array
-    // assert(arrayLen == sizeof(array)/sizeof(array[0]));
-
-    // assert that array is sorted (least to greatest)
     for (int i = 0; i < arrayLen-1; i++)
     {
         assert(array[i] <= array[i+1]);
@@ -50,8 +48,8 @@ int binsearch(int target, int array[], int arrayLen)
             // Post-Conditions (case 1)
             //-------------------------------------------------------------------------
             assert(array[center] == target);
-            assert(target >= array[0]);
-            assert(target <= array[arrayLen-1]);
+            assert(array[center] >= array[0]);
+            assert(array[center] <= array[arrayLen-1]);
 
             return center;
         }
