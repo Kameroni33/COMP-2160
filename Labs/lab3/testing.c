@@ -21,8 +21,6 @@ int main()
 {
   printf("Beginning tests\n\n");
   test_typical_cases();
-  
-  // test more stuff...
 
   printf("\nTotal number of tests executed: %d\n", tests_executed);
   printf("Number of tests passed:         %d\n", (tests_executed - tests_failed));
@@ -66,18 +64,4 @@ void test_typical_cases()
     test_binary_search(0, 0, array4, 1);
     test_binary_search(2, -1, array5, 1);
 
-    // test more stuff...
-}
-
-void test_edge_cases()
-{
-    int array1[] = { 0 };
-    int array1[] = { -2, -1, 0 };
-    int array1[] = { 0, 0, 0 };
-
-    printf("Testing edge cases\n");
-
-    test_binary_search(1, 2, array1, 3);
-
-    // test more stuff...
 }
