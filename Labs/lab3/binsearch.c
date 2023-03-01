@@ -8,7 +8,8 @@ int binsearch(int target, int array[], int arrayLen)
     //---------------------------------------------------------------------------------
     assert(array != NULL);
 
-    assert(arrayLen == sizeof(array)/sizeof(array[0]));
+    // Unable to verify array length parameter due dynamically passed in array
+    // assert(arrayLen == sizeof(array)/sizeof(array[0]));
 
     //---------------------------------------------------------------------------------
     // Algorithm
