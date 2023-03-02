@@ -7,7 +7,7 @@ int binsearch(int target, int array[], int arrayLen)
     // Pre-Conditions
     //---------------------------------------------------------------------------------
     assert(array != NULL);
-    assert(arrayLen > 0);
+    assert(arrayLen >= 0);
     assert(target >= array[0]);
     assert(target <= array[arrayLen-1]);
 
