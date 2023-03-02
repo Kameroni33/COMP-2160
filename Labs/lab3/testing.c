@@ -54,6 +54,7 @@ void test_typical_cases()
     int array3[] = { 0, 0, 0 };
     int array4[] = { 1 };
     int array5[] = { -3, -2, -1, 0 };
+    int array6[] = {};
 
     // int array6[] = NULL;
     // int array7[] = { 3, 2, 1 };
@@ -75,6 +76,8 @@ void test_typical_cases()
     test_binary_search(0, -3, array5, 4);
     test_binary_search(2, -1, array5, 4);
     test_binary_search(3, 0, array5, 4);
+
+    test_binary_search(-1, 0, array6, 0);
 
     //invalid tests
     // test_binary_search(-1, 4, array1, 3);
