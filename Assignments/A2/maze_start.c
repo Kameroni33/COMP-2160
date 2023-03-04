@@ -296,7 +296,7 @@ Boolean solveMaze()
     Cell currentCell = mouse;
     int step = 0;
 
-    while (equalCells(currentCell, escape))
+    while (!equalCells(currentCell, escape))
     {
         printf("Step: %d\n", step++);
 
