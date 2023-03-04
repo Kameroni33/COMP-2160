@@ -144,7 +144,7 @@ Boolean validCell(const Cell theCell)
 Boolean noMoreCells()
 {
     printf("Checking if list is empty: %d\n", (top->next == NULL));
-    printf("top->next = %d\n", top->next);
+    printNode(top);
     return (Boolean)(top->next == NULL);
 }
 
@@ -185,7 +185,7 @@ void addCell(const Cell cell)
 void printNode(CellNode *node)
 {
     printf("Node contents: [%d, %d]\n", node->cell.row, node->cell.column);
-    printf("Next node: %p\n", node->next);
+    printf("Next node: %p\n", ( void * )node->next);
 }
 
 //////////////////////////////////////////////
