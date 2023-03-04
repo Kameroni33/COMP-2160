@@ -273,11 +273,11 @@ void addNeighbours(const Cell cell)
     // NORTH neighbour
     if (cell.row > 0)
     {
-        // printf("checking NORTH neighbour...\n");  // debug log
+        printf("checking NORTH neighbour...\n");  // debug log
         Cell north = makeCell(cell.row-1, cell.column);
         if (getCellValue(north) == SPACE || getCellValue(north) == EXIT)
         {
-            // printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
+            printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
             addCell(north);
         }
     }
@@ -285,12 +285,12 @@ void addNeighbours(const Cell cell)
     // EAST neighbour
     if (cell.column < mazeCols-1)
     {
-        // printf("checking EAST neighbour...\n");  // debug log
+        printf("checking EAST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column+1);
         if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
-            // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
@@ -298,12 +298,12 @@ void addNeighbours(const Cell cell)
     // SOUTH neighbour
     if (cell.row < mazeRows-1)
     {
-        // printf("checking SOUTH neighbour...\n");  // debug log
+        printf("checking SOUTH neighbour...\n");  // debug log
 
         Cell south = makeCell(cell.row+1, cell.column);
         if (getCellValue(south) == SPACE || getCellValue(south) == EXIT)
         {
-            // printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
+            printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
             addCell(south);
         }
     }
@@ -311,12 +311,12 @@ void addNeighbours(const Cell cell)
     // WEST neighbour
     if (cell.column > 0)
     {
-        // printf("checking WEST neighbour...\n");  // debug log
+        printf("checking WEST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column-1);
         if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
-            // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
