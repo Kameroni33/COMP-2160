@@ -78,6 +78,9 @@ Boolean solveMaze();
 // our invariant checker
 void checkState();
 
+// get the char at position of cell
+char getCellValue(const Cell cell);
+
 //-------------------------------------------------------------------------------------
 // FUNCTIONS
 //-------------------------------------------------------------------------------------
@@ -242,10 +245,20 @@ void loadMaze()
 Boolean solveMaze()
 {
     Boolean result = false;
-    
+    Cell currentCell = mouse;
+
+    while (currentCell)
+
+
+
     // printMaze();
     return result;
 
 }
 
 void checkState();
+
+char getCellValue(const Cell cell)
+{
+    return maze[cell.row][cell.column];
+}
