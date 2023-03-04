@@ -302,7 +302,7 @@ Boolean solveMaze()
         // add the unvisted open neighbours of current cell to list
         addNeighbours(currentCell);
 
-        if (noMoreCells)
+        if (noMoreCells())
         {
             // there are no more cells to check, thus we are trapped
             return false;
