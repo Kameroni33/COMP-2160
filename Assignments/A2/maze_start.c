@@ -228,6 +228,7 @@ void loadMaze()
         {
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
+
             // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
             
             // check if cell is the MOUSE
@@ -274,7 +275,7 @@ void addNeighbours(const Cell cell)
     {
         // printf("checking NORTH neighbour...\n");  // debug log
         Cell north = makeCell(cell.row-1, cell.column);
-        if (getCellValue(north) == SPACE)
+        if (getCellValue(north) == SPACE || getCellValue(north) == EXIT)
         {
             // printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
             addCell(north);
@@ -287,7 +288,7 @@ void addNeighbours(const Cell cell)
         // printf("checking EAST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column+1);
-        if (getCellValue(east) == SPACE)
+        if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
             // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
@@ -300,7 +301,7 @@ void addNeighbours(const Cell cell)
         // printf("checking SOUTH neighbour...\n");  // debug log
 
         Cell south = makeCell(cell.row+1, cell.column);
-        if (getCellValue(south) == SPACE)
+        if (getCellValue(south) == SPACE || getCellValue(south) == EXIT)
         {
             // printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
             addCell(south);
@@ -313,7 +314,7 @@ void addNeighbours(const Cell cell)
         // printf("checking WEST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column-1);
-        if (getCellValue(east) == SPACE)
+        if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
             // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
