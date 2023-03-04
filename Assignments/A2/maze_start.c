@@ -143,7 +143,7 @@ Boolean validCell(const Cell theCell)
 
 Boolean noMoreCells()
 {
-    printf("Checking if list is empty: %d\n", (top == NULL));
+    // printf("Checking if list is empty: %d\n", (top == NULL));  // debug log
     // printNode(top);  // debug log
     return (Boolean)(top == NULL);
 }
@@ -176,8 +176,8 @@ void addCell(const Cell cell)
     // allocate space for the new node
     CellNode *newCellNode = malloc(sizeof(CellNode));
     // set the values of the newCellNode
-    newCellNode->cell = cell;
-    newCellNode->next = top;
+    newCellNode->cell = cell;  // set our new node to have the passed in cell value
+    newCellNode->next = top;   // existing top now becomes the 'second' node in list
     // set the newCellNode as the new top
     top = newCellNode;
 }
@@ -264,16 +264,16 @@ void setCellValue(const Cell cell, const char value)
 
 void addNeighbours(const Cell cell)
 {
-    printf("adding neighours of cell [%d, %d] to list\n", cell.row, cell.column);  // debug log
+    // printf("adding neighours of cell [%d, %d] to list\n", cell.row, cell.column);  // debug log
 
     // NORTH neighbour
     if (cell.row > 0)
     {
-        printf("checking NORTH neighbour...\n");  // debug log
+        // printf("checking NORTH neighbour...\n");  // debug log
         Cell north = makeCell(cell.row-1, cell.column);
         if (getCellValue(north) == SPACE)
         {
-            printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
+            // printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
             addCell(north);
         }
     }
@@ -281,12 +281,12 @@ void addNeighbours(const Cell cell)
     // EAST neighbour
     if (cell.column < mazeCols-1)
     {
-        printf("checking EAST neighbour...\n");
+        // printf("checking EAST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column+1);
         if (getCellValue(east) == SPACE)
         {
-            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
+            // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
@@ -294,12 +294,12 @@ void addNeighbours(const Cell cell)
     // SOUTH neighbour
     if (cell.row < mazeRows-1)
     {
-        printf("checking SOUTH neighbour...\n");
+        // printf("checking SOUTH neighbour...\n");  // debug log
 
         Cell south = makeCell(cell.row+1, cell.column);
         if (getCellValue(south) == SPACE)
         {
-            printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
+            // printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
             addCell(south);
         }
     }
@@ -307,12 +307,12 @@ void addNeighbours(const Cell cell)
     // WEST neighbour
     if (cell.column > 0)
     {
-        printf("checking WEST neighbour...\n");
+        // printf("checking WEST neighbour...\n");  // debug log
 
         Cell east = makeCell(cell.row, cell.column-1);
         if (getCellValue(east) == SPACE)
         {
-            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
+            // printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
