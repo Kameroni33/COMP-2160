@@ -317,7 +317,7 @@ void addNeighbours(const Cell cell)
     }
 
     Cell listCell = nextCell();
-    printf("top: [%d, %d]", listCell.row, listCell.column);
+    printf("top: [%d, %d]\n", listCell.row, listCell.column);
 }
 
 
