@@ -300,7 +300,6 @@ void addNeighbours(const Cell cell)
 
 Boolean solveMaze()
 {
-    Boolean result = false;
     Cell currentCell = mouse;
 
     while (equalCells(currentCell, escape))
@@ -310,14 +309,18 @@ Boolean solveMaze()
         // add the unvisted open neighbours of current cell to list
         addNeighbours(currentCell);
 
-        if ()
+        if (noMoreCells)
+        {
+            return false;
+        }
+
+        else
+        {
+            currentCell = nextCell();
+        }
     }
 
-
-
-    // printMaze();
-    return result;
-
+    return true;
 }
 
 void checkState();
