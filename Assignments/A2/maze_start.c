@@ -117,6 +117,7 @@ int main( int argc, char *argv[] )
 Boolean equalCells(const Cell cell1, const Cell cell2)
 {
     // check if the rows & cloumns match, and return the result as a Boolean
+    printf("Comparing cells [%d, %d] and [%d, %d]: %d", cell1.row, cell1.column, cell2.row, cell2.column, (cell1.row == cell2.row && cell1.column == cell2.column));
     return (Boolean)(cell1.row == cell2.row && cell1.column == cell2.column);
 }
 
