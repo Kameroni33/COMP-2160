@@ -277,8 +277,9 @@ void addNeighbours(const Cell cell)
         Cell north = makeCell(cell.row-1, cell.column);
         if (getCellValue(north) == SPACE || getCellValue(north) == EXIT)
         {
-            printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
             addCell(north);
+
+            printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
         }
     }
 
@@ -290,8 +291,9 @@ void addNeighbours(const Cell cell)
         Cell east = makeCell(cell.row, cell.column+1);
         if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
-            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
+
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
         }
     }
 
@@ -303,8 +305,9 @@ void addNeighbours(const Cell cell)
         Cell south = makeCell(cell.row+1, cell.column);
         if (getCellValue(south) == SPACE || getCellValue(south) == EXIT)
         {
-            printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
             addCell(south);
+
+            printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
         }
     }
 
@@ -316,8 +319,9 @@ void addNeighbours(const Cell cell)
         Cell east = makeCell(cell.row, cell.column-1);
         if (getCellValue(east) == SPACE || getCellValue(east) == EXIT)
         {
-            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
+
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
         }
     }
 }
