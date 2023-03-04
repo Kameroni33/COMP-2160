@@ -119,8 +119,6 @@ Cell makeCell(const int row, const int col)
 {
     // create a new cell with the given row and col
     Cell newCell = {row, col};
-    // newCell->row = row;
-    // newCell->column = col;
     return newCell;
 }
 
@@ -142,11 +140,16 @@ Boolean noMoreCells()
 
 Cell nextCell()
 {
-    Cell nextCell = {0};
+    Cell nextCell = {0};  // returns an empty cell (ie. row = 0, col = 0) if there is no next cell
+
     if (!noMoreCells())
     {
+        // get the next cell value from the node
         nextCell = top->cell;
-        top->next = top->next->next;
+        // unlink top node from list
+        CellNode *oldNode = top;
+        top = top->next;
+        free(oldNode);
     }
 
     else
@@ -159,8 +162,13 @@ Cell nextCell()
 
 void addCell(const Cell cell)
 {
-    top->next = top;
-    top->cell = cell;
+    // allocate space for the new node
+    CellNode *newCellNode = malloc(sizeof(CellNode));
+    // set the values of the newCellNode
+    newCellNode->cell = cell;
+    newCellNode->next = top;
+    // set the newCellNode as the new top
+    top = newCellNode;
 }
 
 //////////////////////////////////////////////
@@ -225,8 +233,7 @@ void loadMaze()
 
 
             printf("cell: %d, %d\n", makeCell(i, j).row, makeCell(i, j).column);
-
-            // addCell(makeCell(i, j));
+            addCell(makeCell(i, j));
         }
     }
 
