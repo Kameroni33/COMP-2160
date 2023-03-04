@@ -221,7 +221,11 @@ void loadMaze()
                 // printf("> escape at (%d, %d)\n", i, j);
             }
 
-            // // TESTING LINKED LIST
+            // TESTING LINKED LIST
+
+
+            printf("cell: %d, %d\n", makeCell(i, j).row, makeCell(i, j).column);
+
             // addCell(makeCell(i, j));
         }
     }
