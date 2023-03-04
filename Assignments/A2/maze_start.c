@@ -118,8 +118,9 @@ int main( int argc, char *argv[] )
 
 Boolean equalCells(const Cell cell1, const Cell cell2)
 {
+    // printf("Comparing cells [%d, %d] and [%d, %d]: %d\n", cell1.row, cell1.column, cell2.row, cell2.column, (cell1.row == cell2.row && cell1.column == cell2.column));  // debug log
+
     // check if the rows & cloumns match, and return the result as a Boolean
-    printf("Comparing cells [%d, %d] and [%d, %d]: %d\n", cell1.row, cell1.column, cell2.row, cell2.column, (cell1.row == cell2.row && cell1.column == cell2.column));
     return (Boolean)(cell1.row == cell2.row && cell1.column == cell2.column);
 }
 
@@ -145,6 +146,8 @@ Boolean noMoreCells()
 {
     // printf("Checking if list is empty: %d\n", (top == NULL));  // debug log
     // printNode(top);  // debug log
+
+    // check if our current top is NULL (if it is that means our list is empty)
     return (Boolean)(top == NULL);
 }
 
