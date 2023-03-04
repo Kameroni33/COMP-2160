@@ -184,7 +184,7 @@ void addCell(const Cell cell)
 
 void printTop()
 {
-    printf("Node contents: [%d, %d]\n", top->cell.row, top->cell.column);
+    printf("Top contents: [%d, %d]\n", top->cell.row, top->cell.column);
     printf("Next node: %p\n", (void *)(top->next));
 
 }
