@@ -315,6 +315,9 @@ void addNeighbours(const Cell cell)
             addCell(east);
         }
     }
+
+    Cell listCell = nextCell();
+    printf("top: [%d, %d]", listCell.row, listCell.column);
 }
 
 
