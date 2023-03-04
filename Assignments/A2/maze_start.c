@@ -183,22 +183,19 @@ void addCell(const Cell cell)
 
 void printMaze()
 {
+    // for each row of maze
     for (int i = 0; i < mazeRows; i++)
     {
+        // for each column in row
         for (int j = 0; j < mazeCols; j++)
         {
+            // print the char located at the current [row][col]
             printf("%c ", maze[i][j]);
         }
         
+        // print a new line at the end of each row
         printf("\n");
     }
-
-    // // TESTING LINKED LIST
-    // for (int i = 0; i < (mazeRows * mazeCols); i++)
-    // {
-    //     Cell currCell = nextCell();
-    //     printf("List (%02d): [%d, %d]\n", i, currCell.row, currCell.column);
-    // }
 }
 
 void loadMaze()
@@ -234,10 +231,6 @@ void loadMaze()
 
                 // printf("> escape at (%d, %d)\n", i, j);
             }
-
-            // // TESTING LINKED LIST
-            // // printf("cell: %d, %d\n", makeCell(i, j).row, makeCell(i, j).column);
-            // addCell(makeCell(i, j));
         }
     }
 
@@ -320,6 +313,10 @@ Boolean solveMaze()
             // check the next cell in our list of cells
             currentCell = nextCell();
         }
+
+        // print out the current state of the maze
+        printMaze();
+        printf("\n");
     }
 
     // if we reach this point (ie. break out of while loop)
