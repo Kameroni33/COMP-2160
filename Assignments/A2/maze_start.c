@@ -188,12 +188,12 @@ void printMaze()
         printf("\n");
     }
 
-    // // TESTING LINKED LIST
-    // for (int i = 0; i < (mazeRows * mazeCols); i++)
-    // {
-    //     Cell currCell = nextCell();
-    //     printf("List (%02d): [%d, %d]", i, currCell.row, currCell.column);
-    // }
+    // TESTING LINKED LIST
+    for (int i = 0; i < (mazeRows * mazeCols); i++)
+    {
+        Cell currCell = nextCell();
+        printf("List (%02d): [%d, %d]", i, currCell.row, currCell.column);
+    }
 }
 
 void loadMaze()
@@ -231,9 +231,7 @@ void loadMaze()
             }
 
             // TESTING LINKED LIST
-
-
-            printf("cell: %d, %d\n", makeCell(i, j).row, makeCell(i, j).column);
+            // printf("cell: %d, %d\n", makeCell(i, j).row, makeCell(i, j).column);
             addCell(makeCell(i, j));
         }
     }
