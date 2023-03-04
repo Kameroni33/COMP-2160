@@ -91,7 +91,9 @@ void checkState();
 
 int main( int argc, char *argv[] )
 {
-    // because the 
+    // this statement is to suppress the compiler errors [-Werror,-Wunused-parameter]
+    int numArgs = argc;
+    char proName[] = argv[0];
 
     // printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
 
