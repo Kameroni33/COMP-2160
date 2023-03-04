@@ -68,6 +68,8 @@ Boolean noMoreCells();
 Cell nextCell();
 // introduces a new cell to try
 void addCell(const Cell cell);
+// prints contents of node (for debugging)
+void printNode(CellNode *node);
 
 // get the char at position of cell
 char getCellValue(const Cell cell);
@@ -178,6 +180,12 @@ void addCell(const Cell cell)
     newCellNode->next = top;
     // set the newCellNode as the new top
     top = newCellNode;
+}
+
+void printNode(CellNode *node)
+{
+    printf("Node contents: [%d, %d]\n", node->cell.row, node->cell.column);
+    printf("Next node: %lu\n", node->next);
 }
 
 //////////////////////////////////////////////
