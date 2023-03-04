@@ -118,7 +118,9 @@ Boolean equalCells(const Cell cell1, const Cell cell2)
 Cell makeCell(const int row, const int col)
 {
     // create a new cell with the given row and col
-    Cell newCell = {row, col};
+    Cell *newCell = malloc(sizeof(Cell));
+    newCell->row = row;
+    newCell-> 
     return newCell;
 }
 
@@ -177,12 +179,12 @@ void printMaze()
         printf("\n");
     }
 
-    // TESTING LINKED LIST
-    for (int i = 0; i < (mazeRows * mazeCols); i++)
-    {
-        Cell currCell = nextCell();
-        printf("List (%02d): [%d, %d]", i, currCell.row, currCell.column);
-    }
+    // // TESTING LINKED LIST
+    // for (int i = 0; i < (mazeRows * mazeCols); i++)
+    // {
+    //     Cell currCell = nextCell();
+    //     printf("List (%02d): [%d, %d]", i, currCell.row, currCell.column);
+    // }
 }
 
 void loadMaze()
@@ -219,8 +221,8 @@ void loadMaze()
                 // printf("> escape at (%d, %d)\n", i, j);
             }
 
-            // TESTING LINKED LIST
-            addCell(makeCell(i, j));
+            // // TESTING LINKED LIST
+            // addCell(makeCell(i, j));
         }
     }
 
