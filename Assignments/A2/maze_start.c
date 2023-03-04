@@ -252,11 +252,13 @@ void setCellValue(const Cell cell, const char value)
 
 void addNeighbours(const Cell cell)
 {
-    printf("adding neighours of ");
+    printf("adding neighours of cell [%d, %d] to list\n", cell.row, cell.column);
 
     // NORTH neighbour
     if (cell.row > 0)
     {
+        printf("checking NORTH neighbour...\n");
+
         Cell north = makeCell(cell.row-1, cell.column);
         if (getCellValue(north) == SPACE)
         {
@@ -267,6 +269,8 @@ void addNeighbours(const Cell cell)
     // EAST neighbour
     if (cell.column < mazeCols-1)
     {
+        printf("checking EAST neighbour...\n");
+
         Cell east = makeCell(cell.row, cell.column+1);
         if (getCellValue(east) == SPACE)
         {
@@ -277,6 +281,8 @@ void addNeighbours(const Cell cell)
     // SOUTH neighbour
     if (cell.row < mazeRows-1)
     {
+        printf("checking SOUTH neighbour...\n");
+
         Cell south = makeCell(cell.row+1, cell.column);
         if (getCellValue(south) == SPACE)
         {
@@ -287,6 +293,8 @@ void addNeighbours(const Cell cell)
     // WEST neighbour
     if (cell.column > 0)
     {
+        printf("checking WEST neighbour...\n");
+
         Cell east = makeCell(cell.row, cell.column-1);
         if (getCellValue(east) == SPACE)
         {
