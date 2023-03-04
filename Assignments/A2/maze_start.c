@@ -117,7 +117,7 @@ int main( int argc, char *argv[] )
 Boolean equalCells(const Cell cell1, const Cell cell2)
 {
     // check if the rows & cloumns match, and return the result as a Boolean
-    printf("Comparing cells [%d, %d] and [%d, %d]: %d", cell1.row, cell1.column, cell2.row, cell2.column, (cell1.row == cell2.row && cell1.column == cell2.column));
+    printf("Comparing cells [%d, %d] and [%d, %d]: %d\n", cell1.row, cell1.column, cell2.row, cell2.column, (cell1.row == cell2.row && cell1.column == cell2.column));
     return (Boolean)(cell1.row == cell2.row && cell1.column == cell2.column);
 }
 
@@ -235,6 +235,8 @@ void loadMaze()
         }
     }
 
+    // print out the initial state of the maze
+    printMaze();
     printf("\n");
 }
 
@@ -250,6 +252,8 @@ void setCellValue(const Cell cell, const char value)
 
 void addNeighbours(const Cell cell)
 {
+    printf("adding neighours of ");
+
     // NORTH neighbour
     if (cell.row > 0)
     {
@@ -306,6 +310,10 @@ Boolean solveMaze()
         // add the unvisted open neighbours of current cell to list
         addNeighbours(currentCell);
 
+        // print out the current state of the maze
+        printMaze();
+        printf("\n");
+
         if (noMoreCells())
         {
             // there are no more cells to check, thus we are trapped
@@ -317,10 +325,6 @@ Boolean solveMaze()
             // check the next cell in our list of cells
             currentCell = nextCell();
         }
-
-        // print out the current state of the maze
-        printMaze();
-        printf("\n");
     }
 
     // if we reach this point (ie. break out of while loop)
