@@ -294,9 +294,12 @@ void addNeighbours(const Cell cell)
 Boolean solveMaze()
 {
     Cell currentCell = mouse;
+    int step = 0;
 
     while (equalCells(currentCell, escape))
     {
+        printf("Step: %d\n", step++);
+
         // mark current cell as visited
         setCellValue(currentCell, VISITED);
         // add the unvisted open neighbours of current cell to list
