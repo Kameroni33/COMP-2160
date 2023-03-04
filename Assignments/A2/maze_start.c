@@ -118,10 +118,10 @@ Boolean equalCells(const Cell cell1, const Cell cell2)
 Cell makeCell(const int row, const int col)
 {
     // create a new cell with the given row and col
-    Cell *newCell = malloc(sizeof(Cell));
-    newCell->row = row;
-    newCell->column = col;
-    return *newCell;
+    Cell newCell = {row, col};
+    // newCell->row = row;
+    // newCell->column = col;
+    return newCell;
 }
 
 Boolean validCell(const Cell theCell)
