@@ -69,7 +69,7 @@ Cell nextCell();
 // introduces a new cell to try
 void addCell(const Cell cell);
 // prints contents of node (for debugging)
-void printNode(CellNode *node);
+void printTop();
 
 // get the char at position of cell
 char getCellValue(const Cell cell);
@@ -143,9 +143,9 @@ Boolean validCell(const Cell theCell)
 
 Boolean noMoreCells()
 {
-    printf("Checking if list is empty: %d\n", (top->next == NULL));
-    printNode(top);
-    return (Boolean)(top->next == NULL);
+    printf("Checking if list is empty: %d\n", (top == NULL));
+    // printNode(top);  // debug log
+    return (Boolean)(top == NULL);
 }
 
 Cell nextCell()
@@ -182,10 +182,11 @@ void addCell(const Cell cell)
     top = newCellNode;
 }
 
-void printNode(CellNode *node)
+void printTop()
 {
-    printf("Node contents: [%d, %d]\n", node->cell.row, node->cell.column);
-    printf("Next node: %p\n", (void *)(node->next));
+    printf("Node contents: [%d, %d]\n", top->cell.row, top->cell.column);
+    printf("Next node: %p\n", (void *)(top->next));
+
 }
 
 //////////////////////////////////////////////
@@ -315,9 +316,6 @@ void addNeighbours(const Cell cell)
             addCell(east);
         }
     }
-
-    Cell listCell = nextCell();
-    printf("top: [%d, %d]\n", listCell.row, listCell.column);
 }
 
 
