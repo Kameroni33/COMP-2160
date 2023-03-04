@@ -192,7 +192,7 @@ void printMaze()
     for (int i = 0; i < (mazeRows * mazeCols); i++)
     {
         Cell currCell = nextCell();
-        printf("List (%02d): [%d, %d]", i, currCell.row, currCell.column);
+        printf("List (%02d): [%d, %d]\n", i, currCell.row, currCell.column);
     }
 }
 
