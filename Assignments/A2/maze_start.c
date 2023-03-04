@@ -309,6 +309,8 @@ Boolean solveMaze()
         setCellValue(currentCell, VISITED);
         // add the unvisted open neighbours of current cell to list
         addNeighbours(currentCell);
+
+        if ()
     }
 
 
