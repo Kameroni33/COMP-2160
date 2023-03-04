@@ -141,6 +141,7 @@ Boolean validCell(const Cell theCell)
 
 Boolean noMoreCells()
 {
+    printf("Checking if list is empty: %d", (top->next == NULL));
     return (Boolean)(top->next == NULL);
 }
 
