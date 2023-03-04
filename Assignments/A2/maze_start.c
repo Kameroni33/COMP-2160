@@ -311,15 +311,19 @@ Boolean solveMaze()
 
         if (noMoreCells)
         {
+            // there are no more cells to check, thus we are trapped
             return false;
         }
 
         else
         {
+            // check the next cell in our list of cells
             currentCell = nextCell();
         }
     }
 
+    // if we reach this point (ie. break out of while loop)
+    // then we've reached the escape and the mouse is free!
     return true;
 }
 
