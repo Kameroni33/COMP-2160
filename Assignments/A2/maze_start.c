@@ -69,6 +69,11 @@ Cell nextCell();
 // introduces a new cell to try
 void addCell(const Cell cell);
 
+// get the char at position of cell
+char getCellValue(const Cell cell);
+// set the value at the position of cell to be char
+void setCellValue(const Cell cell, const char value);
+
 void printMaze();
 void loadMaze();
 
@@ -77,9 +82,6 @@ Boolean solveMaze();
 
 // our invariant checker
 void checkState();
-
-// get the char at position of cell
-char getCellValue(const Cell cell);
 
 //-------------------------------------------------------------------------------------
 // FUNCTIONS
@@ -242,12 +244,72 @@ void loadMaze()
     printf("\n");
 }
 
+char getCellValue(const Cell cell)
+{
+    return maze[cell.row][cell.column];
+}
+
+void setCellValue(const Cell cell, const char value)
+{
+    maze[cell.row][cell.column] = value;
+}
+
+void addNeighbours(const Cell cell)
+{
+    // NORTH neighbour
+    if (cell.row > 0)
+    {
+        Cell north = makeCell(cell.row-1, cell.column);
+        if (getCellValue(north) == SPACE)
+        {
+            addCell(north);
+        }
+    }
+
+    // EAST neighbour
+    if (cell.column < mazeCols-1)
+    {
+        Cell east = makeCell(cell.row, cell.column+1);
+        if (getCellValue(east) == SPACE)
+        {
+            addCell(east);
+        }
+    }
+
+    // SOUTH neighbour
+    if (cell.row < mazeRows-1)
+    {
+        Cell south = makeCell(cell.row+1, cell.column);
+        if (getCellValue(south) == SPACE)
+        {
+            addCell(south);
+        }
+    }
+
+    // WEST neighbour
+    if (cell.column > 0)
+    {
+        Cell east = makeCell(cell.row, cell.column-1);
+        if (getCellValue(east) == SPACE)
+        {
+            addCell(east);
+        }
+    }
+}
+
+
 Boolean solveMaze()
 {
     Boolean result = false;
     Cell currentCell = mouse;
 
-    while (currentCell)
+    while (equalCells(currentCell, escape))
+    {
+        // mark current cell as visited
+        setCellValue(currentCell, VISITED);
+        // add the unvisted open neighbours of current cell to list
+        addNeighbours(currentCell);
+    }
 
 
 
@@ -257,8 +319,3 @@ Boolean solveMaze()
 }
 
 void checkState();
-
-char getCellValue(const Cell cell)
-{
-    return maze[cell.row][cell.column];
-}
