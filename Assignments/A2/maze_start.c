@@ -91,8 +91,9 @@ void checkState();
 
 int main( int argc, char *argv[] )
 {
+    // because the 
 
-    printf("argc: %d\nargv: %s\n\n", argc, argv[0]);
+    // printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
 
     loadMaze();
 
@@ -219,7 +220,7 @@ void loadMaze()
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
 
-    printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
+    // printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
 
     // read in the values for the maze
     for (int i = 0; i < mazeRows; i++)
