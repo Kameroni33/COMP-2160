@@ -161,7 +161,7 @@ Cell nextCell()
 
     else
     {
-        printf("tried to get next Cell but list is empty\n");
+        printf("Error: tried to get next Cell but list is empty...\n");
     }
 
     return nextCell;
@@ -204,7 +204,8 @@ void loadMaze()
     // read the maze width and height from first line of file
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
-    printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);
+
+    printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
 
     // read in the values for the maze
     for (int i = 0; i < mazeRows; i++)
@@ -213,7 +214,7 @@ void loadMaze()
         {
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
-            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);
+            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
@@ -221,7 +222,7 @@ void loadMaze()
                 mouse.row = i;
                 mouse.column = j;
 
-                // printf("> mouse at  (%d, %d)\n", i, j);
+                // printf("found mouse at (%d, %d)\n", i, j);  // debug log
             }
 
             // check if cell is the EXIT
@@ -230,7 +231,7 @@ void loadMaze()
                 escape.row = i;
                 escape.column = j;
 
-                // printf("> escape at (%d, %d)\n", i, j);
+                // printf("> found escape at (%d, %d)\n", i, j);  // debug log
             }
         }
     }
@@ -252,16 +253,16 @@ void setCellValue(const Cell cell, const char value)
 
 void addNeighbours(const Cell cell)
 {
-    printf("adding neighours of cell [%d, %d] to list\n", cell.row, cell.column);
+    printf("adding neighours of cell [%d, %d] to list\n", cell.row, cell.column);  // debug log
 
     // NORTH neighbour
     if (cell.row > 0)
     {
-        printf("checking NORTH neighbour...\n");
-
+        printf("checking NORTH neighbour...\n");  // debug log
         Cell north = makeCell(cell.row-1, cell.column);
         if (getCellValue(north) == SPACE)
         {
+            printf("found open cell at [%d, %d]\n", north.row, north.column);  // debug log
             addCell(north);
         }
     }
@@ -274,6 +275,7 @@ void addNeighbours(const Cell cell)
         Cell east = makeCell(cell.row, cell.column+1);
         if (getCellValue(east) == SPACE)
         {
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
@@ -286,6 +288,7 @@ void addNeighbours(const Cell cell)
         Cell south = makeCell(cell.row+1, cell.column);
         if (getCellValue(south) == SPACE)
         {
+            printf("found open cell at [%d, %d]\n", south.row, south.column);  // debug log
             addCell(south);
         }
     }
@@ -298,6 +301,7 @@ void addNeighbours(const Cell cell)
         Cell east = makeCell(cell.row, cell.column-1);
         if (getCellValue(east) == SPACE)
         {
+            printf("found open cell at [%d, %d]\n", east.row, east.column);  // debug log
             addCell(east);
         }
     }
