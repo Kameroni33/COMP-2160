@@ -146,10 +146,11 @@ Cell nextCell()
     {
         // get the next cell value from the node
         nextCell = top->cell;
+
         // unlink top node from list
-        CellNode *oldNode = top;
-        top = top->next;
-        free(oldNode);
+        CellNode *oldNode = top;  // make a copy of the top pointer
+        top = top->next;          // resign the top pointer to be the next in the list
+        free(oldNode);            // free the 'old' top value
     }
 
     else
