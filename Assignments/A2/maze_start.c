@@ -330,11 +330,11 @@ void addNeighbours(const Cell cell)
 Boolean solveMaze()
 {
     Cell currentCell = mouse;
-    int step = 0;
+    // int step = 0;  // for debug logging
 
     while (!equalCells(currentCell, escape))
     {
-        printf("Step: %d\n", step++);
+        // printf("Step: %d\n", step++);  // debug log
 
         // mark current cell as visited
         setCellValue(currentCell, VISITED);
