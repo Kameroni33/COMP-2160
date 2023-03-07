@@ -92,7 +92,7 @@ void checkState();
 
 int main( int argc, char *argv[] )
 {
-    printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
+    // printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
 
     assert(argc == 1);                       // there should only be a single arg (ie. './maze')
     assert(strcmp(argv[0], "./maze") == 0);  // strcmp() returns 0 on success
@@ -222,7 +222,7 @@ void loadMaze()
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
 
-    printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
+    // printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
 
     // read in the values for the maze
     for (int i = 0; i < mazeRows; i++)
@@ -232,7 +232,7 @@ void loadMaze()
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
 
-            printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
+            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
