@@ -375,10 +375,13 @@ Boolean solveMaze()
     Cell currentCell = mouse;
     // int step = 0;  // for debug logging
 
+    // assert that the initial cell is equal to the mouse cell
+    assert(equalCells(currentCell, mouse));
+
     while (!equalCells(currentCell, escape))
     {
-        checkState();
         // printf("Step: %d\n", step++);  // debug log
+        checkState();
 
         // mark current cell as visited
         setCellValue(currentCell, VISITED);
@@ -391,6 +394,11 @@ Boolean solveMaze()
 
         if (noMoreCells())
         {
+            // Post-Conditions ========================================================
+            assert(top == NULL);                       // check that the list is empty
+            assert(!equalCells(currentCell, escape));  // check current cell is not the escape
+            // ========================================================================
+
             // there are no more cells to check, thus we are trapped
             return false;
         }
@@ -402,6 +410,10 @@ Boolean solveMaze()
         }
     }
 
+    // Post-Conditions ================================================================
+    assert(equalCells(currentCell, escape));  // check that the current cell is the escape
+    // ================================================================================
+
     // if we reach this point (ie. break out of while loop)
     // then we've reached the escape and the mouse is free!
     return true;
@@ -409,6 +421,17 @@ Boolean solveMaze()
 
 void checkState()
 {
-    // TODO: this
-    assert(1);
+    // if there are still cells in the list, make sure the next one is valid
+    if (!noMoreCells())
+    {
+        assert(top->cell.row > 0 && top->cell.row < mazeRows-1);
+        assert(top->cell.column > 0 && top->cell.column < mazeCols-1);
+    }
+    // if there are no more cells in the list, make sure the top is null
+    else
+    {
+        assert(top == NULL);
+    }
+
+
 }
