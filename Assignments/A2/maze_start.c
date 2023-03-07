@@ -232,7 +232,7 @@ void loadMaze()
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
 
-            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
+            printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
