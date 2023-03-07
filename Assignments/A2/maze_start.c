@@ -97,7 +97,6 @@ int main( int argc, char *argv[] )
     assert(argc == 1);                       // there should only be a single arg (ie. './maze')
     assert(strcmp(argv[0], "./maze") == 0);  // strcmp() returns 0 on success
 
-
     loadMaze();  // load the maze into our array
 
     if ( solveMaze() )
@@ -223,7 +222,7 @@ void loadMaze()
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
 
-    // printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
+    printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
 
     // read in the values for the maze
     for (int i = 0; i < mazeRows; i++)
