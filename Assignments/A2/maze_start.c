@@ -93,7 +93,7 @@ int main( int argc, char *argv[] )
 {
     // printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
 
-    
+    assert()
 
 
     loadMaze();  // load the maze into our array
