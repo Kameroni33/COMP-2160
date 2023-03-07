@@ -94,8 +94,10 @@ int main( int argc, char *argv[] )
 {
     // printf("argc: %d\nargv: %s\n\n", argc, argv[0]);  // debug log
 
+    // Pre-Conditions =================================================================
     assert(argc == 1);                       // there should only be a single arg (ie. './maze')
     assert(strcmp(argv[0], "./maze") == 0);  // strcmp() returns 0 on success
+    // ================================================================================
 
     loadMaze();  // load the maze into our array
 
@@ -221,6 +223,11 @@ void loadMaze()
     // read the maze width and height from first line of file
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
+
+    // Pre-Conditions =================================================================
+    assert(mazeRows > 0 && mazeRows <= MAX_DIMENSION);
+    assert(mazeCols > 0 && mazeCols <= MAX_DIMENSION);
+    // ================================================================================
 
     // printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
 
