@@ -224,7 +224,7 @@ void loadMaze()
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
 
-    // Pre-Conditions =================================================================
+    // Ensure valid dimensions ========================================================
     assert(mazeRows > 0 && mazeRows <= MAX_DIMENSION);
     assert(mazeCols > 0 && mazeCols <= MAX_DIMENSION);
     // ================================================================================
@@ -239,6 +239,9 @@ void loadMaze()
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
 
+            // Ensure valid characters ================================================
+            assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
+            // ========================================================================
             // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
             
             // check if cell is the MOUSE
@@ -339,6 +342,11 @@ void addNeighbours(const Cell cell)
 
 Boolean solveMaze()
 {
+    // Pre-Conditions =================================================================
+    
+    // ================================================================================
+
+
     Cell currentCell = mouse;
     // int step = 0;  // for debug logging
 
