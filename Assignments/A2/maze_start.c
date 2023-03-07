@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <ctype.h>  // for use of isspace() function
+#include <string.h>  // for use of strcmp() function
 
 //-------------------------------------------------------------------------------------
 // CONSTANTS and TYPES
