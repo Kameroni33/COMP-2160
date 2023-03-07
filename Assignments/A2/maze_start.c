@@ -343,7 +343,32 @@ void addNeighbours(const Cell cell)
 Boolean solveMaze()
 {
     // Pre-Conditions =================================================================
-    
+    assert(mazeRows > 0 && mazeRows <= MAX_DIMENSION);
+    assert(mazeCols > 0 && mazeCols <= MAX_DIMENSION);
+
+    // validate Maze
+    for (int i = 0; i < mazeRows; i++)
+    {
+        for (int j = 0; j < mazeCols; j++)
+        {
+            // ensure a valid character
+            assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
+
+            // check edges are all '1'
+            if ( i == 0 || i == mazeRows-1 || j == 0 || j == mazeCols-1)
+            {
+                assert(maze[i][j] == WALL);
+            }
+        }
+    }
+
+    // validate MOUSE cell
+    assert(mouse.row > 0 && mouse.row < mazeRows-1);
+    assert(mouse.column > 0 && mouse.column < mazeCols-1);
+
+    // validate ESCAPE cell
+    assert(escape.row > 0 && escape.row < mazeRows-1);
+    assert(escape.column > 0 && escape.column < mazeCols-1);
     // ================================================================================
 
 
@@ -352,6 +377,7 @@ Boolean solveMaze()
 
     while (!equalCells(currentCell, escape))
     {
+        checkState();
         // printf("Step: %d\n", step++);  // debug log
 
         // mark current cell as visited
@@ -381,4 +407,8 @@ Boolean solveMaze()
     return true;
 }
 
-void checkState();
+void checkState()
+{
+    // TODO: this
+    assert(1);
+}
