@@ -401,7 +401,7 @@ void addNeighbours(const Cell cell)
 
 Boolean solveMaze()
 {
-    // Pre-Conditions =================================================================
+    // Pre-Conditions (1) =============================================================
     checkState();  // check that the initial state of the maze is valid
 
     // the mouse Cell should not be overwritten at this point
