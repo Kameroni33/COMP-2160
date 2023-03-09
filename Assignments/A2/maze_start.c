@@ -167,7 +167,7 @@ Boolean noMoreCells()
 Cell nextCell()
 {
     // Pre-Conditions =================================================================
-    assert(!noMoreCells);  // check that there are still Cells in our NodeList
+    assert(!noMoreCells());  // check that there are still Cells in our NodeList
     // ================================================================================
 
     Cell nextCell = {0};  // returns an empty cell (ie. row = 0, col = 0) if there is no next cell
@@ -432,7 +432,7 @@ Boolean solveMaze()
         if (noMoreCells())
         {
             // Post-Condition (1) =====================================================
-            assert(noMoreCells);                       // check that the list is empty
+            assert(noMoreCells());                       // check that the list is empty
             assert(!equalCells(currentCell, escape));  // check current cell is not the escape
             // ========================================================================
 
