@@ -488,12 +488,9 @@ void checkState()
     CellNode *tempCellNode = top;  // local copy of top
     while (tempCellNode != NULL)   // iterate through CellNode list and make sure all Cells are valid
     {
-        // check that the list contains a valid Cell (shouldn't be an edge)
-        assert(tempCellNode->cell.row > 0 && tempCellNode->cell.row < mazeRows-1);
-        assert(tempCellNode->cell.column > 0 && tempCellNode->cell.column < mazeCols-1);
-        // Cells in this list should only ever be of tpye SPACE or EXIT
-        printf("%c\n", maze[tempCellNode->cell.row][tempCellNode->cell.row]);
-        assert(maze[tempCellNode->cell.row][tempCellNode->cell.row] == SPACE || maze[tempCellNode->cell.row][tempCellNode->cell.row] == EXIT);
-        tempCellNode = tempCellNode->next;  // check next cell
+        // check that the cell is valid
+        assert(validCell(tempCellNode->cell));
+        // check next cell
+        tempCellNode = tempCellNode->next;
     }
 }
