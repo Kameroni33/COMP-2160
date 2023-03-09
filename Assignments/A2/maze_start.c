@@ -492,6 +492,7 @@ void checkState()
         assert(tempCellNode->cell.row > 0 && tempCellNode->cell.row < mazeRows-1);
         assert(tempCellNode->cell.column > 0 && tempCellNode->cell.column < mazeCols-1);
         // Cells in this list should only ever be of tpye SPACE or EXIT
+        print("%c\n", maze[tempCellNode->cell.row][tempCellNode->cell.row]);
         assert(maze[tempCellNode->cell.row][tempCellNode->cell.row] == SPACE || maze[tempCellNode->cell.row][tempCellNode->cell.row] == EXIT);
         tempCellNode = tempCellNode->next;  // check next cell
     }
