@@ -139,9 +139,17 @@ Cell makeCell(const int row, const int col)
 Boolean validCell(const Cell theCell)
 {
     // check that the cell's row & column are both greater than zero and less than maxeRows and mazeCols respectively
-    return (Boolean)(theCell.row >= 0 && theCell.row < mazeRows && theCell.column >= 0 && theCell.column < mazeCols);
+    Boolean validDimensions = (Boolean)(theCell.row >= 0 && theCell.row < mazeRows && theCell.column >= 0 && theCell.column < mazeCols);
+    // check that the cell is a valid character in the maze
+    Boolean validCharacter = (Boolean)(
+        maze[theCell.row][theCell.column] == WALL ||
+        maze[theCell.row][theCell.column] == SPACE ||
+        maze[theCell.row][theCell.column] == VISITED ||
+        maze[theCell.row][theCell.column] == MOUSE ||
+        maze[theCell.row][theCell.column] == EXIT
+    );
+    return (validDimensions && validCharacter);
 }
-
 
 //////////////////////////////////////////////
 // List routines
@@ -158,6 +166,10 @@ Boolean noMoreCells()
 
 Cell nextCell()
 {
+    // Pre-Conditions =================================================================
+    assert(!noMoreCells);  // check that there are still Cells in our NodeList
+    // ================================================================================
+
     Cell nextCell = {0};  // returns an empty cell (ie. row = 0, col = 0) if there is no next cell
 
     if (!noMoreCells())
@@ -176,11 +188,19 @@ Cell nextCell()
         printf("Error: tried to get next Cell but list is empty...\n");
     }
 
+    // Post-Conditions =================================================================
+    checkState();  // check valid NodeList
+    // ================================================================================
+
     return nextCell;
 }
 
 void addCell(const Cell cell)
 {
+    // Pre-Conditions =================================================================
+    assert(validCell(cell));  // check for valid Cell
+    // ================================================================================
+
     // allocate space for the new node
     CellNode *newCellNode = malloc(sizeof(CellNode));
     // set the values of the newCellNode
@@ -188,13 +208,17 @@ void addCell(const Cell cell)
     newCellNode->next = top;   // existing top now becomes the 'second' node in list
     // set the newCellNode as the new top
     top = newCellNode;
+
+    // Post-Conditions ================================================================
+    assert(equalCells(top->cell, cell));  // check that top->cell is what we expect
+    checkState();  // check valid NodeList
+    // ================================================================================
 }
 
 void printTop()
 {
     printf("Top contents: [%d, %d]\n", top->cell.row, top->cell.column);
     printf("Next node: %p\n", (void *)(top->next));
-
 }
 
 //////////////////////////////////////////////
@@ -203,12 +227,24 @@ void printTop()
 
 void printMaze()
 {
+    // Pre-Conditions =================================================================
+    assert(maze != NULL);  // check that maze array isn't NULL
+    checkState();          // validate current state of maze
+
+    assert(mazeRows >= 0 && mazeRows <= MAX_DIMENSION);  // ensure valid dimenstions
+    assert(mazeCols >= 0 && mazeCols <= MAX_DIMENSION);  // ensure valid dimenstions
+    // ================================================================================
+
     // for each row of maze
     for (int i = 0; i < mazeRows; i++)
     {
         // for each column in row
         for (int j = 0; j < mazeCols; j++)
         {
+            // Ensure maze[i][j] is a valid character =================================
+            assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
+            // ========================================================================
+
             // print the char located at the current [row][col]
             printf("%c ", maze[i][j]);
         }
@@ -216,6 +252,10 @@ void printMaze()
         // print a new line at the end of each row
         printf("\n");
     }
+
+    // Post-Conditions ================================================================
+    checkState();  // validate current state of maze
+    // ================================================================================
 }
 
 void loadMaze()
@@ -224,9 +264,11 @@ void loadMaze()
     scanf("%d", &mazeRows);
     scanf("%d", &mazeCols);
 
-    // Ensure valid dimensions ========================================================
-    assert(mazeRows > 0 && mazeRows <= MAX_DIMENSION);
-    assert(mazeCols > 0 && mazeCols <= MAX_DIMENSION);
+    // Pre-Conditions =================================================================
+    assert(maze != NULL);  // check that maze array isn't NULL
+
+    assert(mazeRows >= 0 && mazeRows <= MAX_DIMENSION);  // ensure valid dimenstions
+    assert(mazeCols >= 0 && mazeCols <= MAX_DIMENSION);  // ensure valid dimenstions
     // ================================================================================
 
     // printf("Rows: %d\nCols: %d\n", mazeRows, mazeCols);  // debug log
@@ -239,10 +281,10 @@ void loadMaze()
             // read next cell value into maze array (ignoring whitespace and newlines)
             while (isspace(maze[i][j] = getchar()));
 
-            // Ensure valid characters ================================================
+            // Assert valid character =================================================
             assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
             // ========================================================================
-            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log
+            // printf("[%d, %d]: %c\n", i, j, maze[i][j]);  // debug log 
             
             // check if cell is the MOUSE
             if (maze[i][j] == MOUSE)
@@ -259,10 +301,17 @@ void loadMaze()
                 escape.row = i;
                 escape.column = j;
 
-                // printf("> found escape at (%d, %d)\n", i, j);  // debug log
+                // printf("found escape at (%d, %d)\n", i, j);  // debug log
             }
         }
     }
+
+    // Post-Conditions ================================================================
+    checkState();  // check that the initial state of the maze is valid
+
+    assert(maze[mouse.row][mouse.column] == MOUSE);
+    assert(maze[escape.row][escape.column] == EXIT);
+    // ================================================================================
 
     // print out the initial state of the maze
     printMaze();
@@ -271,11 +320,21 @@ void loadMaze()
 
 char getCellValue(const Cell cell)
 {
+    // Pre-Conditions =================================================================
+    assert(cell.row >= 0 && cell.row < mazeRows);        // check valid Cell row
+    assert(cell.column >= 0 && cell.column < mazeCols);  // check valid Cell col
+    // ================================================================================
     return maze[cell.row][cell.column];
 }
 
 void setCellValue(const Cell cell, const char value)
 {
+    // Pre-Conditions =================================================================
+    assert(cell.row >= 0 && cell.row < mazeRows);        // check valid Cell row
+    assert(cell.column >= 0 && cell.column < mazeCols);  // check valid Cell col
+    // check valid character
+    assert(value == WALL || value == SPACE || value == VISITED || value == MOUSE || value == EXIT);
+    // ================================================================================
     maze[cell.row][cell.column] = value;
 }
 
@@ -343,40 +402,18 @@ void addNeighbours(const Cell cell)
 Boolean solveMaze()
 {
     // Pre-Conditions =================================================================
-    assert(mazeRows > 0 && mazeRows <= MAX_DIMENSION);
-    assert(mazeCols > 0 && mazeCols <= MAX_DIMENSION);
+    checkState();  // check that the initial state of the maze is valid
 
-    // validate Maze
-    for (int i = 0; i < mazeRows; i++)
-    {
-        for (int j = 0; j < mazeCols; j++)
-        {
-            // ensure a valid character
-            assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
-
-            // check edges are all '1'
-            if ( i == 0 || i == mazeRows-1 || j == 0 || j == mazeCols-1)
-            {
-                assert(maze[i][j] == WALL);
-            }
-        }
-    }
-
-    // validate MOUSE cell
-    assert(mouse.row > 0 && mouse.row < mazeRows-1);
-    assert(mouse.column > 0 && mouse.column < mazeCols-1);
-
-    // validate ESCAPE cell
-    assert(escape.row > 0 && escape.row < mazeRows-1);
-    assert(escape.column > 0 && escape.column < mazeCols-1);
+    // the mouse Cell should not be overwritten at this point
+    assert(maze[mouse.row][mouse.column] == MOUSE);
     // ================================================================================
-
 
     Cell currentCell = mouse;
     // int step = 0;  // for debug logging
 
-    // assert that the initial cell is equal to the mouse cell
+    // Pre-Conditions (2) =============================================================
     assert(equalCells(currentCell, mouse));
+    // ================================================================================
 
     while (!equalCells(currentCell, escape))
     {
@@ -394,8 +431,8 @@ Boolean solveMaze()
 
         if (noMoreCells())
         {
-            // Post-Conditions ========================================================
-            assert(top == NULL);                       // check that the list is empty
+            // Post-Condition (1) =====================================================
+            assert(noMoreCells);                       // check that the list is empty
             assert(!equalCells(currentCell, escape));  // check current cell is not the escape
             // ========================================================================
 
@@ -410,7 +447,7 @@ Boolean solveMaze()
         }
     }
 
-    // Post-Conditions ================================================================
+    // Post-Condition (2) =============================================================
     assert(equalCells(currentCell, escape));  // check that the current cell is the escape
     // ================================================================================
 
@@ -421,17 +458,41 @@ Boolean solveMaze()
 
 void checkState()
 {
-    // if there are still cells in the list, make sure the next one is valid
-    if (!noMoreCells())
+    // validate Maze ==================================================================
+    assert(maze != NULL);  // check that maze array isn't NULL 
+    for (int i = 0; i < mazeRows; i++)
     {
-        assert(top->cell.row > 0 && top->cell.row < mazeRows-1);
-        assert(top->cell.column > 0 && top->cell.column < mazeCols-1);
-    }
-    // if there are no more cells in the list, make sure the top is null
-    else
-    {
-        assert(top == NULL);
+        for (int j = 0; j < mazeCols; j++)
+        {
+            // valid each cell
+            assert(validCell(makeCell(i, j)));
+
+            // check edges are all '1'
+            if ( i == 0 || i == mazeRows-1 || j == 0 || j == mazeCols-1)
+            {
+                assert(maze[i][j] == WALL);
+            }
+        }
     }
 
+    // validate special Cells =========================================================
+    assert(mouse.row > 0 && mouse.row < mazeRows-1);          // assert mouse has a valid row
+    assert(mouse.column > 0 && mouse.column < mazeCols-1);    // assert mouse has a valid col
+    assert(escape.row > 0 && escape.row < mazeRows-1);        // assert escape has a valid row
+    assert(escape.column > 0 && escape.column < mazeCols-1);  // assert escape has a valid col
 
+    // the mouse Cell may have been overwritten with a '.' but escape should always be 'e'
+    assert(maze[escape.row][escape.column] == EXIT);
+
+    // validate NodeList ==============================================================
+    CellNode *tempCellNode = top;  // local copy of top
+    while (tempCellNode != NULL)   // iterate through CellNode list and make sure all Cells are valid
+    {
+        // check that the list contains a valid Cell (shouldn't be an edge)
+        assert(tempCellNode->cell.row > 0 && tempCellNode->cell.row < mazeRows-1);
+        assert(tempCellNode->cell.column > 0 && tempCellNode->cell.column < mazeCols-1);
+        // Cells in this list should only ever be of tpye SPACE or EXIT
+        assert(maze[tempCellNode->cell.row][tempCellNode->cell.row] == SPACE || maze[tempCellNode->cell.row][tempCellNode->cell.row] == EXIT);
+        tempCellNode = tempCellNode->next;  // check next cell
+    }
 }
