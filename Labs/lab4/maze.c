@@ -260,9 +260,11 @@ void printMaze()
 
 void loadMaze()
 {
+    FILE* file;
+    file = fopen("testMaze.txt", "r");
     // read the maze width and height from first line of file
-    scanf("%d", &mazeRows);
-    scanf("%d", &mazeCols);
+    fscanf(file, "%d", &mazeRows);
+    fscanf(file, "%d", &mazeCols);
 
     // Pre-Conditions =================================================================
     assert(maze != NULL);  // check that maze array isn't NULL
@@ -279,7 +281,7 @@ void loadMaze()
         for (int j = 0; j < mazeCols; j++)
         {
             // read next cell value into maze array (ignoring whitespace and newlines)
-            while (isspace(maze[i][j] = getchar()));
+            while (isspace(maze[i][j] = fgetc(file)));
 
             // Assert valid character =================================================
             assert(maze[i][j] == WALL || maze[i][j] == SPACE || maze[i][j] == VISITED || maze[i][j] == MOUSE || maze[i][j] == EXIT);
