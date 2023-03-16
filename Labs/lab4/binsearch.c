@@ -116,6 +116,6 @@ void test_typical_cases()
     int array[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
     //invalid test
-    test_binary_search(4, 4, array, 10);
+    test_binary_search(4, 4, array, -1);
 
 }
