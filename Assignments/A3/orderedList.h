@@ -6,7 +6,6 @@ typedef enum BOOL { false, true } boolean;
 typedef struct NODE Node;
 typedef struct LIST List;
 
-// Function Prototypes
 List *construct( );
 boolean insert( List *list, char *new_string );
 boolean find( List *list, char *target );
