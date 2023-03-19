@@ -5,13 +5,14 @@ PROGRAMS = a3q1 a3q2
 
 all: $(OBJFILES) $(PROGRAMS)
 
-# Compile Object File(s)
+# Compile OBJFILES
 orderedList.o: orderedList.c
 	$(CC) $(CCFLAGS) -c orderedList.c -o orderedList.o
 
-# Compile Programs and link Object Files
+# Compile PROGRAMS and link OBJFILES
 $(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) $< orderedList.o -o $@
 
+# Remove OBJFILES and PROGRAMS
 clean:
 	rm -f $(OBJFILES) $(PROGRAMS)
