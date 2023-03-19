@@ -3,11 +3,13 @@
 #include "orderedList.h"
 
 //=====================================================================================
-// Global Variables
+// Global Variables & Structs
 //=====================================================================================
 static int testsTotal;
 static int testsPassed;
 static int testsFailed;
+
+typedef enum BOOL { false, true } boolean;
 
 //=====================================================================================
 // Function Prototypes
