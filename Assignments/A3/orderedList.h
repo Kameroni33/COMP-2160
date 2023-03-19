@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef BOOL
 typedef enum BOOL { false, true } boolean;
-#endif
 typedef struct NODE Node;
 typedef struct LIST List;
 
