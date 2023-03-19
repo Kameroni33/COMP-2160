@@ -15,7 +15,8 @@ struct NODE
 
 typedef struct LIST List;
 
-struct LIST {
+struct LIST
+{
   Node *top;
   // Node *index[256];
 };
@@ -23,7 +24,8 @@ struct LIST {
 static int total_num_traversals = 0;
 
 // construct a linked list
-List *construct() {
+List *construct( )
+{
   List *list;
 
   list = malloc( sizeof( List ) );
