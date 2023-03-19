@@ -3,7 +3,7 @@
 #include "orderedList.h"
 
 
-int main( int argc, char* argv[] )
+int main( int argc, char *argv[] )
 {
     printf("program: %s\nargc:    %d\n\n", argv[0], argc);
 
