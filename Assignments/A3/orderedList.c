@@ -54,6 +54,7 @@ boolean insert( List *list, char *new_string )
     Node *newNode = NULL;
     Node *curr;
     Node *prev;
+    int startIndex;
 
     newNode = malloc( sizeof( Node ) );
     newNode->string = new_string;
@@ -61,23 +62,36 @@ boolean insert( List *list, char *new_string )
     // determine first node based on index
     printf("first char: '%c' %d\n", new_string[0], new_string[0]);
 
-    // determine first node based on index
-    if ((curr = list->index[new_string[0]]) == NULL)
+    // determine first node based on index list
+    startIndex = new_string[0];
+    while ( (curr = list->index[startIndex]) == NULL || strcmp( curr->string, new_string ) >= 0 )
     {
-        // if no index exsists start at first node
-        curr = list->top;
+        if (startIndex == 0)
+        {
+            curr = list->top;
+            break;
+        }
+        startIndex--;
     }
-    
+
     prev = NULL;
-    while ( NULL != curr && strcmp( curr->string, new_string ) < 0 ) {
+    while ( NULL != curr && strcmp( curr->string, new_string ) < 0 )
+    {
         prev = curr;
         total_num_traversals++;
         curr = curr->next;
     }
 
-    if ( prev == NULL ) {
-        newNode->next = list->top;
-        list->top = newNode;
+    if ( prev == NULL )
+    {
+        // Case 1: prev Node is NULL due to us being at the head of the list
+        if (startIndex == 0)
+        {
+            // update list top Node
+            newNode->next = list->top;
+            list->top = newNode;
+        }
+        
     } else {
         newNode->next = curr;
         prev->next = newNode;
