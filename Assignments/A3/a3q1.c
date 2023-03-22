@@ -46,22 +46,25 @@ void testOrderedList(char *words[], int numWords, int expectedTraversals)
     // create a new list to test
     List *list = construct();
 
-    printf("\n");
+    printf("Testing...\n");
+
+    // printf("\n");
     for (int i = 0; i < numWords; i++)
     {
         boolean result = insert(list, words[i]);
-        printf("insert(\"%s\") = %d\n", words[i], result);
+        // printf("insert(\"%s\") = %d\n", words[i], result);
     }
 
-    printf("\n");
+    // printf("\n");
     for (int i = 0; i < numWords; i++)
     {
         boolean result = find(list, words[i]);
-        printf("find(\"%s\") = %d\n", words[i], result);
+        // printf("find(\"%s\") = %d\n", words[i], result);
     }
 
-    printf("\n");
-    print(list);
+    // printf("\n");
+    // print(list);
+    // printf("\n");
 
     // create a new list to test
     destroy(list);
@@ -74,7 +77,7 @@ void testOrderedList(char *words[], int numWords, int expectedTraversals)
     {
         passed = true;
     }
-    printf("\ntraversals = %d\n\n", currTraversals);
+    printf("traversals = %d\n\n", currTraversals);
 
     // update counters
     if (passed) testsPassed++;
