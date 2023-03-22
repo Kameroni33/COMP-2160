@@ -46,8 +46,10 @@ List *construct( )
 boolean insert( List *list, char *new_string )
 {
     // Pre-Conditions =================================================================
-    assert()
+    assert(list != NULL);
+    assert(new_string != NULL);
     // ================================================================================
+
     boolean rc = true;
     Node *newNode = NULL;
     Node *curr;
@@ -57,6 +59,8 @@ boolean insert( List *list, char *new_string )
     newNode->string = new_string;
 
     // determine first node based on index
+    print
+
     curr = list->top;
 
 
@@ -92,16 +96,13 @@ boolean find( List *list, char *target )
     while ( NULL != curr && !found )
     {
         compare = strcmp( target, curr->string );
-        // printf("[%s == %s -> %d]", target, curr->string, compare);
+        // printf("[%s == %s -> %d]", target, curr->string, compare);  // debug
         if ( compare == 0 ) {
-            printf("* ");
             found = true;
         } else if (compare < 0) {
             // gone too far
-            printf("! ");
             curr = NULL;
         } else {
-            printf(">");
             total_num_traversals++;
             curr = curr->next;
         }
