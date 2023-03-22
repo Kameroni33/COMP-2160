@@ -50,7 +50,11 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     for (int i = 0; i < numWords; i++)
     {
         boolean result = insert(list, words[i]);
-        if (!result) passed = false;
+        if (!result)
+        {
+            print("<insert failed>\n");
+            passed = false;
+        }
     }
 
     // check number of insert traversals
@@ -65,7 +69,11 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     for (int i = 0; i < numWords; i++)
     {
         boolean result = find(list, words[i]);
-        if (!result) passed = false;
+        if (!result)
+        {
+            print("<find failed>\n");
+            passed = false;
+        }
     }
 
     // check number of find traversals
@@ -88,6 +96,6 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     {
         testsFailed++;
     }
-    
+
     testsTotal++;
 }
