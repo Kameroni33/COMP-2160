@@ -78,7 +78,9 @@ boolean find( List *list, char *target )
     while ( NULL != curr && !found )
     {
         compare = strcmp( target, curr->string );
+        printf(">");
         if ( compare == 0 ) {
+            printf("* ");
             found = true;
         } else if (compare > 0) {
             // gone too far
