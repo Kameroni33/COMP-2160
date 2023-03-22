@@ -78,6 +78,7 @@ boolean find( List *list, char *target )
     while ( NULL != curr && !found )
     {
         compare = strcmp( target, curr->string );
+        printf("[%s == %s -> %d]", target, curr->string, compare);
         if ( compare == 0 ) {
             printf("* ");
             found = true;
