@@ -10,6 +10,7 @@
 static int testsTotal;
 static int testsPassed;
 static int testsFailed;
+static int lastTraversals;
 
 //=====================================================================================
 // Function Prototypes
@@ -38,9 +39,10 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
-void testOrderedList(char *words[], int numWords)
+void testOrderedList(char *words[], int numWords, int expectedTraversals)
 {
     boolean passed = false;
+    int currTraversals;
     // create a new list to test
     List *list = construct();
 
@@ -64,7 +66,15 @@ void testOrderedList(char *words[], int numWords)
     // create a new list to test
     destroy(list);
 
-    printf("\ntraversals = %d\n\n", traversals());
+    // calculate number of traversals for the current test
+    currTraversals = traversals() - lastTraversals;
+    lastTraversals = traversals();
+    // check if we had the number of expected traversals
+    if (expectedTraversals == currTraversals)
+    {
+        passed = true;
+    }
+    printf("\ntraversals = %d\n\n", currTraversals);
 
     // update counters
     if (passed) testsPassed++;
