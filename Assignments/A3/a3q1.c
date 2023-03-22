@@ -28,8 +28,8 @@ int main( int argc, char *argv[] )
     int testLen1 = 10;
     char *testWords1[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
-    testOrderedList(testWords1, testLen1);
-    testOrderedList(testWords1, testLen1);
+    testOrderedList(testWords1, testLen1, 90);
+    testOrderedList(testWords1, testLen1, 90);
 
     printf("testsTotal:  %d\n", testsTotal);
     printf("testsPassed: %d\n", testsPassed);
