@@ -133,7 +133,7 @@ boolean find( List *list, char *target )
 
     // determine curr Node based on index array
     // Note: if no index exists, we can assume the target string isn't in the list
-    if ( (curr = list->index[target[0]]) != NULL )
+    if ( (curr = list->index[(int)target[0]]) != NULL )
     {
         while ( NULL != curr && !found )
         {
