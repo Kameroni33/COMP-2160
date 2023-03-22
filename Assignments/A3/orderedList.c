@@ -92,7 +92,7 @@ boolean insert( List *list, char *new_string )
         list->top = newNode;
 
         // update index
-        list->index[new_string[0]] = newNode;
+        list->index[(int)new_string[0]] = newNode;
     }
     else  // mid-list Node
     {
@@ -101,9 +101,9 @@ boolean insert( List *list, char *new_string )
         prev->next = newNode;
 
         // update index
-        if ( list->index[new_string[0]] == NULL || strcmp(list->index[new_string[0]]->string, curr->string) == 0 )
+        if ( list->index[(int)new_string[0]] == NULL || strcmp(list->index[(int)new_string[0]]->string, curr->string) == 0 )
         {
-            list->index[new_string[0]] = newNode;
+            list->index[(int)new_string[0]] = newNode;
         }
     }
 
