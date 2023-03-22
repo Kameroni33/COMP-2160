@@ -48,18 +48,14 @@ void testOrderedList(char *words[], int numWords, int expectedTraversals)
 
     printf("Testing...\n");
 
-    // printf("\n");
     for (int i = 0; i < numWords; i++)
     {
-        boolean result = insert(list, words[i]);
-        // printf("insert(\"%s\") = %d\n", words[i], result);
+        insert(list, words[i]);
     }
 
-    // printf("\n");
     for (int i = 0; i < numWords; i++)
     {
-        boolean result = find(list, words[i]);
-        // printf("find(\"%s\") = %d\n", words[i], result);
+        find(list, words[i]);
     }
 
     // printf("\n");
