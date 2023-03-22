@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define INDEX_SIZE 256
+
 typedef enum BOOL { false, true } boolean;
 
 // Linked list node definition
@@ -18,7 +20,7 @@ typedef struct LIST List;
 struct LIST
 {
     Node *top;
-    // Node *index[256];
+    Node *index[INDEX_SIZE];
 };
 
 static int total_num_traversals = 0;
@@ -30,6 +32,11 @@ List *construct( )
 
     list = malloc( sizeof( List ) );
     list->top = NULL;
+
+    for (int i = 0; i < INDEX_SIZE; i++)
+    {
+        list->index[i] = NULL;
+    }
 
     return list;
 }
