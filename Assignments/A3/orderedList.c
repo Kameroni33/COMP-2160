@@ -35,7 +35,7 @@ struct LIST
 
 static int total_num_traversals = 0;
 
-validateList(List *list);  // invariant function (local prototype)
+static void validateList(List *list);  // invariant function
 
 // ====================================================================================
 // FUNCTION IMPLEMENTATIONS
@@ -233,7 +233,7 @@ void destroy( List *list )
 // --------------------------------------------------------------------
 
 // --------------------------------------------------------------------
-validateList(List *list)
+void validateList(List *list)
 {
     asser(list != NULL);
 }
