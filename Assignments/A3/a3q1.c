@@ -52,7 +52,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
         boolean result = insert(list, words[i]);
         if (!result)
         {
-            print("<insert failed>\n");
+            print("insert failed\n");
             passed = false;
         }
     }
@@ -71,7 +71,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
         boolean result = find(list, words[i]);
         if (!result)
         {
-            print("<find failed>\n");
+            print("find failed\n");
             passed = false;
         }
     }
