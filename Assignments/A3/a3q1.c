@@ -62,6 +62,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
             passed = false;
         }
         print(list);
+        printf("traversals: %d\n", traversals());
     }
 
     // check number of insert traversals
