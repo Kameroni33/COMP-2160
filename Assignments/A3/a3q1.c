@@ -66,8 +66,7 @@ void testOrderedList(char *words[], int numWords, int expectedTraversals)
     destroy(list);
 
     // calculate number of traversals for the current test
-    currTraversals = traversals() - lastTraversals;
-    lastTraversals = traversals();
+    currTraversals = (lastTraversals = traversals()) - lastTraversals;
     // check if we had the number of expected traversals
     if (expectedTraversals == currTraversals)
     {
