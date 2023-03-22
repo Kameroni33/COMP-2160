@@ -22,6 +22,7 @@ struct LIST
 {
     Node *top;
     Node *index[INDEX_SIZE];
+    int nodeCount;
 };
 
 static int total_num_traversals = 0;
@@ -33,6 +34,7 @@ List *construct( )
 
     list = malloc( sizeof( List ) );
     list->top = NULL;
+    list->nodeCount = 0;
 
     for (int i = 0; i < INDEX_SIZE; i++)
     {
@@ -108,6 +110,9 @@ boolean insert( List *list, char *new_string )
     newNode->string = malloc( strlen( new_string ) + 1 );
     strcpy( newNode->string, new_string );
 
+    // update node count
+    list->nodeCount++;
+
     // Post-Conditions ================================================================
 
     // ================================================================================
@@ -153,25 +158,25 @@ boolean find( List *list, char *target )
 }
 
 // calculates the number of nodes in a list
-int node_count( List *list )
-{
-    int count;
-    Node *curr = list->top;
+// int node_count( List *list )
+// {
+//     int count;
+//     Node *curr = list->top;
 
-    count = 0;
-    while ( NULL != curr )
-    {
-        count++;
-        curr = curr->next;
-    }
+//     count = 0;
+//     while ( NULL != curr )
+//     {
+//         count++;
+//         curr = curr->next;
+//     }
 
-    return count;
-}
+//     return count;
+// }
 
 // calculates the size of a list
 int size( List *list )
 {
-    return node_count( list );
+    return list->nodeCount;
 }
 
 // print the contents of a list, one item per line

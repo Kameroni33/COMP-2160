@@ -86,10 +86,10 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
         printf("find traversals is %d, expected %d\n", findTraversals, expectedFindTraversals);
     }
 
-    if (node_count(list) != numWords)
+    if (size(list) != numWords)
     {
         passed = false;
-        printf("node count is %d, expected %d\n", node_count(list), numWords);
+        printf("node count is %d, expected %d\n", size(list), numWords);
     }
 
     destroy(list);
