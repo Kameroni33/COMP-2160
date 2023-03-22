@@ -25,7 +25,7 @@ int main( int argc, char *argv[] )
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
 
     // Test Cases
-    int testLen1 = 10;
+    int testLen1 = 4;
     int testLen2 = 10;
     char *testWords1[MAX_WORD] = {"apple", "calculs", "cow", "camp"};
     char *testWords2[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
