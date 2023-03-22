@@ -36,6 +36,7 @@ int main( int argc, char *argv[] )
     testOrderedList(testWords2, testLen2, 4, 4);
     testOrderedList(testWords3, testLen3, 13, 4);
 
+    printf("\n");
     printf("testsTotal:  %d\n", testsTotal);
     printf("testsPassed: %d\n", testsPassed);
     printf("testsFailed: %d\n", testsFailed);
@@ -60,6 +61,8 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
             printf("insert failed\n");
             passed = false;
         }
+        print(list);
+        printf("\n");
     }
 
     // check number of insert traversals
@@ -110,4 +113,5 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     }
 
     testsTotal++;
+    printf("\n");
 }
