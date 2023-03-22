@@ -28,6 +28,7 @@ int main( int argc, char *argv[] )
     char *testWords1[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
     testOrderedList(testWords1, testLen1);
+    testOrderedList(testWords1, testLen1);
 
     printf("testsTotal:  %d\n", testsTotal);
     printf("testsPassed: %d\n", testsPassed);
@@ -59,12 +60,11 @@ void testOrderedList(char *words[], int numWords)
 
     printf("\n");
     print(list);
-    printf("\n");
 
     // create a new list to test
     destroy(list);
 
-    printf("\ntraversals = %d\n", traversals());
+    printf("\ntraversals = %d\n\n", traversals());
 
     // update counters
     if (passed) testsPassed++;
