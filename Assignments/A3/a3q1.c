@@ -39,6 +39,7 @@ int main( int argc, char *argv[] )
 
 void testOrderedList(char *words[], int numWords)
 {
+    boolean passed = false;
     // create a new list to test
     List *list = construct();
 
@@ -63,5 +64,8 @@ void testOrderedList(char *words[], int numWords)
     // create a new list to test
     destroy(list);
 
+    // update counters
+    if (passed) testsPassed++;
+    else testsFailed++;
     testsTotal++;
 }
