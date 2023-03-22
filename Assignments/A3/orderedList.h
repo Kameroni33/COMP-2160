@@ -4,7 +4,6 @@
 #include <assert.h>
 
 typedef enum BOOL { false, true } boolean;
-// typedef struct NODE Node;
 typedef struct LIST List;
 
 List *construct( );
