@@ -53,6 +53,8 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
 
     List *list = construct();
 
+    printf("\n============================================================\n");
+
     for (int i = 0; i < numWords; i++)
     {
         boolean result = insert(list, words[i]);
@@ -62,7 +64,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
             passed = false;
         }
         print(list);
-        printf("traversals: %d\n", traversals());
+        printf("traversals: %d\n\n", traversals());
     }
 
     // check number of insert traversals
