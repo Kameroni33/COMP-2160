@@ -59,12 +59,13 @@ boolean insert( List *list, char *new_string )
     newNode = malloc( sizeof( Node ) );
     newNode->string = new_string;
 
-    // determine first node based on index
+    // determine curr Node based on index
     printf("first char: '%c' %d\n", new_string[0], new_string[0]);
 
-    // determine first node based on index list
+    // determine curr Node based on index array (or next closest node)
+    //  - if new_string needs to go before determined first Node, need to back at least 1 index so we can prev Node
     startIndex = new_string[0];
-    while ( (curr = list->index[startIndex]) == NULL || (strcmp( curr->string, new_string ) < 0) )
+    while ( (curr = list->index[startIndex]) == NULL || !(strcmp( curr->string, new_string ) < 0) )
     {
         if (startIndex == 0)
         {
