@@ -64,6 +64,8 @@ void testOrderedList(char *words[], int numWords)
     // create a new list to test
     destroy(list);
 
+    printf("\ntraversals = %d\n", traversals());
+
     // update counters
     if (passed) testsPassed++;
     else testsFailed++;
