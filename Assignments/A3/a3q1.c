@@ -23,6 +23,10 @@ int main( int argc, char *argv[] )
 {
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
 
+    // Test Cases
+    int testLen1 = 10;
+    char *testArray1[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
+
     testOrderedList();
 
     printf("testsTotal:  %d\n", testsTotal);
@@ -32,8 +36,16 @@ int main( int argc, char *argv[] )
     int numWords = 10;
     char words[][MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
-    List *list = construct();  
+    printf("\nEnd of Program.\n");
+    return 0;
+}
 
+void testOrderedList(char *words[], int numWords)
+{
+    // create a new list to test
+    List *list = construct();
+
+    printf("\n");
     for (int i = 0; i < numWords; i++)
     {
         boolean result = insert(list, words[i]);
@@ -41,7 +53,6 @@ int main( int argc, char *argv[] )
     }
 
     printf("\n");
-
     for (int i = 0; i < numWords; i++)
     {
         boolean result = find(list, words[i]);
@@ -49,16 +60,11 @@ int main( int argc, char *argv[] )
     }
 
     printf("\n");
-
     print(list);
-
     printf("\n");
 
-    printf("\nEnd of Program.\n");
-    return 0;
-}
+    // create a new list to test
+    destroy(list);
 
-void testOrderedList()
-{
     testsTotal++;
 }
