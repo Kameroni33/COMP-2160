@@ -5,6 +5,9 @@
 
 #define INDEX_SIZE 256
 
+// ====================================================================================
+// STRUCTS & TYPEDEFS
+// ====================================================================================
 typedef enum BOOL { false, true } boolean;
 
 // Linked list node definition
@@ -25,9 +28,21 @@ struct LIST
     int nodeCount;
 };
 
+// ====================================================================================
+// GLOBAL VARIABLES & PROTOTYPES
+// ====================================================================================
+
 static int total_num_traversals = 0;
 
+validateList(List *list);  // invariant function (local prototype)
+
+// ====================================================================================
+// FUNCTION IMPLEMENTATIONS
+// ====================================================================================
+
+// ------------------------------------------------------------------------------------
 // construct a linked list
+// ------------------------------------------------------------------------------------
 List *construct( )
 {
     List *list;
@@ -41,16 +56,20 @@ List *construct( )
         list->index[i] = NULL;
     }
 
+    // Post-Conditions:
+    validateList(list);
+
     return list;
 }
 
+// ------------------------------------------------------------------------------------
 // perform an ordered insertion of an item into a list
+// ------------------------------------------------------------------------------------
 boolean insert( List *list, char *new_string )
 {
-    // Pre-Conditions =================================================================
+    // Pre-Conditions:
     assert(list != NULL);
     assert(new_string != NULL);
-    // ================================================================================
 
     boolean rc = true;
     Node *newNode = NULL;
@@ -113,19 +132,20 @@ boolean insert( List *list, char *new_string )
     // update node count
     list->nodeCount++;
 
-    // Post-Conditions ================================================================
+    // Post-Conditions:
+    validateList(list);
 
-    // ================================================================================
     return rc;
 }
 
+// ------------------------------------------------------------------------------------
 // tells us whether or not the given string is in the list
+// ------------------------------------------------------------------------------------
 boolean find( List *list, char *target )
 {
-    // Pre-Conditions =================================================================
+    // Pre-Conditions:
     assert(list != NULL);
     assert(target != NULL);
-    // ================================================================================
 
     boolean found = false;
     Node *curr;
@@ -182,6 +202,10 @@ int size( List *list )
 // print the contents of a list, one item per line
 void print( List *list )
 {
+    // Pre-Conditions =================================================================
+    assert(list != NULL);
+    // ================================================================================
+
     Node *curr = list->top;
 
     while ( NULL != curr )
@@ -189,6 +213,10 @@ void print( List *list )
         printf( "%s\n", curr->string );
         curr = curr->next;
     }
+
+    // Post-Conditions ================================================================
+
+    // ================================================================================
 }
 
 // returns the total number of items traversed in the list
@@ -211,4 +239,9 @@ void destroy( List *list )
     }
     
     free( list );
+}
+
+validateList(List *list)
+{
+    asser(list != NULL);
 }
