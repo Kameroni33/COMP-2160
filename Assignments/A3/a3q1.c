@@ -56,7 +56,10 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     // check number of insert traversals
     insertTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
-    if (insertTraversals != expectedInsertTraversals) passed = false;
+    if (insertTraversals != expectedInsertTraversals)
+    {
+        passed = false;
+    }
     printf("insert() traversals = %d\n", insertTraversals);
 
     for (int i = 0; i < numWords; i++)
@@ -68,13 +71,23 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     // check number of find traversals
     findTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
-    if (findTraversals != expectedFindTraversals) passed = false;
+    if (findTraversals != expectedFindTraversals)
+    {
+        passed = false;
+    }
     printf("find() traversals = %d\n", findTraversals);
 
     destroy(list);
 
     // update counters
-    if (passed) testsPassed++;
-    else testsFailed++;
+    if (passed)
+    {
+        testsPassed++;
+    }
+    else
+    {
+        testsFailed++;
+    }
+    
     testsTotal++;
 }
