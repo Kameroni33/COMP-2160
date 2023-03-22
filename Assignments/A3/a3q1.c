@@ -33,9 +33,6 @@ int main( int argc, char *argv[] )
     printf("testsPassed: %d\n", testsPassed);
     printf("testsFailed: %d\n", testsFailed);
 
-    int numWords = 10;
-    char words[][MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
-
     printf("\nEnd of Program.\n");
     return 0;
 }
