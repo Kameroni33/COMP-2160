@@ -108,6 +108,9 @@ boolean insert( List *list, char *new_string )
     newNode->string = malloc( strlen( new_string ) + 1 );
     strcpy( newNode->string, new_string );
 
+    // Post-Conditions ================================================================
+    
+    // ================================================================================
     return rc;
 }
 
