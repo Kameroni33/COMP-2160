@@ -61,7 +61,13 @@ boolean insert( List *list, char *new_string )
     // determine first node based on index
     printf("first char: '%c' %d\n", new_string[0], new_string[0]);
 
-    curr = list->top;
+    // determine first node based on index
+    if ((curr = list->index[new_string[0]]) == NULL)
+    {
+        // if no index exsists start at first node
+        curr = list->top;
+    }
+    
     prev = NULL;
     while ( NULL != curr && strcmp( curr->string, new_string ) < 0 ) {
         prev = curr;
