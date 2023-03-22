@@ -63,7 +63,7 @@ boolean insert( List *list, char *new_string )
     printf("first char: '%c' %d\n", new_string[0], new_string[0]);
 
     // determine curr Node based on index array (or next closest node)
-    //  - if new_string needs to go before determined first Node, need to back at least 1 index so we can prev Node
+    // Note: if new_string needs to go before curr Node, go at least 1 more index back so we can find prev Node
     startIndex = new_string[0];
     while ( (curr = list->index[startIndex]) == NULL || !(strcmp( curr->string, new_string ) < 0) )
     {
@@ -83,19 +83,28 @@ boolean insert( List *list, char *new_string )
         curr = curr->next;
     }
 
-    if ( prev == NULL )
+    if ( prev == NULL )  // list top Node
     {
-        // Case 1: prev Node is NULL due to us being at the head of the list
-        if (startIndex == 0)
-        {
-            // update list top Node
-            newNode->next = list->top;
-            list->top = newNode;
-        }
-        
-    } else {
+        assert(startIndex == 0);
+
+        // update list
+        newNode->next = list->top;
+        list->top = newNode;
+
+        // update index
+        list->index[new_string[0]] = newNode;
+    }
+    else  // mid-list Node
+    {
+        // update list
         newNode->next = curr;
         prev->next = newNode;
+
+        // update index
+        if (list->index[new_string[0]] == NULL || strcmp(list->index[new_string[0]]->string, curr->string) == 0)
+        {
+            list->index[new_string[0]] = newNode;
+        }
     }
 
     // note that we need to have space for the string as well!
