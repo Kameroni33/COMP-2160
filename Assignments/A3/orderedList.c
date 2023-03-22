@@ -109,7 +109,7 @@ boolean insert( List *list, char *new_string )
     strcpy( newNode->string, new_string );
 
     // Post-Conditions ================================================================
-    
+
     // ================================================================================
     return rc;
 }
@@ -117,25 +117,38 @@ boolean insert( List *list, char *new_string )
 // tells us whether or not the given string is in the list
 boolean find( List *list, char *target )
 {
-    boolean found = false;
-    int compare;
-    Node *curr = list->top;
+    // Pre-Conditions =================================================================
+    assert(list != NULL);
+    assert(target != NULL);
+    // ================================================================================
 
-    while ( NULL != curr && !found )
+    boolean found = false;
+    Node *curr;
+    int compare;
+
+    // determine curr Node based on index array
+    // Note: if no index exists, we can assume the target string isn't in the list
+    if ( (curr = list->index[target[0]]) != NULL )
     {
-        compare = strcmp( target, curr->string );
-        // printf("[%s == %s -> %d]", target, curr->string, compare);  // debug
-        if ( compare == 0 ) {
-            found = true;
-        } else if (compare < 0) {
-            // gone too far
-            curr = NULL;
-        } else {
-            total_num_traversals++;
-            curr = curr->next;
+        while ( NULL != curr && !found )
+        {
+            compare = strcmp( target, curr->string );
+            // printf("[%s == %s -> %d]", target, curr->string, compare);  // debug
+            if ( compare == 0 ) {
+                found = true;
+            } else if (compare < 0) {
+                // gone too far
+                curr = NULL;
+            } else {
+                total_num_traversals++;
+                curr = curr->next;
+            }
         }
     }
 
+    // Post-Conditions ================================================================
+
+    // ================================================================================
     return found;
 }
 
