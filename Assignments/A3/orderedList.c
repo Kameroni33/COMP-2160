@@ -82,7 +82,7 @@ boolean find( List *list, char *target )
         if ( compare == 0 ) {
             printf("* ");
             found = true;
-        } else if (compare > 0) {
+        } else if (compare < 0) {
             // gone too far
             printf("! ");
             curr = NULL;
