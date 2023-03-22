@@ -39,40 +39,39 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
-void testOrderedList(char *words[], int numWords, int expectedTraversals)
+void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals)
 {
-    boolean passed = false;
-    int currTraversals;
-    // create a new list to test
+    boolean passed = true;
+    int insertTraversals;
+    int findTraversals;
+
     List *list = construct();
 
-    printf("Testing...\n");
+    for (int i = 0; i < numWords; i++)
+    {
+        boolean result = insert(list, words[i]);
+        if (!result) passed = false;
+    }
+
+    // check number of insert traversals
+    insertTraversals = traversals() - lastTraversals;
+    lastTraversals = traversals();
+    if (insertTraversals != expectedInsertTraversals) passed = false;
+    printf("insert() traversals = %d\n", insertTraversals);
 
     for (int i = 0; i < numWords; i++)
     {
-        insert(list, words[i]);
+        boolean result = find(list, words[i]);
+        if (!result) passed = false;
     }
 
-    for (int i = 0; i < numWords; i++)
-    {
-        find(list, words[i]);
-    }
+    // check number of find traversals
+    findTraversals = traversals() - lastTraversals;
+    lastTraversals = traversals();
+    if (findTraversals != expectedFindTraversals) passed = false;
+    printf("find() traversals = %d\n", findTraversals);
 
-    // printf("\n");
-    // print(list);
-    // printf("\n");
-
-    // create a new list to test
     destroy(list);
-
-    // calculate number of traversals for the current test
-    currTraversals = (lastTraversals = traversals()) - lastTraversals;
-    // check if we had the number of expected traversals
-    if (expectedTraversals == currTraversals)
-    {
-        passed = true;
-    }
-    printf("traversals = %d\n\n", currTraversals);
 
     // update counters
     if (passed) testsPassed++;
