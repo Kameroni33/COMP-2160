@@ -28,8 +28,8 @@ int main( int argc, char *argv[] )
     int testLen1 = 4;
     int testLen2 = 5;
     int testLen3 = 10;
-    char *testWords1[MAX_WORD] = {"apple", "calculs", "cow", "camp"};
-    char *testWords2[MAX_WORD] = {"apple", "calculs", "cow", "camp", "camel"};
+    char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
+    char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
     testOrderedList(testWords1, testLen1, 3, 3);
