@@ -33,7 +33,7 @@ int main( int argc, char *argv[] )
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
     testOrderedList(testWords1, testLen1, 3, 3);
-    testOrderedList(testWords2, testLen2, 4, 3);
+    testOrderedList(testWords2, testLen2, 4, 4);
     testOrderedList(testWords3, testLen3, 13, 4);
 
     printf("testsTotal:  %d\n", testsTotal);
