@@ -59,11 +59,9 @@ boolean insert( List *list, char *new_string )
     newNode->string = new_string;
 
     // determine first node based on index
-    print
+    printf("first char: '%c'\n", new_string[0]);
 
     curr = list->top;
-
-
     prev = NULL;
     while ( NULL != curr && strcmp( curr->string, new_string ) < 0 ) {
         prev = curr;
