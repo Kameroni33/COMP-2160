@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 #define INDEX_SIZE 256
 
@@ -44,6 +45,9 @@ List *construct( )
 // perform an ordered insertion of an item into a list
 boolean insert( List *list, char *new_string )
 {
+    // Pre-Conditions =================================================================
+    assert()
+    // ================================================================================
     boolean rc = true;
     Node *newNode = NULL;
     Node *curr;
@@ -52,7 +56,10 @@ boolean insert( List *list, char *new_string )
     newNode = malloc( sizeof( Node ) );
     newNode->string = new_string;
 
+    // determine first node based on index
     curr = list->top;
+
+
     prev = NULL;
     while ( NULL != curr && strcmp( curr->string, new_string ) < 0 ) {
         prev = curr;
