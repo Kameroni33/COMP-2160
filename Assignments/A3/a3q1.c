@@ -26,12 +26,15 @@ int main( int argc, char *argv[] )
 
     // Test Cases
     int testLen1 = 4;
-    int testLen2 = 10;
+    int testLen2 = 5;
+    int testLen3 = 10;
     char *testWords1[MAX_WORD] = {"apple", "calculs", "cow", "camp"};
-    char *testWords2[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
+    char *testWords2[MAX_WORD] = {"apple", "calculs", "cow", "camp", "cable"};
+    char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
-    testOrderedList(testWords1, testLen1, 2, 2);
-    testOrderedList(testWords2, testLen2, 13, 4);
+    testOrderedList(testWords1, testLen1, 3, 3);
+    testOrderedList(testWords2, testLen2, 4, 3);
+    testOrderedList(testWords3, testLen3, 13, 4);
 
     printf("testsTotal:  %d\n", testsTotal);
     printf("testsPassed: %d\n", testsPassed);
