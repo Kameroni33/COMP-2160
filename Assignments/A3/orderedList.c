@@ -64,7 +64,7 @@ boolean insert( List *list, char *new_string )
 
     // determine first node based on index list
     startIndex = new_string[0];
-    while ( (curr = list->index[startIndex]) == NULL || strcmp( curr->string, new_string ) >= 0 )
+    while ( (curr = list->index[startIndex]) == NULL && !(strcmp( curr->string, new_string ) >= 0) )
     {
         if (startIndex == 0)
         {
