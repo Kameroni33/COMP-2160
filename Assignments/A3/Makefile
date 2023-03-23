@@ -19,9 +19,7 @@ $(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
-$(TEST_PROGRAMS): $(PROGRAMS:%=%-test)
-
-$(PROGRAMS:%=%-test): %-test: %.c orderedList.o
+$(TEST_PROGRAMS): %-test: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Remove OBJFILES and PROGRAMS
