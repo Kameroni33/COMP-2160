@@ -35,12 +35,10 @@ int main( int argc, char *argv[] )
 void testOrderedList()
 {
     // Test Cases
-    int testLen1 = 4;
-    int testLen2 = 5;
-    int testLen3 = 10;
     char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
     char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
+    char *testWords4[MAX_WORD] = {"", "", ""};
 
     printf("==================================================\n");
     printf("Testing Ordered List Library\n");
@@ -49,9 +47,14 @@ void testOrderedList()
     // WHITE BOX TESTS ================================================================
 
     // test normal cases
-    testNormalCase(testWords1, testLen1, 3, 3);
-    testNormalCase(testWords2, testLen2, 4, 6);
-    testNormalCase(testWords3, testLen3, 13, 4);
+    testNormalCase(testWords1, 4, 3, 3);
+    testNormalCase(testWords2, 5, 4, 6);
+    testNormalCase(testWords3, 10, 13, 4);
+
+    // test edge cases
+
+    // test special cases
+    testNormalCase(testWords4, 3, 0, 0);
 
     // BLACK BOX TESTS ================================================================
 
@@ -61,7 +64,7 @@ void testOrderedList()
     printf("testsFailed: %d\n", testsFailed);
 }
 
-void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals)
+void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedLength)
 {
     int insertTraversals;
     int findTraversals;
@@ -118,7 +121,7 @@ void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, i
     destroy(list);
 
     // check if test passed
-    if (insertFails == 0 && findFails == 0 && insertTraversals == expectedInsertTraversals && findTraversals == expectedFindTraversals)
+    if (insertFails == 0 && findFails == 0 && size(list) == expectedLength && insertTraversals == expectedInsertTraversals && findTraversals == expectedFindTraversals)
     {
         testsPassed++;
         printf("Test Passed.\n");
