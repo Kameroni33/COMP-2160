@@ -16,11 +16,11 @@ orderedList.o: orderedList.c
 	$(CC) $(CCFLAGS) -c orderedList.c -o orderedList.o
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
+
+$(PROGRAMS): %: %.c orderedList.o
 ifeq($(TYPE),development)
-$(PROGRAMS): %: %.c orderedList.o
-		$(CC) $(CCFLAGS) -Wextra -Wpedantic -Werror $< orderedList.o -o $@
+	$(CC) $(CCFLAGS) -Wextra -Wpedantic -Werror $< orderedList.o -o $@
 else
-$(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 endif
 
