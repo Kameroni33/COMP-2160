@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "orderedList.h"
 
-#define MAX_WORD 50
+#define MAX_WORD 100
 
 
 int main( int argc, char *argv[] )
