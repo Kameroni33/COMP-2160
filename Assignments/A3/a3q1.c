@@ -63,7 +63,7 @@ void testOrderedList()
     testCase(testWords4, 10, 13, 4, 10);  // backward alphabetical ordered list
 
     // test special cases
-    testCase(testWords5, 3, 0, 0, 0);  // list of empty entries
+    testCase(testWords5, 3, 0, 0, 3);  // list of empty entries
 
     // BLACK BOX TESTS ================================================================
 
