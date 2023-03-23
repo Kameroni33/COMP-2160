@@ -25,4 +25,4 @@ $(PROGRAMS:-test): %-test: %.c orderedList.o
 
 # Remove OBJFILES and PROGRAMS
 clean:
-	rm -f $(OBJFILES) $(PROGRAMS) $(PROGRAMS)-test
+	rm -f $(OBJFILES) $(PROGRAMS) $(PROGRAMS:-test)
