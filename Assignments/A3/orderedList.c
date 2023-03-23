@@ -207,7 +207,7 @@ void print( List *list )
     }
 
     // print list
-    printf("IST:\n");
+    printf("LIST:\n");
     while ( NULL != curr )
     {
         printf( "| %s\n", curr->string );
