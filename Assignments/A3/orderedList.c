@@ -202,7 +202,7 @@ void print( List *list )
     {
         if(list->index[i] != NULL)
         {
-            printf( "%d '%c' %s\n", i, i, list->index[i]->string );
+            printf( "| %d '%c' %s\n", i, i, list->index[i]->string );
         }
     }
 
@@ -210,7 +210,7 @@ void print( List *list )
     printf("List:\n");
     while ( NULL != curr )
     {
-        printf( "%s\n", curr->string );
+        printf( "| %s\n", curr->string );
         curr = curr->next;
     }
 
