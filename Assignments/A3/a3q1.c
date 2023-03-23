@@ -15,6 +15,7 @@ static int lastTraversals;
 //=====================================================================================
 // Function Prototypes
 //=====================================================================================
+int printTestHeader(char *words[], int numWords, int testNum);
 void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
 
 //=====================================================================================
@@ -68,6 +69,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     boolean passed = true;
     int insertTraversals;
     int findTraversals;
+    int testNum = 0;
 
     List *list = construct();
 
@@ -75,14 +77,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
     ptintf("Testing Ordered List Library");
     printf("==============================\n");
     
-
-    printf("Testing {");
-    for (int i = 0; i < numWords; i++)
-    {
-        printf("\"%s\"", words[i]);
-        if (i < numWords - 1) printf(", ");
-    }
-    printf("}\n\n");
+    testNum = printTestHeader(testWords1, testLen1, )
 
     for (int i = 0; i < numWords; i++)
     {
@@ -148,7 +143,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
 }
 
 
-void printTestHeader(char *words[], int numWords, int testNum)
+int printTestHeader(char *words[], int numWords, int testNum)
 {
     printf("Test %d: {", testNum);
     for (int i = 0; i < numWords; i++)
@@ -157,4 +152,6 @@ void printTestHeader(char *words[], int numWords, int testNum)
         if (i < numWords - 1) printf(", ");
     }
     printf("}\n");
+
+    return testNum + 1;
 }
