@@ -34,7 +34,7 @@ int main( int argc, char *argv[] )
         }
 
         // add the word to the concordance
-        if ( !find(concordance, word) )
+        if ( strlen(word) > 0 && !find(concordance, word) )
         {
             insert(concordance, word);  // add word to concordance if it isn't already
         }
