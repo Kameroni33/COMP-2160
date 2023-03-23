@@ -28,7 +28,7 @@ int main( int argc, char *argv[] )
     printf("\n");
 
     printf("Size:\n============================================================\n");
-    printf("%s\n\n", size(concordance));
+    printf("%d\n\n", size(concordance));
 
     printf("Traversals:\n============================================================\n");
     printf("%d\n\n", traversals());
