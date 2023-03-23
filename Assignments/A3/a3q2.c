@@ -17,10 +17,21 @@ int main( int argc, char *argv[] )
 
     while ( (result = scanf("%s", word)) != EOF )
     {
-        printf("%s\n", word);
+        if ( !find(concordance, word) )
+        {
+            insert(concordance, word);
+        }
     }
 
+    printf("Concordance:\n============================================================\n");
     print(concordance);
+    printf("\n");
+
+    printf("Size:\n============================================================\n");
+    printf("%s\n\n", size(concordance));
+
+    printf("Traversals:\n============================================================\n");
+    printf("%d\n\n", traversals());
 
     destroy(concordance);
 
