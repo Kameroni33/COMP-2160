@@ -16,7 +16,7 @@ static int testsNum;
 //=====================================================================================
 // Function Prototypes
 //=====================================================================================
-void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
+void testOrderedList();
 void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
 
 //=====================================================================================
