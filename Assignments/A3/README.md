@@ -22,8 +22,14 @@ make clean   # remove all compiled files
 ./a3q2       # run question 2 without asserts
 ```
 
-Note: for Question 2 the program reads in text from the STDIN until it reaches a EOF character. Thus to run the application and redirect a text file as the input, use the following:
+**Note:** for Question 2 the program reads in text from the STDIN until it reaches a EOF character. Thus to run the application and redirect a text file as the input, use the following:
 
 ```shell
 ./a3q2 < textFile.txt
+```
+
+**Note:** for both programs, there is a hard limit on the number of characters in a word. By default the value is 100 but can ber changed by altering the definition:
+
+```c
+#define MAX_WORD 100
 ```
