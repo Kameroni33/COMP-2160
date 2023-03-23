@@ -29,7 +29,7 @@ int main( int argc, char *argv[] )
             if (isspace(word[i]) || ispunct(word[i]))
             {
                 removeChar(word, i);  // remove the character if it is whitespace/punctuation
-                i--;
+                i--;  // decrease index by 1 so we don't skip next character in word
             }
         }
 
