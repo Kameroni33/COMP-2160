@@ -21,7 +21,7 @@ int main( int argc, char *argv[] )
     while ( (result = scanf("%s", word)) != EOF )
     {
         // remove any whitespace or punctuation
-        for (int i = 0; i < strlen(word); i++)
+        for (int i = 0; i < (int)strlen(word); i++)
         {
             if (isspace(word[i]) || ispunct(word[i]))
             {
