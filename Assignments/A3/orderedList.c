@@ -247,5 +247,5 @@ void destroy( List *list )
 // --------------------------------------------------------------------
 void validateList(List *list)
 {
-    asser(list != NULL);
+    assert(list != NULL);
 }
