@@ -15,13 +15,13 @@ orderedList.o: orderedList.c
 	$(CC) $(CCFLAGS) -c orderedList.c -o orderedList.o
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
-$(PROGRAMS): %: %.c orderedList.o
+$(TEST_PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -Wextra -Wpedantic -Werror $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (without asserts)
-$(PROGRAMS): %: %.c orderedList.o
+$(PROD_PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Remove OBJFILES and PROGRAMS
 clean:
-	rm -f $(OBJFILES) $(PROGRAMS)
+	rm -f $(OBJFILES) $(TEST_PROGRAMS) $(PROD_PROGRAMS)
