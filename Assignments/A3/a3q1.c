@@ -17,7 +17,7 @@ static int testsNum;
 // Function Prototypes
 //=====================================================================================
 void testOrderedList();
-void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
+void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength);
 
 //=====================================================================================
 // Function Definitions
@@ -64,7 +64,7 @@ void testOrderedList()
     printf("testsFailed: %d\n", testsFailed);
 }
 
-void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedLength)
+void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength)
 {
     int insertTraversals;
     int findTraversals;
@@ -94,12 +94,10 @@ void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, i
             insertFails++;
         }
     }
-    printf("%d insert failures\n", insertFails);
 
     // check number of insert traversals
     insertTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
-    printf("%d insert traversals, expected %d\n", insertTraversals, expectedInsertTraversals);
 
     // find words in list
     for (int i = 0; i < numWords; i++)
@@ -115,13 +113,18 @@ void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, i
     // check number of find traversals
     findTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
-    printf("%d find traversals, expected %d\n", findTraversals, expectedFindTraversals);
+
+    printf("insert failures:   %d\n", insertFails);
+    printf("find failures:     %d\n", findFails);
+    printf("insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
+    printf("find traversals:   %d (expected: %d)\n", findTraversals, expectedFindTraversals);
+    printf("list size:         %d (expected: %d)\n", size(list), expectedFinalLength);
 
     // destroy list
     destroy(list);
 
     // check if test passed
-    if (insertFails == 0 && findFails == 0 && size(list) == expectedLength && insertTraversals == expectedInsertTraversals && findTraversals == expectedFindTraversals)
+    if (insertFails == 0 && findFails == 0 && size(list) == expectedFinalLength && insertTraversals == expectedInsertTraversals && findTraversals == expectedFindTraversals)
     {
         testsPassed++;
         printf("Test Passed.\n");
