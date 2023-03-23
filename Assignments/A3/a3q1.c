@@ -46,10 +46,14 @@ void testOrderedList()
     printf("Testing Ordered List Library");
     printf("==================================================\n");
 
+    // WHITE BOX TESTS ================================================================
+
     // test normal cases
     testNormalCase(testWords1, testLen1, 3, 3);
     testNormalCase(testWords2, testLen2, 4, 6);
     testNormalCase(testWords3, testLen3, 13, 4);
+
+    // WHITE BOX TESTS ================================================================
 
     printf("\n==================================================\n");
     printf("testsTotal:  %d\n", testsTotal);
