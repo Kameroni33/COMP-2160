@@ -186,7 +186,9 @@ int size( List *list )
     return list->nodeCount;
 }
 
+// --------------------------------------------------------------------
 // print the contents of a list, one item per line
+// --------------------------------------------------------------------
 void print( List *list )
 {
     // Pre-Conditions:
@@ -243,7 +245,7 @@ void destroy( List *list )
 }
 
 // --------------------------------------------------------------------
-
+// assert that the current state of list is valid
 // --------------------------------------------------------------------
 void validateList(List *list)
 {
