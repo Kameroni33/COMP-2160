@@ -34,6 +34,7 @@ int main( int argc, char *argv[] )
 
 void testOrderedList()
 {
+    testsNum = 1;
     // Test Cases
     char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
     char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
