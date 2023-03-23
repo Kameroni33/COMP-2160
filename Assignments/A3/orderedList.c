@@ -194,6 +194,18 @@ void print( List *list )
 
     Node *curr = list->top;
 
+    // print index
+    printf("Index:\n");
+    for (int i = 0; i < INDEX_SIZE; i++)
+    {
+        if(list->index[i] != NULL)
+        {
+            printf( "%d | '%c' | %s\n", i, list->index[i], curr->string );
+        }
+    }
+
+    // print list
+    printf("List:\n");
     while ( NULL != curr )
     {
         printf( "%s\n", curr->string );
