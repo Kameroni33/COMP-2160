@@ -4,17 +4,7 @@
 
 #define MAX_WORD 20
 
-//=====================================================================================
-// Global Variables
-//=====================================================================================
-static int testsTotal;
-static int testsPassed;
-static int testsFailed;
-static int lastTraversals;
 
-//=====================================================================================
-// Function Definitions
-//=====================================================================================
 int main( int argc, char *argv[] )
 {
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
