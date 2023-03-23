@@ -28,7 +28,7 @@ make clean   # remove all compiled files
 ./a3q2 < textFile.txt
 ```
 
-**Note:** for both programs, there is a hard limit on the number of characters in a word. By default the value is 100 but can ber changed by altering the definition:
+**Note:** for both programs, there is a hard limit on the number of characters in a word. By default the value is 100 but can be changed by altering the definition:
 
 ```c
 #define MAX_WORD 100
