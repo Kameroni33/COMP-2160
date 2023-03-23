@@ -17,7 +17,7 @@ static int testsNum;
 // Function Prototypes
 //=====================================================================================
 void testOrderedList();
-void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength);
+void testCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength);
 
 //=====================================================================================
 // Function Definitions
@@ -38,7 +38,8 @@ void testOrderedList()
     char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
     char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
-    char *testWords4[MAX_WORD] = {"", "", ""};
+    char *testWords4[MAX_WORD] = {"zoo", "puzzle", "home", "hello", "egg", "camp", "bee", "avocado", "art", "apple"};
+    char *testWords5[MAX_WORD] = {"", "", ""};
 
     printf("==================================================\n");
     printf("Testing Ordered List Library\n");
@@ -47,14 +48,16 @@ void testOrderedList()
     // WHITE BOX TESTS ================================================================
 
     // test normal cases
-    testNormalCase(testWords1, 4, 3, 3);
-    testNormalCase(testWords2, 5, 4, 6);
-    testNormalCase(testWords3, 10, 13, 4);
+    testCase(testWords1, 4, 3, 3, 4);
+    testCase(testWords2, 5, 4, 6, 5);
+    
 
     // test edge cases
+    testCase(testWords3, 10, 13, 4, 10);  // forward alphabetical ordered list
+    testCase(testWords4, 10, 13, 4, 10);  // backward alphabetical ordered list
 
     // test special cases
-    testNormalCase(testWords4, 3, 0, 0);
+    testCase(testWords5, 3, 0, 0, 0);  // list of empty entries
 
     // BLACK BOX TESTS ================================================================
 
@@ -64,7 +67,7 @@ void testOrderedList()
     printf("testsFailed: %d\n", testsFailed);
 }
 
-void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength)
+void testCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength)
 {
     int insertTraversals;
     int findTraversals;
