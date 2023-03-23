@@ -60,7 +60,7 @@ void testOrderedList()
 
     // test edge cases
     testCase(testWords3, 10, 13, 4, 10);  // forward alphabetical ordered list
-    testCase(testWords4, 10, 13, 4, 10);  // backward alphabetical ordered list
+    testCase(testWords4, 10, 0, 4, 10);   // backward alphabetical ordered list
 
     // test special cases
     testCase(testWords5, 3, 0, 0, 3);  // list of empty entries
