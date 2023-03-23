@@ -10,12 +10,12 @@ int main( int argc, char *argv[] )
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
 
     List *concordance = construct();
-    char
     char word[MAX_WORD];
     int result;
 
-    construct(concordance);
+    construct(concordance);  // create concordance list
 
+    // read each line of the file
     while ( (result = scanf("%s", word)) != EOF )
     {
         if ( !find(concordance, word) )
