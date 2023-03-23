@@ -14,7 +14,7 @@ orderedList.o: orderedList.c
 	$(CC) $(CCFLAGS) -c orderedList.c -o orderedList.o
 
 # Compile PROGRAMS and link OBJFILES (without asserts)
-$(PROD_PROGRAMS): %: %.c orderedList.o
+$(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
