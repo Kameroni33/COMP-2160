@@ -205,6 +205,7 @@ void print( List *list )
             printf( "| %d '%c' %s\n", i, i, list->index[i]->string );
         }
     }
+    printf("\n");
 
     // print list
     printf("List:\n");
@@ -213,6 +214,7 @@ void print( List *list )
         printf( "| %s\n", curr->string );
         curr = curr->next;
     }
+    printf("\n");
 
     // Post-Conditions:
     validateList(list);
