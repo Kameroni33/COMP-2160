@@ -1,5 +1,5 @@
 CC = clang
-CCFLAGS = -Wall
+CCFLAGS = -Wall -g
 OBJFILES = orderedList.o
 TEST_PROGRAMS = a3q1-test a3q2-test
 PROD_PROGRAMS = a3q1 a3q2
@@ -16,7 +16,7 @@ orderedList.o: orderedList.c
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
 $(PROGRAMS): %: %.c orderedList.o
-	$(CC) $(CCFLAGS) -g $< orderedList.o -o $@
+	$(CC) $(CCFLAGS) -Wextra -Wpedantic -Werror $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (without asserts)
 $(PROGRAMS): %: %.c orderedList.o
