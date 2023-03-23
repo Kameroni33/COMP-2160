@@ -53,7 +53,7 @@ void testOrderedList()
     testNormalCase(testWords2, testLen2, 4, 6);
     testNormalCase(testWords3, testLen3, 13, 4);
 
-    // WHITE BOX TESTS ================================================================
+    // BLACK BOX TESTS ================================================================
 
     printf("\n==================================================\n");
     printf("testsTotal:  %d\n", testsTotal);
