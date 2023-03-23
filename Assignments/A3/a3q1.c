@@ -43,7 +43,7 @@ void testOrderedList()
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
     printf("==================================================\n");
-    ptintf("Testing Ordered List Library");
+    printf("Testing Ordered List Library");
     printf("==================================================\n");
 
     // test normal cases
