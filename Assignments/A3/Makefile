@@ -6,7 +6,7 @@ TEST_PROGRAMS = a3q1-test a3q2-test
 
 all: $(OBJFILES) $(PROGRAMS) $(TEST_PROGRAMS)
 
-prod: $(OBJFILES) $(PROGRAMS)
+fin: $(OBJFILES) $(PROGRAMS)
 
 dev: $(OBJFILES) $(TEST_PROGRAMS)
 
