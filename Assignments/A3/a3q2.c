@@ -24,13 +24,11 @@ int main( int argc, char *argv[] )
         // remove any whitespace or punctuation
         for (int i = 0; i < (int)strlen(word); i++)
         {
+            word[i] = tolower(word[i]);  // make all characters lowercase to avoid duplicates
+
             if (isspace(word[i]) || ispunct(word[i]))
             {
                 removeChar(word, i);  // remove the character if it is whitespace/punctuation
-            }
-            else
-            {
-                word[i] = tolower(word[i]);  // make all characters lowercase to avoid duplicates
             }
         }
 
