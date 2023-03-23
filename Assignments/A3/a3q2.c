@@ -28,6 +28,10 @@ int main( int argc, char *argv[] )
             {
                 removeChar(word, i);  // remove the character if it is whitespace/punctuation
             }
+            else
+            {
+                word[i] = tolower(word[i]);  // make all characters lowercase to avoid duplicates
+            }
         }
 
         // add the word to the concordance
