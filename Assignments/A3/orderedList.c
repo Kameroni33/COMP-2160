@@ -202,7 +202,7 @@ void print( List *list )
     {
         if(list->index[i] != NULL)
         {
-            printf( "%d | '%c' | %s\n", i, list->index[i]->string, curr->string );
+            printf( "%d | '%c' | %s\n", i, i, list->index[i]->string );
         }
     }
 
