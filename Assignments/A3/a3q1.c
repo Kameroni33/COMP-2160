@@ -61,7 +61,7 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
         if (i < numWords - 1) printf(",");
         printf(" ");
     }
-    printf("}");
+    printf("}\n");
     printf("============================================================\n");
 
     for (int i = 0; i < numWords; i++)
