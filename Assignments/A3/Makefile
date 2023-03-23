@@ -8,7 +8,7 @@ all: $(OBJFILES) $(PROGRAMS) $(TEST_PROGRAMS)
 
 prod: $(OBJFILES) $(PROGRAMS)
 
-dev: $(OBJFILES) $(PROGRAMS)-test
+dev: $(OBJFILES) $(TEST_PROGRAMS)
 
 # Compile OBJFILES
 orderedList.o: orderedList.c
