@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "orderedList.h"
 
-#define MAX_WORD 20
+#define MAX_WORD 100
 
 //=====================================================================================
 // Global Variables
