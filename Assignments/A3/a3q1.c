@@ -15,7 +15,7 @@ static int lastTraversals;
 //=====================================================================================
 // Function Prototypes
 //=====================================================================================
-static void testOrderedList();
+void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
 
 //=====================================================================================
 // Function Definitions
