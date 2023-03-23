@@ -10,6 +10,7 @@ int main( int argc, char *argv[] )
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
 
     List *concordance = construct();
+    char
     char word[MAX_WORD];
     int result;
 
