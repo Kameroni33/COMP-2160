@@ -16,7 +16,7 @@ static int testsNum;
 //=====================================================================================
 // Function Prototypes
 //=====================================================================================
-void testOrderedList();
+void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
 void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
 
 //=====================================================================================
@@ -26,7 +26,7 @@ int main( int argc, char *argv[] )
 {
     printf("program: %s\nargc: %d\n\n", argv[0]+2, argc);
 
-    testOrderedList();
+    
 
     printf("\nEnd of Program.\n");
     return 0;
@@ -42,11 +42,16 @@ void testOrderedList()
     char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
 
-    printf("==============================\n");
+    printf("==================================================\n");
     ptintf("Testing Ordered List Library");
-    printf("==============================\n");
+    printf("==================================================\n");
 
-    printf("\n");
+    // test normal cases
+    testNormalCase(testWords1, testLen1, 3, 3);
+    testNormalCase(testWords2, testLen2, 4, 6);
+    testNormalCase(testWords3, testLen3, 13, 4);
+
+    printf("\n==================================================\n");
     printf("testsTotal:  %d\n", testsTotal);
     printf("testsPassed: %d\n", testsPassed);
     printf("testsFailed: %d\n", testsFailed);
@@ -60,6 +65,7 @@ void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, i
     int findFails = 0;
 
     // print test header
+    printf("\n==================================================\n");
     printf("Test %d: {", testsNum);
     for (int i = 0; i < numWords; i++)
     {
