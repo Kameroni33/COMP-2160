@@ -53,7 +53,16 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
 
     List *list = construct();
 
-    printf("\n============================================================\n");
+    printf("============================================================\n");
+    printf("Testing {");
+    for (int i = 0; i < numWords; i++)
+    {
+        printf(" \"%s\"");
+        if (i < numWords - 1) printf(",");
+        printf(" ");
+    }
+    printf("}");
+    printf("============================================================\n");
 
     for (int i = 0; i < numWords; i++)
     {
