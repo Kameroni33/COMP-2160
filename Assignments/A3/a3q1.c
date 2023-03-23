@@ -45,7 +45,7 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
-void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals)
+void testNormalCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals)
 {
     boolean passed = true;
     int insertTraversals;
@@ -53,7 +53,29 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
 
     List *list = construct();
 
-    printf("====================================================================================================\n");
+}
+
+void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals)
+{
+    int testLen1 = 4;
+    int testLen2 = 5;
+    int testLen3 = 10;
+    char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
+    char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
+    char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
+
+
+    boolean passed = true;
+    int insertTraversals;
+    int findTraversals;
+
+    List *list = construct();
+
+    printf("==============================\n");
+    ptintf("Testing Ordered List Library");
+    printf("==============================\n");
+    
+
     printf("Testing {");
     for (int i = 0; i < numWords; i++)
     {
@@ -123,4 +145,16 @@ void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, 
 
     testsTotal++;
     printf("\n");
+}
+
+
+void printTestHeader(char *words[], int numWords, int testNum)
+{
+    printf("Test %d: {", testNum);
+    for (int i = 0; i < numWords; i++)
+    {
+        printf("\"%s\"", words[i]);
+        if (i < numWords - 1) printf(", ");
+    }
+    printf("}\n");
 }
