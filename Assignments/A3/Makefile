@@ -18,11 +18,12 @@ $(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
-$(PROGRAMS)-test: $(PROGRAMS:=-test)
+$(PROGRAMS:%=-test): %-test: %.c orderedList.o
+	$(CC) $(CCFLAGS) $< orderedList.o -o $@
 
-$(PROGRAMS:%=%-test): %-test: %.c orderedList.o
-	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
+# Compile all PROGRAMS with asserts
+$(PROGRAMS)-test: $(PROGRAMS:%=-test)
 
 # Remove OBJFILES and PROGRAMS
 clean:
-	rm -f $(OBJFILES) $(PROGRAMS) $(PROGRAMS)-test
+	rm -f $(OBJFILES) $(PROGRAMS) $(PROGRAMS:%=-test)
