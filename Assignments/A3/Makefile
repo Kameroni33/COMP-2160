@@ -2,8 +2,9 @@ CC = clang
 CCFLAGS = -Wall -Wextra -Wpedantic -Werror -g 
 OBJFILES = orderedList.o
 PROGRAMS = a3q1 a3q2
+TEST_PROGRAMS = a3q1-test a3q2-test
 
-all: $(OBJFILES) $(PROGRAMS) $(PROGRAMS)-test
+all: $(OBJFILES) $(PROGRAMS) $(TEST_PROGRAMS)
 
 prod: $(OBJFILES) $(PROGRAMS)
 
@@ -18,11 +19,11 @@ $(PROGRAMS): %: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Compile PROGRAMS and link OBJFILES (with asserts)
-$(PROGRAMS)-test: $(PROGRAMS:%=%-test)
+$(TEST_PROGRAMS): $(PROGRAMS:%=%-test)
 
 $(PROGRAMS:%=%-test): %-test: %.c orderedList.o
 	$(CC) $(CCFLAGS) -DNDEBUG $< orderedList.o -o $@
 
 # Remove OBJFILES and PROGRAMS
 clean:
-	rm -f $(OBJFILES) $(PROGRAMS) $(PROGRAMS:%=%-test)
+	rm -f $(OBJFILES) $(PROGRAMS) $(TEST_PROGRAMS)
