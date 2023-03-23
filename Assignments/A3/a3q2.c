@@ -23,17 +23,16 @@ int main( int argc, char *argv[] )
         // remove any whitespace or punctuation
         for (int i = 0; i < strlen(word); i++)
         {
-            // check if the current character is whitespace/punctuation
             if (isspace(word[i]) || ispunct(word[i]))
             {
-                removeChar(word, i);
+                removeChar(word, i);  // remove the character if it is whitespace/punctuation
             }
         }
 
         // add the word to the concordance
         if ( !find(concordance, word) )
         {
-            insert(concordance, word);
+            insert(concordance, word);  // add word to concordance if it isn't already
         }
     }
 
@@ -50,6 +49,9 @@ int main( int argc, char *argv[] )
 
 void removeChar(char *word, int index)
 {
+    assert(word != NULL);
+    assert(index >= 0 && index < strlen(word));
+
     // remove the char at 'index' by shifting the string in memory
     memmove(&word[index], &word[index + 1], strlen(word) - index);
 }
