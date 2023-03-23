@@ -13,11 +13,6 @@ static int testsFailed;
 static int lastTraversals;
 
 //=====================================================================================
-// Function Prototypes
-//=====================================================================================
-void testOrderedList(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals);
-
-//=====================================================================================
 // Function Definitions
 //=====================================================================================
 int main( int argc, char *argv[] )
