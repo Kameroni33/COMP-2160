@@ -5,6 +5,10 @@ PROGRAMS = a3q1 a3q2
 
 all: $(OBJFILES) $(PROGRAMS) $(PROGRAMS)-test
 
+prod: $(OBJFILES) $(PROGRAMS)
+
+dev: $(OBJFILES) $(PROGRAMS)-test
+
 # Compile OBJFILES
 orderedList.o: orderedList.c
 	$(CC) $(CCFLAGS) -c orderedList.c -o orderedList.o
