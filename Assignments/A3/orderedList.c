@@ -197,7 +197,7 @@ void print( List *list )
     Node *curr = list->top;
 
     // print index
-    printf("Index:\n");
+    printf("INDEX:\n");
     for (int i = 0; i < INDEX_SIZE; i++)
     {
         if(list->index[i] != NULL)
@@ -207,7 +207,7 @@ void print( List *list )
     }
 
     // print list
-    printf("List:\n");
+    printf("IST:\n");
     while ( NULL != curr )
     {
         printf( "| %s\n", curr->string );
