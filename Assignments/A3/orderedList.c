@@ -78,6 +78,12 @@ boolean insert( List *list, char *new_string )
     Node *prev;
     int startIndex;
 
+    if (strlen(new_string) <= 0)
+    {
+        rc = false;
+        return rc;
+    }
+
     newNode = malloc( sizeof( Node ) );
     newNode->string = new_string;
 
