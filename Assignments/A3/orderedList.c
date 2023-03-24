@@ -199,7 +199,7 @@ void print( List *list )
 {
     // Pre-Conditions:
     assert(list != NULL);
-    
+
 
     Node *curr = list->top;
 
@@ -273,7 +273,7 @@ void validateList(List *list)
         // assert list is sorted
         assert(strcmp(curr->string, curr->next->string) <= 0);
         // assert there is an entry in the index for this node
-        assert(list->index[curr->string[0]] != NULL);
+        assert(list->index[(int)curr->string[0]] != NULL);
 
         curr = curr->next;
         size++;
