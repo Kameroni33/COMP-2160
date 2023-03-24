@@ -121,12 +121,6 @@ void testCase(char *words[], int numWords, int expectedInsertTraversals, int exp
     findTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
 
-    // check list is sorted (alphabetical)
-    while (int i = 0; i < size(list); i++)
-    {
-        if (list)
-    }
-
     // black-box test conditions
     printf("insert failures:   %d\n", insertFails);
     printf("find failures:     %d\n", findFails);
@@ -134,7 +128,6 @@ void testCase(char *words[], int numWords, int expectedInsertTraversals, int exp
     // white-box test conditions
     printf("insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
     printf("find traversals:   %d (expected: %d)\n", findTraversals, expectedFindTraversals);
-    printf("sorted:            %d\n", sorted);
 
     // destroy list
     destroy(list);
