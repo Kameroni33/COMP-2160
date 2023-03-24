@@ -199,6 +199,7 @@ void print( List *list )
 {
     // Pre-Conditions:
     assert(list != NULL);
+    
 
     Node *curr = list->top;
 
