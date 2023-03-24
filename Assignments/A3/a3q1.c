@@ -121,10 +121,10 @@ void testCase(char *words[], int numWords, int expectedInsertTraversals, int exp
     findTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
 
-    // check list is alphabetical
-    for (int i = 0; i < size(list); i++)
+    // check list is sorted (alphabetical)
+    while (int i = 0; i < size(list); i++)
     {
-        (*list)->top;
+        if (list)
     }
 
     // black-box test conditions
