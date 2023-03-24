@@ -53,16 +53,16 @@ void testOrderedList()
     printf("==================================================\n");
 
     // test normal cases
-    testCase(testWords1, 4, 3, 3, 4);
-    testCase(testWords2, 5, 4, 6, 5);
+    testCase(testWords1, 4, 0, 0, 3, 3, 4);
+    testCase(testWords2, 5, 0, 0, 4, 6, 5);
 
     // test edge cases
-    testCase(testWords3, 10, 13, 4, 10);  // forward alphabetical ordered list
-    testCase(testWords4, 10, 0, 4, 10);   // backward alphabetical ordered list
+    testCase(testWords3, 10, 0, 0, 13, 4, 10);  // forward alphabetical ordered list
+    testCase(testWords4, 10, 0, 0, 0, 4, 10);   // backward alphabetical ordered list
 
     // test special cases
-    testCase(testWords5, 3, 0, 0, 0);     // list of empty entries
-    testCase(testWords6, 3, 0, 0, 3);     // list of duplicate entries
+    testCase(testWords5, 3, 3, 3, 0, 0, 0);     // list of empty entries
+    testCase(testWords6, 3, 0, 0, 0, 0, 3);     // list of duplicate entries
 
     printf("\n==================================================\n");
     printf("testsTotal:  %d\n", testsTotal);
