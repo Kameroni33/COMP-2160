@@ -56,7 +56,7 @@ void testOrderedList()
     // test normal cases
     testCase(testWords1, 4, 0, 0, 3, 3, 4);     // normal list (unsorted)
     testCase(testWords2, 5, 0, 0, 4, 6, 5);     // namarl list (inserted by index)
-    testCase(testWords2, 5, 0, 0, 4, 6, 5);     // namarl list (replace index entry)
+    testCase(testWords3, 5, 0, 0, 4, 6, 5);     // namarl list (replace index entry)
 
     // test edge cases
     testCase(testWords4, 10, 0, 0, 13, 4, 10);  // forward alphabetical ordered list
