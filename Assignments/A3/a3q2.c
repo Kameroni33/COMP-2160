@@ -54,7 +54,7 @@ int main( int argc, char *argv[] )
 void removeChar(char *word, int index)
 {
     assert(word != NULL);
-    assert(index >= 0 && index < strlen(word));
+    assert(index >= 0 && index < (int)strlen(word));
 
     // remove the char at 'index' by shifting the string in memory
     memmove(&word[index], &word[index + 1], strlen(word) - index);
