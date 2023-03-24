@@ -17,7 +17,7 @@ static int testsNum;
 // Function Prototypes
 //=====================================================================================
 void testOrderedList();
-void testCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength);
+void testCase(char *words[], int numWords, int expectedInsertFailures, int expectedFindFailures, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength);
 
 //=====================================================================================
 // Function Definitions
@@ -70,7 +70,7 @@ void testOrderedList()
     printf("testsFailed: %d\n", testsFailed);
 }
 
-void testCase(char *words[], int numWords, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength)
+void testCase(char *words[], int numWords, int expectedInsertFailures, int expectedFindFailures, int expectedInsertTraversals, int expectedFindTraversals, int expectedFinalLength)
 {
     int insertTraversals;
     int findTraversals;
@@ -115,15 +115,14 @@ void testCase(char *words[], int numWords, int expectedInsertTraversals, int exp
             findFails++;
         }
     }
-    printf("%d find failures\n", findFails);
 
     // check number of find traversals
     findTraversals = traversals() - lastTraversals;
     lastTraversals = traversals();
 
     // black-box test conditions
-    printf("insert failures:   %d\n", insertFails);
-    printf("find failures:     %d\n", findFails);
+    printf("insert failures:   %d (expected: %d)\n", insertFails, expectedInsertFailures);
+    printf("find failures:     %d (expected: %d)\n", findFails, expectedFindFailures);
     printf("list size:         %d (expected: %d)\n", size(list), expectedFinalLength);
     // white-box test conditions
     printf("insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
@@ -133,7 +132,12 @@ void testCase(char *words[], int numWords, int expectedInsertTraversals, int exp
     destroy(list);
 
     // check test conditions
-    if (insertFails == 0 && findFails == 0 && size(list) == expectedFinalLength && insertTraversals == expectedInsertTraversals && findTraversals == expectedFindTraversals && sorted)
+    if (insertFails == expectedInsertFailures
+        && findFails == expectedFindFailures
+        && size(list) == expectedFinalLength
+        && insertTraversals == expectedInsertTraversals
+        && findTraversals == expectedFindTraversals
+        && sorted)
     {
         testsPassed++;
         printf("Test Passed.\n");
