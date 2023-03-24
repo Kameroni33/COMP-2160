@@ -257,5 +257,27 @@ void destroy( List *list )
 // --------------------------------------------------------------------
 void validateList(List *list)
 {
+    Node *curr = list->top;
+    int size = 0;
+
     assert(list != NULL);
+
+    if (curr != NULL)
+    {
+        size++;
+    }
+
+    while(curr != NULL && curr->next != NULL)
+    {
+        // assert list is sorted
+        assert(strcmp(curr->string, curr->next->string) <= 0);
+        // assert there is an entry in the index for this node
+        assert(list->index[curr->string[0]] != NULL);
+
+        curr = curr->next;
+        size++;
+    }
+
+    // assert list size is accurate
+    assert(list->nodeCount == size);
 }
