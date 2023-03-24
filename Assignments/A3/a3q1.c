@@ -43,26 +43,28 @@ void testOrderedList()
     // Test Cases
     char *testWords1[MAX_WORD] = {"apple", "calculus", "cow", "camp"};
     char *testWords2[MAX_WORD] = {"apple", "calculus", "cow", "camp", "camel"};
-    char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
-    char *testWords4[MAX_WORD] = {"zoo", "puzzle", "home", "hello", "egg", "camp", "bee", "avocado", "art", "apple"};
-    char *testWords5[MAX_WORD] = {"", "", ""};
-    char *testWords6[MAX_WORD] = {"word", "word", "word"};
+    char *testWords3[MAX_WORD] = {"apple", "calculus", "cow", "camp", "cafe"};
+    char *testWords4[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
+    char *testWords5[MAX_WORD] = {"zoo", "puzzle", "home", "hello", "egg", "camp", "bee", "avocado", "art", "apple"};
+    char *testWords6[MAX_WORD] = {"", "", ""};
+    char *testWords7[MAX_WORD] = {"word", "word", "word"};
 
     printf("==================================================\n");
     printf("Testing Ordered List Library\n");
     printf("==================================================\n");
 
     // test normal cases
-    testCase(testWords1, 4, 0, 0, 3, 3, 4);
-    testCase(testWords2, 5, 0, 0, 4, 6, 5);
+    testCase(testWords1, 4, 0, 0, 3, 3, 4);     // normal list (unsorted)
+    testCase(testWords2, 5, 0, 0, 4, 6, 5);     // namarl list (inserted by index)
+    testCase(testWords2, 5, 0, 0, 4, 6, 5);     // namarl list (replace index entry)
 
     // test edge cases
-    testCase(testWords3, 10, 0, 0, 13, 4, 10);  // forward alphabetical ordered list
-    testCase(testWords4, 10, 0, 0, 0, 4, 10);   // backward alphabetical ordered list
+    testCase(testWords4, 10, 0, 0, 13, 4, 10);  // forward alphabetical ordered list
+    testCase(testWords5, 10, 0, 0, 0, 4, 10);   // backward alphabetical ordered list
 
     // test special cases
-    testCase(testWords5, 3, 3, 3, 0, 0, 0);     // list of empty entries
-    testCase(testWords6, 3, 0, 0, 0, 0, 3);     // list of duplicate entries
+    testCase(testWords6, 3, 3, 3, 0, 0, 0);     // list of empty entries
+    testCase(testWords7, 3, 0, 0, 0, 0, 3);     // list of duplicate entries
 
     printf("\n==================================================\n");
     printf("testsTotal:  %d\n", testsTotal);
