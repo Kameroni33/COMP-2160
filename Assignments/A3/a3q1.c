@@ -130,6 +130,7 @@ void testCase(char *words[], int numWords, int expectedInsertFailures, int expec
     printf("insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
     printf("find traversals:   %d (expected: %d)\n", findTraversals, expectedFindTraversals);
 
+    printf("\n");
     print(list);
 
     // destroy list
