@@ -123,12 +123,12 @@ void testCase(char *words[], int numWords, int expectedInsertFailures, int expec
     lastTraversals = traversals();
 
     // black-box test conditions
-    printf("insert failures:   %d (expected: %d)\n", insertFails, expectedInsertFailures);
-    printf("find failures:     %d (expected: %d)\n", findFails, expectedFindFailures);
-    printf("list size:         %d (expected: %d)\n", size(list), expectedFinalLength);
+    printf("| insert failures:   %d (expected: %d)\n", insertFails, expectedInsertFailures);
+    printf("| find failures:     %d (expected: %d)\n", findFails, expectedFindFailures);
+    printf("| list size:         %d (expected: %d)\n", size(list), expectedFinalLength);
     // white-box test conditions
-    printf("insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
-    printf("find traversals:   %d (expected: %d)\n", findTraversals, expectedFindTraversals);
+    printf("| insert traversals: %d (expected: %d)\n", insertTraversals, expectedInsertTraversals);
+    printf("| find traversals:   %d (expected: %d)\n", findTraversals, expectedFindTraversals);
 
     printf("\n");
     print(list);
