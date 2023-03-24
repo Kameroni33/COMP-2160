@@ -46,6 +46,8 @@ void testOrderedList()
     char *testWords3[MAX_WORD] = {"apple", "art", "avocado", "bee", "camp", "egg", "hello", "home", "puzzle", "zoo"};
     char *testWords4[MAX_WORD] = {"zoo", "puzzle", "home", "hello", "egg", "camp", "bee", "avocado", "art", "apple"};
     char *testWords5[MAX_WORD] = {"", "", ""};
+    char *testWords6[MAX_WORD] = {"word", "word", "word"};
+
 
     printf("==================================================\n");
     printf("Testing Ordered List Library\n");
@@ -63,7 +65,8 @@ void testOrderedList()
     testCase(testWords4, 10, 0, 4, 10);   // backward alphabetical ordered list
 
     // test special cases
-    testCase(testWords5, 3, 0, 0, 3);     // list of empty entries
+    testCase(testWords5, 3, 0, 0, 0);     // list of empty entries
+    testCase(testWords6, 3, 0, 0, 3);     // list of duplicate entries
 
     // BLACK BOX TESTS ================================================================
 
