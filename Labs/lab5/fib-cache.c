@@ -9,16 +9,17 @@ long fib(int n, int cache[])
   
     if (n==0) {
         result = 0;
+        cache[n] = result;
     }
     else if (n==1 || n==2) {
         result = 1;
+        cache[n] = result;
     }
     else {
         if (cache[n] > 0) {
             result = cache[n];  // first check the cache
         }
         else {
-            // printf("couldn't find fib(%d) in cache...\n", n);  // debug log
             result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
             cache[n] = result;
         }
@@ -33,7 +34,11 @@ int main( int argc, char *argv[] )
     int fibNum = atoi(argv[1]);
 
     // create our 'cache' with all 0's initially
-    int cache[CACHE_SIZE] = {0};
+    int cache[CACHE_SIZE] = {-1};
+
+    for (int i = 0; i < CACHE_SIZE; i++){
+        printf("%d\n");
+    }
 
     printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
     
