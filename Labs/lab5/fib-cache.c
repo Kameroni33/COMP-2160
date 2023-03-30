@@ -1,34 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CACHE_SIZE 42
+#define CACHE_SIZE 40
 
 long fib(int n, int cache[])
 {
     long result;
-  
-    if (n==0) {
-        result = 0;
-        cache[n] = result;
-    }
-    else if (n==1 || n==2) {
-        result = 1;
-        cache[n] = result;
-    }
-    else {
-        if (cache[n] > 0) {
-            result = cache[n];  // first check the cache
-        }
-        else {
-            result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
-            cache[n] = result;
-        }
-    }
 
-    // update cache
-    if (cache[n] == -1) {
-        cache[n] = result;
+    // check and see if the cache has the result we want
+    if (n <= CACHE_SIZE && cache[n] >= 0)
+        result = cache[n];
+
+    // if cache doesn't have result, continue normally
+    else {
+        if (n==0)
+            result = 0;
+        else if (n==1 || n==2)
+            result = 1;
+        else
+            result = fib(n-1, cache) + fib(n-2, cache);
+        
+        // update cache if no entry exists yet
+        if (n <= CACHE_SIZE && cache[n] == -1)
+            cache[n] = result;
     }
+    
     return result;
 }
 
