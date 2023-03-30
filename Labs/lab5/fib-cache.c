@@ -33,10 +33,11 @@ int main( int argc, char *argv[] )
     // we really should check the input...
     int fibNum = atoi(argv[1]);
 
-    // create our 'cache' with all 0's initially
-    int cache[CACHE_SIZE] = {-1};
+    // create our 'cache' with all -1's initially
+    int cache[CACHE_SIZE];
 
     for (int i = 0; i < CACHE_SIZE; i++){
+        cache[i] = -1;
         printf("%d\n", cache[i]);
     }
 
