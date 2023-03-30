@@ -7,20 +7,23 @@ long fib(int n, int cache[])
 {
     long result;
   
-    if (n==0)
+    if (n==0) {
         result = 0;
-    else if (n==1 || n==2)
+    }
+    else if (n==1 || n==2) {
         result = 1;
-    else
-        if (cache[n] > 0)
+    }
+    else {
+        if (cache[n] > 0) {
             result = cache[n];  // first check the cache
-        else
-        {
-            printf("couldn't find fib(%d) in cache...\n", n);
-            result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
         }
-            
-  
+        else {
+            // printf("couldn't find fib(%d) in cache...\n", n);  // debug log
+            result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
+            cache[n] = result;
+        }
+    }
+        
     return result;
 }
 
