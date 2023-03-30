@@ -34,7 +34,7 @@ int main( int argc, char *argv[] )
     int fibNum = atoi(argv[1]);
 
     // create our 'cache' with all 0's initially
-    int cache[CACHE_SIZE] = {0};
+    int cache[CACHE_SIZE] = {-1};
 
     for (int i = 0; i < CACHE_SIZE; i++){
         printf("%d\n", cache[i]);
