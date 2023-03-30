@@ -3,7 +3,7 @@
 
 #define CACHE_SIZE 40
 
-long fib(int n, int cache[])
+long fib(int n, long cache[])
 {
     long result;
 
@@ -21,7 +21,7 @@ long fib(int n, int cache[])
             result = fib(n-1, cache) + fib(n-2, cache);
         
         // update cache if no entry exists yet
-        if (n <= CACHE_SIZE && cache[n] == -1)
+        if (n < CACHE_SIZE)
             cache[n] = result;
     }
     
@@ -34,7 +34,7 @@ int main( int argc, char *argv[] )
     int fibNum = atoi(argv[1]);
 
     // create our 'cache' with all -1's initially
-    int cache[CACHE_SIZE];
+    long cache[CACHE_SIZE];
 
     for (int i = 0; i < CACHE_SIZE; i++) {
         cache[i] = -1;
