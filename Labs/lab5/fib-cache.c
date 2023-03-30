@@ -3,7 +3,7 @@
 
 #define CACHE_SIZE 42
 
-long fib(int n)
+long fib(int n, int cache[])
 {
     long result;
   
@@ -23,15 +23,10 @@ int main( int argc, char *argv[] )
     // we really should check the input...
     int fibNum = atoi(argv[1]);
 
-    // instantiate our 'cache' with all 0's
+    // create our 'cache' with all 0's initially
     int cache[CACHE_SIZE] = {0};
 
-    for (int i = 0; i < CACHE_SIZE; i++)
-    {
-        printf("%d\n", cache[i]);
-    }
-    
-    printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum));
+    printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
     
     return EXIT_SUCCESS;
 }
