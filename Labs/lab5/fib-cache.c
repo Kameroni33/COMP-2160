@@ -15,8 +15,11 @@ long fib(int n, int cache[])
         if (cache[n] > 0)
             result = cache[n];  // first check the cache
         else
-        printf("couldn't find fib(%d) in cache...\n", n);
+        {
+            printf("couldn't find fib(%d) in cache...\n", n);
             result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
+        }
+            
   
     return result;
 }
