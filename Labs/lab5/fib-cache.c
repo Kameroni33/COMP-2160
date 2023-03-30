@@ -24,7 +24,11 @@ long fib(int n, int cache[])
             cache[n] = result;
         }
     }
-        
+
+    // update cache
+    if (cache[n] == -1) {
+        cache[n] = result;
+    }
     return result;
 }
 
@@ -37,11 +41,14 @@ int main( int argc, char *argv[] )
     int cache[CACHE_SIZE];
 
     for (int i = 0; i < CACHE_SIZE; i++){
-        cache[i] = -1;
         printf("%d\n", cache[i]);
     }
 
     printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
+
+    for (int i = 0; i < CACHE_SIZE; i++){
+        printf("%d ", cache[i]);
+    }
     
     return EXIT_SUCCESS;
 }
