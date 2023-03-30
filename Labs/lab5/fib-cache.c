@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CACHE_SIZE 40
+#define CACHE_SIZE 100
 
 long fib(int n, long long cache[])
 {
