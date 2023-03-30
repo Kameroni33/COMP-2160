@@ -13,9 +13,9 @@ long fib(int n, int cache[])
 
     // if cache doesn't have result, continue normally
     else {
-        if (n==0)
+        if (n == 0)
             result = 0;
-        else if (n==1 || n==2)
+        else if (n == 1 || n == 2)
             result = 1;
         else
             result = fib(n-1, cache) + fib(n-2, cache);
