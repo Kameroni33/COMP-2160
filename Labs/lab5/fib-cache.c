@@ -12,8 +12,10 @@ long fib(int n, int cache[])
     else if (n==1 || n==2)
         result = 1;
     else
-        // first 
-        result = fib(n-1) + fib(n-2);
+        if (cache[n] > 0)
+            result = cache[n];  // first check the cache
+        else
+            result = fib(n-1, cache) + fib(n-2, cache);  // if cache doesn't have result, continue recursion
   
     return result;
 }
