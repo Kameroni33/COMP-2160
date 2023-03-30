@@ -13,9 +13,12 @@ long fib(int n, int cache[])
 
     // if cache doesn't have result, continue normally
     else {
-        if (n == 0)
+        if (n == 0){
             result = 0;
             cache[n] = result;
+        }
+            
+            
         else if (n == 1 || n == 2)
             result = 1;
         else
