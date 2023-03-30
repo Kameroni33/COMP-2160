@@ -43,9 +43,9 @@ int main( int argc, char *argv[] )
     printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
 
     // Print Cache
-    // for (int i = 0; i < CACHE_SIZE; i++){
-    //     printf("%d ", cache[i]);
-    // }
+    for (int i = 0; i < CACHE_SIZE; i++){
+        printf("%d ", cache[i]);
+    }
     
     return EXIT_SUCCESS;
 }
