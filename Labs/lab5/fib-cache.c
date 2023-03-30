@@ -5,7 +5,7 @@
 
 long fib(int n, long long cache[])
 {
-    long result;
+    long long result;
 
     // check and see if the cache has the result we want
     if (n < CACHE_SIZE && cache[n] != -1)
