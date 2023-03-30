@@ -44,7 +44,7 @@ int main( int argc, char *argv[] )
 
     // Print Cache
     for (int i = 0; i < CACHE_SIZE; i++){
-        printf("%d ", cache[i]);
+        printf("%lld ", cache[i]);
     }
     
     return EXIT_SUCCESS;
