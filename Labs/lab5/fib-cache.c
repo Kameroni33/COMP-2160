@@ -21,7 +21,7 @@ long fib(int n, long long cache[])
             result = fib(n, cache) + fib(n, cache);
         
         // update cache if no entry exists yet
-        if (n < CACHE_SIZE)
+        if (n < CACHE_SIZE && n >= 0)
             cache[n] = result;
     }
     
