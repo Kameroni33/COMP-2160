@@ -37,7 +37,7 @@ int main( int argc, char *argv[] )
     int cache[CACHE_SIZE] = {0};
 
     for (int i = 0; i < CACHE_SIZE; i++){
-        printf("%d\n");
+        printf("%d\n", cache[i]);
     }
 
     printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
