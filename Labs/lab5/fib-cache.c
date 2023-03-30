@@ -8,8 +8,8 @@ long fib(int n, long long cache[])
     long result;
 
     // check and see if the cache has the result we want
-    if (n-1 < CACHE_SIZE && cache[n-1] >= 0)
-        result = cache[n-1];
+    if (n < CACHE_SIZE && cache[n] >= 0)
+        result = cache[n];
 
     // if cache doesn't have result, continue normally
     else {
@@ -18,11 +18,11 @@ long fib(int n, long long cache[])
         else if (n == 1 || n == 2)
             result = 1;
         else
-            result = fib(n-1, cache) + fib(n-2, cache);
+            result = fib(n, cache) + fib(n, cache);
         
         // update cache if no entry exists yet
-        if (n-1 < CACHE_SIZE)
-            cache[n-1] = result;
+        if (n < CACHE_SIZE)
+            cache[n] = result;
     }
     
     return result;
@@ -43,9 +43,9 @@ int main( int argc, char *argv[] )
     printf("The %d Fibonacci number is %ld\n", fibNum, fib(fibNum, cache));
 
     // Print Cache
-    for (int i = 0; i < CACHE_SIZE; i++){
-        printf("%lld ", cache[i]);
-    }
+    // for (int i = 0; i < CACHE_SIZE; i++){
+    //     printf("%lld ", cache[i]);
+    // }
     
     return EXIT_SUCCESS;
 }
