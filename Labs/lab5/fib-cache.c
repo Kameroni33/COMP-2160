@@ -18,10 +18,10 @@ long fib(int n, long long cache[])
         else if (n == 1 || n == 2)
             result = 1;
         else
-            result = fib(n, cache) + fib(n, cache);
+            result = fib(n-1, cache) + fib(n-2, cache);
         
         // update cache if no entry exists yet
-        if (n < CACHE_SIZE && n >= 0)
+        if (n < CACHE_SIZE)
             cache[n] = result;
     }
     
