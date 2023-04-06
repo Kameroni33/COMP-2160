@@ -1,5 +1,6 @@
+#include <stddef.h>
+
 #include "ObjectManager.h"
-// You can add other header files if needed
 
 // tracks the next reference (ID) to use, we start at 1 so we can use 0 as the NULL reference
 static Ref nextRef = 1;
@@ -40,17 +41,20 @@ static int freeIndex = 0;
 void initPool()
 {
     numBlocks = 0;
+    memBlockStart = NULL;
+    memBlockEnd = NULL;
 }
 
 // performs required clean up
 void destroyPool()
 {
     //we want to delete all nodes from the linked list.
-    //write your code here
-
-
-    free(buffer1);
-    free(buffer2);
+    while (memBlockStart != NULL)
+    {
+        memBlockEnd = memBlockStart->next;
+        free(memBlockStart);
+        memBlockStart = memBlockEnd;
+    }
 }
 
 // Adds the given object into our buffer. It will fire the garbage collector as required.
@@ -59,7 +63,31 @@ void destroyPool()
 // On failure it returns NULL_REF (0)
 Ref insertObject( const int size )
 {
-    
+    // ensure there is space for the new Object
+    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE) {
+        compact();  // garbage collect to make room for new Object
+        if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
+        {
+            // if there still isn't enough room return an error
+            fprintf(stderr, "")
+        }
+    }
+
+    // allocate space for next Node in Linked List
+    MemBlock *memBlockNew = malloc(sizeof(MemBlock));
+
+    // initalize info of the new MemBlock
+    memBlockNew->numBytes = size;
+    memBlockNew->startAddr = memBlockEnd->startAddr + memBlockEnd->numBytes;
+    memBlockNew->ref = nextRef;
+    memBlockNew->count = 1;
+    memBlockNew->next = NULL;
+
+    nextRef++;  // increment nextRef
+
+    // add MemBlock to the end of the Linked List
+    memBlockEnd->next = memBlockNew;
+    memBlockEnd = memBlockEnd->next;
 }
 
 // returns a pointer to the object being requested
