@@ -64,13 +64,15 @@ void destroyPool()
 // On failure it returns NULL_REF (0)
 Ref insertObject( const int size )
 {
-    // ensure there is space for the new Object
-    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE) {
+    // check if there is enough space for the new Object
+    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
+    {
         compact();  // garbage collect to make room for new Object
         if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
         {
-            // if there still isn't enough room return an error
-            fprintf(stderr, "")
+            // if there still isn't enough room, print error & return NULL_REF
+            fprintf(stderr, "ERROR: Memory is full. Unable to add new Object.");
+            return NULL_REF;
         }
     }
 
@@ -94,7 +96,15 @@ Ref insertObject( const int size )
 // returns a pointer to the object being requested
 void *retrieveObject( const Ref ref )
 {
-    //write your code here
+    MemBlock *memBlockCurr = memBlockStart;
+
+    while (memBlockCurr != NULL)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            return currBuffer[memBlockCurr->startAddr];
+        }
+    }
 }
 
 // update our index to indicate that we have another reference to the given object
