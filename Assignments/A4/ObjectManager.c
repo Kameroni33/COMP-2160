@@ -104,6 +104,8 @@ void *retrieveObject( const Ref ref )
         {
             return currBuffer[memBlockCurr->startAddr];
         }
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
     }
 
     // if ref could not be found, print error & return NULL_REF
@@ -114,13 +116,45 @@ void *retrieveObject( const Ref ref )
 // update our index to indicate that we have another reference to the given object
 void addReference( const Ref ref )
 {  
-    //write your code here
+    MemBlock *memBlockCurr = memBlockStart;
+
+    while (memBlockCurr != NULL)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            memBlockCurr->count++;  // increase count
+            return;
+        }
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    // if ref could not be found, print error
+    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
 }
 
 // update our index to indicate that a reference is gone
 void dropReference( const Ref ref )
 {  
-    //write your code here
+    MemBlock *memBlockCurr = memBlockStart;
+    MemBlock *memBlockPrev = memBlockStart;
+
+    while (memBlockCurr != NULL)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            memBlockCurr->count--;  // increase count
+
+            if (memBlockCurr->count == 0)
+            {
+                // delete object
+            }
+
+        }
+    }
+
+    // if ref could not be found, print error
+    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
 }
 
 // performs our garbage collection
