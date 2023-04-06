@@ -71,7 +71,7 @@ Ref insertObject( const int size )
         if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
         {
             // if there still isn't enough room, print error & return NULL_REF
-            fprintf(stderr, "ERROR: Memory is full. Unable to add new Object.");
+            fprintf(stdout, "ERROR: Memory is full. Unable to add new Object.");
             return NULL_REF;
         }
     }
@@ -107,7 +107,7 @@ void *retrieveObject( const Ref ref )
     }
 
     // if ref could not be found, print error & return NULL_REF
-    fprintf(stderr, "ERROR: Unable to locate Object with ref %d", ref);
+    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
     return NULL_REF;
 }
 
