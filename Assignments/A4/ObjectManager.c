@@ -105,6 +105,10 @@ void *retrieveObject( const Ref ref )
             return currBuffer[memBlockCurr->startAddr];
         }
     }
+
+    // if ref could not be found, print error & return NULL_REF
+    fprintf(stderr, "ERROR: Unable to locate Object with ref %d", ref);
+    return NULL_REF;
 }
 
 // update our index to indicate that we have another reference to the given object
