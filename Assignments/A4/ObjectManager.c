@@ -104,6 +104,7 @@ void *retrieveObject( const Ref ref )
         {
             return currBuffer[memBlockCurr->startAddr];
         }
+
         // check next Node in Linked List
         memBlockCurr = memBlockCurr->next;
     }
@@ -123,8 +124,9 @@ void addReference( const Ref ref )
         if (memBlockCurr->ref == ref)
         {
             memBlockCurr->count++;  // increase count
-            return;
+            return;  // job done, return from function
         }
+        
         // check next Node in Linked List
         memBlockCurr = memBlockCurr->next;
     }
@@ -147,10 +149,14 @@ void dropReference( const Ref ref )
 
             if (memBlockCurr->count == 0)
             {
-                // delete object
+                // delete object...
             }
 
+            return;  // job done, return from function
         }
+
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
     }
 
     // if ref could not be found, print error
