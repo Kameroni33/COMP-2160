@@ -100,6 +100,7 @@ void *retrieveObject( const Ref ref )
 
     while (memBlockCurr != NULL)
     {
+        
         if (memBlockCurr->ref == ref)
         {
             return currBuffer[memBlockCurr->startAddr];
