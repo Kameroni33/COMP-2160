@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stddef.h>
+#include <assert.h>
 
 #include "ObjectManager.h"
 
@@ -38,141 +41,402 @@ static unsigned char *currBuffer = buffer1;
 // points to the location of the next available memory location
 static int freeIndex = 0;
 
-// performs required setup
-void initPool()
+// signatures for public methods
+void initPool( void );
+void destroyPool( void );
+Ref insertObject( const int size );
+void *retrieveObject( const Ref ref );
+void addReference( const Ref ref );
+void dropReference( const Ref ref );
+void dumpPool( void );
+
+// signatures for static methods
+static void compact( void );
+static Ref addMemBlock( const int size );
+static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock );
+
+// initPool()
+//  Perform required setup for our ObjectManager.
+void initPool( void )
 {
-    numBlocks = 0;
+    // PRE-CONDITIONS:
+
+
+    numBlocks = 0;  // initalize numBlocks
+
+    // Initialize our LinkedList to be EMPTY (ie. NULL pointers)
     memBlockStart = NULL;
     memBlockEnd = NULL;
+
+    // POST-CONDITIONS
+    
 }
 
-// performs required clean up
-void destroyPool()
+// destroyPool()
+//  Perform required clean up for our ObjectManager.
+void destroyPool( void )
 {
-    //we want to delete all nodes from the linked list.
+    // PRE-CONDTIONS:
+
+    // delete all Nodes from our LinkedList
     while (memBlockStart != NULL)
     {
         memBlockEnd = memBlockStart->next;
         free(memBlockStart);
         memBlockStart = memBlockEnd;
     }
+
+    numBlocks = 0;  // reset numBlocks
+
+    // POST-CONDITIONS:
+
 }
 
-// Adds the given object into our buffer. It will fire the garbage collector as required.
-// We always assume that an insert always creates a new object...
-// On success it returns the reference number for the block allocated.
-// On failure it returns NULL_REF (0)
+// insertObject()  
+//  Adds the given object into our buffer. It will fire the garbage collector as required.
+//  We always assume that an insert always creates a new object...
+//  On success it returns the reference number for the block allocated.
+//  On failure it returns NULL_REF (0)
 Ref insertObject( const int size )
 {
+    // PRE-CONDITIONS:
+    assert(size > 0 && size < MEMORY_SIZE);
+
+    Ref result = NULL_REF;  // Ref of newly inserted Object or NULL_REF
+
     // check if there is enough space for the new Object
-    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
+    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE)
+    {
+        result = addMemBlock(size);  // add new memBlock Node to LinkedList
+    }
+
+    else
     {
         compact();  // garbage collect to make room for new Object
-        if (memBlockEnd->startAddr + memBlockEnd->numBytes + size > MEMORY_SIZE)
+
+        if (memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE)
         {
-            // if there still isn't enough room, print error & return NULL_REF
-            fprintf(stdout, "ERROR: Memory is full. Unable to add new Object.");
-            return NULL_REF;
+            result = addMemBlock(size);  // add new memBlock Node to LinkedList
+        }
+        
+        else
+        {
+            // if there still isn't enough room, print error
+            fprintf(stderr, "ERROR: Memory is full. Unable to add new Object.");
         }
     }
+
+    nextRef++;  // increment nextRef
+
+    // POST-CONDITIONS:
+
+
+    return result;
+}
+
+// retrieveObject()
+//  Returns a pointer to the Object being requested.
+//  If Object could not be found returns NULL_REF.
+void *retrieveObject( const Ref ref )
+{
+    // PRE-CONDITIONS:
+
+
+    void *objectPtr;      // pointer to Object data
+    int foundObject = 0;  // 'boolean' for if we have found the Object
+
+    // temporary pointer for traversing LinkedList
+    MemBlock *memBlockCurr = memBlockStart;
+
+    while (memBlockCurr != NULL && !foundObject)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            // get pointer to the first index of the allocated buffer space
+            objectPtr = &currBuffer[memBlockCurr->startAddr];
+            foundObject = 1;
+        }
+
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    if (!foundObject)
+    {
+        // if ref could not be found, print error
+        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+    }
+
+    // POST-CONDITIONS:
+
+
+    return objectPtr;
+}
+
+// addReference()
+//  Update our index to indicate that we have another reference to the given object
+void addReference( const Ref ref )
+{
+    // PRE-CONDITIONS:
+
+
+    int foundObject = 0;  // 'boolean' for if we have found the Object
+
+    // temporary pointer for traversing LinkedList
+    MemBlock *memBlockCurr = memBlockStart;
+
+    while (memBlockCurr != NULL && !foundObject)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            memBlockCurr->count++;  // increase count
+            foundObject = 1;
+        }
+        
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    if (!foundObject)
+    {
+        // if ref could not be found, print error
+        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+    }
+
+    // POST-CONDITIONS:
+
+}
+
+// update our index to indicate that a reference is gone
+void dropReference( const Ref ref )
+{
+    // PRE-CONDITIONS:
+
+
+    int foundObject = 0;  // 'boolean' for if we have found the Object
+
+    // temporary pointers for traversing LinkedList
+    MemBlock *memBlockCurr = memBlockStart;
+    MemBlock *memBlockPrev = memBlockStart;
+
+    while (memBlockCurr != NULL && !foundObject)
+    {
+        if (memBlockCurr->ref == ref)
+        {
+            memBlockCurr->count--;  // decrease count
+            foundObject = 1;
+
+            if (memBlockCurr->count == 0)
+            {
+                // if reference count is now zero... delete object
+                delMemBlock(memBlockCurr, memBlockPrev);
+            }
+        }
+
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    // if ref could not be found, print error
+    fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+
+    // POST-CONDITIONS:
+
+}
+
+// performs our garbage collection
+static void compact( void )
+{
+    // PRE-CONDITIONS:
+
+
+    unsigned char *altBuffer;  // temporary pointer for currently unused buffer
+    int altBufferIndex = 0;    // 'freeIndex' but for the altBuffer
+
+    // temporary pointer for traversing LinkedList
+    MemBlock *memBlockCurr = memBlockStart;
+
+    if (currBuffer == buffer1)
+    {
+        altBuffer = buffer2;
+    }
+    
+    else if (currBuffer == buffer2)
+    {
+        altBuffer = buffer1;
+    }
+
+    else
+    {
+        // should never reach this point
+        fprintf(stderr, "ERROR: unexpected currBuffer during compact()");
+        exit(1);
+    }
+
+    // go through LinkedList and compact memBlocks
+    while (memBlockCurr != NULL)
+    {
+        // copy data from currBuffer -> altBuffer
+        for (int i = 0; i < memBlockCurr->numBytes; i++)
+        {
+            altBuffer[altBufferIndex + i] = currBuffer[memBlockCurr->startAddr + i];
+        }
+
+        // update memBlock Entry
+        memBlockCurr->startAddr = altBufferIndex;
+
+        altBufferIndex = memBlockCurr->numBytes;
+
+        // move to next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    // swap currBuffer to altBuffer (compacted)
+    currBuffer = altBuffer;
+    // update freeIndex to reflect compacted buffer
+    freeIndex = altBufferIndex;
+
+    // POST-CONDITIONS
+
+}
+
+void dumpPool( void )
+{
+    // PRE-CONDITIONS:
+
+
+    int allocatedMem = 0;  // calculate total 'alloacted' memory
+
+    // temporary pointers for traversing LinkedList
+    MemBlock *memBlockCurr = memBlockStart;
+
+    printf("OBJECT MANAGER INFORMATION:\n\n");
+    printf("  'Addr': Starting Address\n  'Refs': Reference Count\n\n");
+    printf("Number of Blocks: %d\n", numBlocks);
+    printf("Next free Index:  %d\n\n", freeIndex);
+
+    while (memBlockCurr != NULL)
+    {
+        printf(" ID:   %lu\n", memBlockCurr->ref);
+        printf(" Addr: %d\n", memBlockCurr->startAddr);
+        printf(" Size: %d\n", memBlockCurr->numBytes);
+        printf(" Refs: %d\n\n", memBlockCurr->count);
+
+        allocatedMem += memBlockCurr->numBytes;
+
+        // check next Node in Linked List
+        memBlockCurr = memBlockCurr->next;
+    }
+
+    printf("[");
+
+    for (int i = 0; i < 20; i++)
+    {
+        if (i <= ((float)allocatedMem / (float)MEMORY_SIZE) * 20)
+        {
+            printf("#");
+        }
+        
+        else
+        {
+            printf("-");
+        }
+    }
+
+    printf("]\n\n  #: allocated memory\n  -: free memory");
+
+    // POST-CONDITIONS:
+
+}
+
+// Additional Functions...
+
+// addMemBlock()
+//  add a new MemBlock to the end of the LinkedList.
+static Ref addMemBlock( const int size )
+{
+    // PRE-CONDITIONS:
+    assert(size > 0 && size < MEMORY_SIZE);
 
     // allocate space for next Node in Linked List
     MemBlock *memBlockNew = malloc(sizeof(MemBlock));
 
     // initalize info of the new MemBlock
     memBlockNew->numBytes = size;
-    memBlockNew->startAddr = memBlockEnd->startAddr + memBlockEnd->numBytes;
+    memBlockNew->startAddr = freeIndex;
     memBlockNew->ref = nextRef;
     memBlockNew->count = 1;
     memBlockNew->next = NULL;
 
-    nextRef++;  // increment nextRef
-
     // add MemBlock to the end of the Linked List
     memBlockEnd->next = memBlockNew;
     memBlockEnd = memBlockEnd->next;
+
+    numBlocks++;        // increment numBlocks
+    nextRef++;          // increment nextRef
+    freeIndex += size;  // update freeIndex
+
+    // POST-CONDITIONS:
+
+
+    return memBlockNew->ref;
 }
 
-// returns a pointer to the object being requested
-void *retrieveObject( const Ref ref )
+// delMemBlock()
+//  delete a MemBlock from the LinkedList
+static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock )
 {
-    MemBlock *memBlockCurr = memBlockStart;
+    // PRE-CONDITIONS:
+    assert(delBlock != NULL);
 
-    while (memBlockCurr != NULL)
+    if (prevBlock == NULL)
     {
+        if (delBlock->next == NULL)
+        {
+            assert(memBlockStart->ref == delBlock->ref);
+            assert(memBlockEnd->ref == delBlock->ref);
+
+            // delete only Node in LinkedList
+            memBlockStart = NULL;
+            memBlockEnd = NULL;
+        }
+
+        else
+        {
+            assert(memBlockStart->ref == delBlock->ref);
+            assert(memBlockEnd->ref != delBlock->ref);
+
+            // delete first Node
+            memBlockStart = memBlockStart->next;
+        }
+    }
+
+    else
+    {
+        if (delBlock->next == NULL)
+        {
+            assert(memBlockStart->ref != delBlock->ref);
+            assert(memBlockEnd->ref == delBlock->ref);
+            
+            // delete last Node
+            prevBlock->next = NULL;
+            memBlockEnd = prevBlock;
+        }
         
-        if (memBlockCurr->ref == ref)
+        else
         {
-            return currBuffer[memBlockCurr->startAddr];
-        }
+            assert(memBlockStart->ref != delBlock->ref);
+            assert(memBlockEnd->ref == delBlock->ref);
 
-        // check next Node in Linked List
-        memBlockCurr = memBlockCurr->next;
+            // delete middle Node
+            prevBlock->next = delBlock->next;
+        }
     }
 
-    // if ref could not be found, print error & return NULL_REF
-    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
-    return NULL_REF;
+    numBlocks--;  // decrement numBlocks
+
+    free(delBlock);  // free Node's allocated memory
+
+    // POST-CONDITIONS
+
 }
-
-// update our index to indicate that we have another reference to the given object
-void addReference( const Ref ref )
-{  
-    MemBlock *memBlockCurr = memBlockStart;
-
-    while (memBlockCurr != NULL)
-    {
-        if (memBlockCurr->ref == ref)
-        {
-            memBlockCurr->count++;  // increase count
-            return;  // job done, return from function
-        }
-        
-        // check next Node in Linked List
-        memBlockCurr = memBlockCurr->next;
-    }
-
-    // if ref could not be found, print error
-    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
-}
-
-// update our index to indicate that a reference is gone
-void dropReference( const Ref ref )
-{  
-    MemBlock *memBlockCurr = memBlockStart;
-    MemBlock *memBlockPrev = memBlockStart;
-
-    while (memBlockCurr != NULL)
-    {
-        if (memBlockCurr->ref == ref)
-        {
-            memBlockCurr->count--;  // increase count
-
-            if (memBlockCurr->count == 0)
-            {
-                // delete object...
-            }
-
-            return;  // job done, return from function
-        }
-
-        // check next Node in Linked List
-        memBlockCurr = memBlockCurr->next;
-    }
-
-    // if ref could not be found, print error
-    fprintf(stdout, "ERROR: Unable to locate Object with ref %d", ref);
-}
-
-// performs our garbage collection
-void compact()
-{
-    //write your code here
-}
-
-void dumpPool()
-{
-    //write your code here
-}
-
-//you may add additional function if needed

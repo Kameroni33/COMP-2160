@@ -33,13 +33,13 @@ void addReference( const Ref ref );
 void dropReference( const Ref ref );
 
 // initialize the object manager
-void initPool();
+void initPool( void );
 
 // clean up the object manager (before exiting)
-void destroyPool();
+void destroyPool( void );
 
 // This function traverses the index and prints the info in each entry corresponding to a block of allocated memory.
 // You should print the block's reference id, it's starting address, and it's size (in bytes).
-void dumpPool();
+void dumpPool( void );
 
 #endif
