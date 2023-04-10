@@ -339,7 +339,7 @@ void dumpPool( void )
 
     for (int i = 0; i < 50; i++)
     {
-        if (i <= ((double)allocatedMem / 524288) * 50)
+        if (i < ((double)allocatedMem / 524288) * 50)
         {
             printf("#");
         }
