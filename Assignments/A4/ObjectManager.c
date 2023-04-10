@@ -335,7 +335,7 @@ void dumpPool( void )
         memBlockCurr = memBlockCurr->next;
     }
 
-    printf("[");
+    printf(" Buffer Size: %d\n  #: allocated memory (%d)\n  -: free memory (%d)\n\n[", MEMORY_SIZE, allocatedMem, MEMORY_SIZE - allocatedMem);
 
     for (int i = 0; i < 50; i++)
     {
@@ -350,7 +350,7 @@ void dumpPool( void )
         }
     }
 
-    printf("] %.1f%% full\n\n Buffer Size: %d\n  #: allocated memory (%d)\n  -: free memory (%d)\n\n", ((double)allocatedMem / 524288) * 100, MEMORY_SIZE, allocatedMem, MEMORY_SIZE - allocatedMem);
+    printf("] %.1f%% full\n\n", ((double)allocatedMem / 524288) * 100);
 
     // POST-CONDITIONS:
 
