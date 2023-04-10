@@ -253,7 +253,7 @@ static void compact( void )
 
 
     // for testing
-    fprintf(stderr, "INFO: Compacting Buffer...\n\n");
+    fprintf(stderr, "INFO: Compacting Buffer...\n");
 
     unsigned char *altBuffer;  // temporary pointer for currently unused buffer
     int altBufferIndex = 0;    // 'freeIndex' but for the altBuffer
