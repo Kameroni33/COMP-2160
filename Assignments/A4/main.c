@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     printf("==================================================\n");
     printf("OBJECT MANAGER TEST (Memory Size: %d)\n", MEMORY_SIZE);
-    printf("==================================================\n");
+    printf("==================================================\n\n");
 
     printf("1) Initialing Pool...\n");
     initPool();

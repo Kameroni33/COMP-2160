@@ -319,8 +319,8 @@ void dumpPool( void )
 
     printf("\nOBJECT MANAGER INFORMATION:\n\n");
     printf("  'Addr': Starting Address\n  'Refs': Reference Count\n\n");
-    printf("Number of Blocks: %d\n", numBlocks);
-    printf("Next free Index:  %d\n\n", freeIndex);
+    printf(" Number of Blocks: %d\n", numBlocks);
+    printf(" Next free Index:  %d\n\n", freeIndex);
 
     while (memBlockCurr != NULL)
     {
