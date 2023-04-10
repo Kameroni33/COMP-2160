@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Droping references to ID's 1, 4, 6, and 9...\n");
+    printf("3) Dropping references to ID's 1, 4, 6, and 9...\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
@@ -88,8 +88,8 @@ int main(int argc, char *argv[])
     // allocate 10 to id3
     printf("4) Allocating memory the following...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
-    printf(" ID 11: 213849 bytes (K)\n");
-    printf(" ID 12: 853 bytes (L)\n");
+    printf(" ID 11: 103923 bytes (K)\n");
+    printf(" ID 12: 853 bytes (L)\n\n");
 
     id10 = insertObject(1946);
     id11 = insertObject(213849);
