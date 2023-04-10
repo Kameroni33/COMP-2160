@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
         if (ptr[i] != 'L') result = 0;
     printf(" ID 12: %s\n", result ? "success" : "failure");
 
-    printf("6) Add more memory than is available...\n\n");
+    printf("\n6) Allocate more memory than is available...\n\n");
 
     id1 = insertObject(99999);
     result = (id1 == 0);
