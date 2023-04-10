@@ -13,11 +13,11 @@ ObjectManager: ObjectManager.c
 	$(CC) $(FLAGS) -c ObjectManager.c -o ObjectManager.o
 
 # Compile with ASSERTS
-main: main.c
+main: main.c ObjectManager.o
 	$(CC) $(FLAGS) main.c ObjectManager.o -o main
 
 # Compile without ASSERTS
-main-test: main.c
+main-test: main.c ObjectManager.o
 	$(CC) $(FLAGS) -DNDEBUG main.c ObjectManager.o -o main-test
 
 # Remove OBJFILES and PROGRAMS

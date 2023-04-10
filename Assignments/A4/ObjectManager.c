@@ -105,7 +105,7 @@ Ref insertObject( const int size )
     Ref result = NULL_REF;  // Ref of newly inserted Object or NULL_REF
 
     // check if there is enough space for the new Object
-    if (memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE)
+    if (memBlockEnd == NULL || memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE)
     {
         result = addMemBlock(size);  // add new memBlock Node to LinkedList
     }
@@ -122,11 +122,9 @@ Ref insertObject( const int size )
         else
         {
             // if there still isn't enough room, print error
-            fprintf(stderr, "ERROR: Memory is full. Unable to add new Object.");
+            fprintf(stderr, "ERROR: Memory is full. Unable to add new Object.\n");
         }
     }
-
-    nextRef++;  // increment nextRef
 
     // POST-CONDITIONS:
 
@@ -164,7 +162,7 @@ void *retrieveObject( const Ref ref )
     if (!foundObject)
     {
         // if ref could not be found, print error
-        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu\n", ref);
     }
 
     // POST-CONDITIONS:
@@ -200,7 +198,7 @@ void addReference( const Ref ref )
     if (!foundObject)
     {
         // if ref could not be found, print error
-        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu\n", ref);
     }
 
     // POST-CONDITIONS:
@@ -237,8 +235,11 @@ void dropReference( const Ref ref )
         memBlockCurr = memBlockCurr->next;
     }
 
-    // if ref could not be found, print error
-    fprintf(stderr, "ERROR: Unable to locate Object with ref %lu", ref);
+    if (!foundObject)
+    {
+        // if ref could not be found, print error
+        fprintf(stderr, "ERROR: Unable to locate Object with ref %lu\n", ref);
+    }
 
     // POST-CONDITIONS:
 
@@ -276,6 +277,8 @@ static void compact( void )
     // go through LinkedList and compact memBlocks
     while (memBlockCurr != NULL)
     {
+        assert(memBlockCurr->count != 0);  // sanity check
+
         // copy data from currBuffer -> altBuffer
         for (int i = 0; i < memBlockCurr->numBytes; i++)
         {
@@ -310,7 +313,7 @@ void dumpPool( void )
     // temporary pointers for traversing LinkedList
     MemBlock *memBlockCurr = memBlockStart;
 
-    printf("OBJECT MANAGER INFORMATION:\n\n");
+    printf("\nOBJECT MANAGER INFORMATION:\n\n");
     printf("  'Addr': Starting Address\n  'Refs': Reference Count\n\n");
     printf("Number of Blocks: %d\n", numBlocks);
     printf("Next free Index:  %d\n\n", freeIndex);
@@ -330,9 +333,9 @@ void dumpPool( void )
 
     printf("[");
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 50; i++)
     {
-        if (i <= ((float)allocatedMem / (float)MEMORY_SIZE) * 20)
+        if (i <= ((double)allocatedMem / 524288) * 50)
         {
             printf("#");
         }
@@ -343,7 +346,7 @@ void dumpPool( void )
         }
     }
 
-    printf("]\n\n  #: allocated memory\n  -: free memory");
+    printf("] %.1f%% full\n\n Buffer Size: %d\n  #: allocated memory (%d)\n  -: free memory (%d)\n\n", ((double)allocatedMem / 524288) * 100, MEMORY_SIZE, allocatedMem, MEMORY_SIZE - allocatedMem);
 
     // POST-CONDITIONS:
 
@@ -368,9 +371,19 @@ static Ref addMemBlock( const int size )
     memBlockNew->count = 1;
     memBlockNew->next = NULL;
 
-    // add MemBlock to the end of the Linked List
-    memBlockEnd->next = memBlockNew;
-    memBlockEnd = memBlockEnd->next;
+    // if first Node in LinkedList
+    if (memBlockStart == NULL && memBlockEnd == NULL)
+    {
+        memBlockStart = memBlockNew;
+        memBlockEnd = memBlockNew;
+    }
+
+    else
+    {
+        // add MemBlock to the end of the Linked List
+        memBlockEnd->next = memBlockNew;
+        memBlockEnd = memBlockEnd->next;
+    }
 
     numBlocks++;        // increment numBlocks
     nextRef++;          // increment nextRef
