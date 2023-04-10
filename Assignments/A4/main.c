@@ -92,20 +92,20 @@ int main(int argc, char *argv[])
     printf(" ID 12: 853 bytes (L)\n\n");
 
     id10 = insertObject(1946);
-    id11 = insertObject(213849);
+    id11 = insertObject(103923);
     id12 = insertObject(853);
 
     ptr = (char*)retrieveObject(id10);
     for (i = 0; i < 1946; i++)
         ptr[i] = 'J';
     ptr = (char*)retrieveObject(id11);
-    for (i = 0; i < 213849; i++)
+    for (i = 0; i < 103923; i++)
         ptr[i] = 'K';
     ptr = (char*)retrieveObject(id12);
     for (i = 0; i < 853; i++)
         ptr[i] = 'L';
 
-    printf("Expected call to COMPACT\n");
+    printf("Expected call to compact()\n");
     printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 1946 + 213849 + 853);
 
     dumpPool();
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 
     result = 1;
     ptr = (char*)retrieveObject(id11);
-    for (i = 0; i < 213849; i++)
+    for (i = 0; i < 103923; i++)
         if (ptr[i] != 'K') result = 0;
     printf(" ID 11: %s\n", result ? "success" : "failure");
 
