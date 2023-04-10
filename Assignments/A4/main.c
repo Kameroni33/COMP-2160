@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
     printf("6) Add more memory than is available...\n\n");
 
     id1 = insertObject(1000000);
-    result = (id1 == NULL);
+    result = (id1 == 0);
 
     printf("\nExpected COMPACT\n");
     printf("Expected ERROR (buffer full)\n");
