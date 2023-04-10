@@ -215,7 +215,7 @@ void dropReference( const Ref ref )
 
     // temporary pointers for traversing LinkedList
     MemBlock *memBlockCurr = memBlockStart;
-    MemBlock *memBlockPrev = memBlockStart;
+    MemBlock *memBlockPrev = NULL;
 
     while (memBlockCurr != NULL && !foundObject)
     {
@@ -232,6 +232,7 @@ void dropReference( const Ref ref )
         }
 
         // check next Node in Linked List
+        memBlockPrev = memBlockCurr;
         memBlockCurr = memBlockCurr->next;
     }
 

@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     int id1, id2, id3, id4, id5, id6, id7, id8, id9, id10, id11, id12;
     int result;
 
+    printf("==================================================\n");
     printf("OBJECT MANAGER TEST (Memory Size: %d)\n", MEMORY_SIZE);
     printf("==================================================\n");
 
@@ -74,12 +75,13 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Droping references to ID's 1, 4, and 6...\n");
+    printf("3) Droping references to ID's 1, 4, 6, and 9...\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
+    dropReference(id9);
 
-    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 73567);
+    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536);
 
     dumpPool();
 
@@ -104,7 +106,7 @@ int main(int argc, char *argv[])
         ptr[i] = 'L';
 
     printf("Expected call to COMPACT\n");
-    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 73567 + 1946 + 213849 + 853);
+    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 1946 + 213849 + 853);
 
     dumpPool();
 
@@ -114,57 +116,49 @@ int main(int argc, char *argv[])
     ptr = (char*)retrieveObject(id2);
     for (i = 0; i < 645; i++)
         if (ptr[i] != 'B') result = 0;
-    printf(" ID 2: %s\n", result ? "sucess" : "failure");
+    printf(" ID 2: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id3);
     for (i = 0; i < 67890; i++)
         if (ptr[i] != 'C') result = 0;
-    printf(" ID 3: %s\n", result ? "sucess" : "failure");
+    printf(" ID 3: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id5);
     for (i = 0; i < 215438; i++)
         if (ptr[i] != 'E') result = 0;
-    printf(" ID 5: %s\n", result ? "sucess" : "failure");
+    printf(" ID 5: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id7);
     for (i = 0; i < 132456; i++)
         if (ptr[i] != 'G') result = 0;
-    printf(" ID 7: %s\n", result ? "sucess" : "failure");
+    printf(" ID 7: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id8);
     for (i = 0; i < 4536; i++)
         if (ptr[i] != 'H') result = 0;
-    printf(" ID 8: %s\n", result ? "sucess" : "failure");
-
-    result = 1;
-    ptr = (char*)retrieveObject(id9);
-    for (i = 0; i < 73567; i++)
-        if (ptr[i] != 'I') result = 0;
-    printf(" ID 9: %s\n", result ? "sucess" : "failure");
+    printf(" ID 8: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id10);
     for (i = 0; i < 1946; i++)
         if (ptr[i] != 'J') result = 0;
-    printf(" ID 10: %s\n", result ? "sucess" : "failure");
+    printf(" ID 10: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id11);
     for (i = 0; i < 213849; i++)
         if (ptr[i] != 'K') result = 0;
-    printf(" ID 11: %s\n", result ? "sucess" : "failure");
+    printf(" ID 11: %s\n", result ? "success" : "failure");
 
     result = 1;
     ptr = (char*)retrieveObject(id12);
     for (i = 0; i < 853; i++)
         if (ptr[i] != 'L') result = 0;
-    printf(" ID 12: %s\n", result ? "sucess" : "failure");
-
-    dumpPool();
+    printf(" ID 12: %s\n", result ? "success" : "failure");
 
     destroyPool();
 
