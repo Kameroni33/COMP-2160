@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < 853; i++)
         ptr[i] = 'L';
 
-    printf("Expected call to compact()\n");
+    printf("\nExpected COMPACT\n");
     printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 1946 + 99823 + 853);
 
     dumpPool();
@@ -159,6 +159,21 @@ int main(int argc, char *argv[])
     for (i = 0; i < 853; i++)
         if (ptr[i] != 'L') result = 0;
     printf(" ID 12: %s\n", result ? "success" : "failure");
+
+    printf("6) Add more memory than is available...\n\n");
+
+    id1 = insertObject(1000000);
+    result = (id1 == NULL);
+
+    printf("\nExpected COMPACT\n");
+    printf("Expected ERROR (buffer full)\n");
+    printf("\nResult: %s\n", result ? "success" : "failure");
+
+    printf("7) Try ...\n\n");
+
+
+
+
 
     destroyPool();
 
