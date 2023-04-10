@@ -107,15 +107,6 @@ Ref insertObject( const int size )
     // check if there is enough space for the new Object
     if (memBlockEnd == NULL || memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE)
     {
-        if (memBlockEnd != NULL)
-        {
-            printf("startAddr: %d\n", memBlockEnd->startAddr);
-            printf("numBytes: %d\n", memBlockEnd->numBytes);
-            printf("size: %d\n", size);
-            printf("total: %d\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size);
-            printf("MEMORY_SIZE: %d\n", MEMORY_SIZE);
-            printf("result: %d\n\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE);
-        }
         result = addMemBlock(size);  // add new memBlock Node to LinkedList
     }
 
