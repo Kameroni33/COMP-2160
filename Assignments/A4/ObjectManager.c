@@ -116,7 +116,6 @@ Ref insertObject( const int size )
             printf("MEMORY_SIZE: %d\n", MEMORY_SIZE);
             printf("result: %d\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE);
         }
-            printf("startAddr: %d\n numBytes: %d\nsize: %d\ntotal: %d\nMEMORY_SIZE: %d\nresult: %d"), memBlockEnd->startAddr, memBlockEnd->numBytes, size, (memBlockEnd->startAddr + memBlockEnd->numBytes + size), MEMORY_SIZE, (memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE);
         result = addMemBlock(size);  // add new memBlock Node to LinkedList
     }
 
