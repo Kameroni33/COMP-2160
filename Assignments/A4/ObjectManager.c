@@ -114,7 +114,7 @@ Ref insertObject( const int size )
             printf("size: %d\n", size);
             printf("total: %d\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size);
             printf("MEMORY_SIZE: %d\n", MEMORY_SIZE);
-            printf("result: %d\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE);
+            printf("result: %d\n\n", memBlockEnd->startAddr + memBlockEnd->numBytes + size < MEMORY_SIZE);
         }
         result = addMemBlock(size);  // add new memBlock Node to LinkedList
     }
@@ -301,7 +301,7 @@ static void compact( void )
         // update memBlock Entry
         memBlockCurr->startAddr = altBufferIndex;
 
-        altBufferIndex = memBlockCurr->numBytes;
+        altBufferIndex += memBlockCurr->numBytes;
 
         // move to next Node in Linked List
         memBlockCurr = memBlockCurr->next;
