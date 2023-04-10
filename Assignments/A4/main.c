@@ -169,6 +169,8 @@ int main(int argc, char *argv[])
     printf("Expected ERROR (buffer full)\n");
     printf("\nResult: %s\n", result ? "success" : "failure");
 
+    dumpPool();
+
     printf("7) Try ...\n\n");
 
 
