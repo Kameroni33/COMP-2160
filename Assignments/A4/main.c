@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     dumpPool();
 
-    printf("2) Allocating memory the following...\n\n");
+    printf("2) Allocating memory for the following...\n\n");
     printf(" ID 1: 2342 bytes (A)\n");
     printf(" ID 2: 645 bytes (B)\n");
     printf(" ID 3: 67890 bytes (C)\n");
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Dropping references to ID's 1, 4, 6, and 9...\n");
+    printf("3) Dropping references for ID's 1, 4, 6, and 9...\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // allocate 10 to id3
-    printf("4) Allocating memory the following...\n\n");
+    printf("4) Allocating memory for the following...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
     printf(" ID 11: 99823 bytes (K)\n");
     printf(" ID 12: 853 bytes (L)\n\n");
@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
 
     printf("\nExpected COMPACT\n");
     printf("Expected ERROR (buffer full)\n");
-    printf("\nResult: %s\n", result ? "success" : "failure");
+    printf("\nResult: %s\n\n", result ? "success" : "failure");
 
     printf("7) Try ...\n\n");
 
