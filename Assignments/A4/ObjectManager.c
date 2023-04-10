@@ -440,7 +440,7 @@ static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock )
         else
         {
             assert(memBlockStart->ref != delBlock->ref);
-            assert(memBlockEnd->ref == delBlock->ref);
+            assert(memBlockEnd->ref != delBlock->ref);
 
             // delete middle Node
             prevBlock->next = delBlock->next;
