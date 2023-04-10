@@ -88,11 +88,11 @@ int main(int argc, char *argv[])
     // allocate 10 to id3
     printf("4) Allocating memory the following...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
-    printf(" ID 11: 102413 bytes (K)\n");
+    printf(" ID 11: 99823 bytes (K)\n");
     printf(" ID 12: 853 bytes (L)\n\n");
 
     id10 = insertObject(1946);
-    id11 = insertObject(102413);
+    id11 = insertObject(99823);
     id12 = insertObject(853);
 
     ptr = (char*)retrieveObject(id10);
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
         ptr[i] = 'L';
 
     printf("Expected call to compact()\n");
-    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 1946 + 102413 + 853);
+    printf("Expected Total Memory Usage: %d\n", 645 + 67890 + 215438 + 132456 + 4536 + 1946 + 99823 + 853);
 
     dumpPool();
 
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 
     result = 1;
     ptr = (char*)retrieveObject(id11);
-    for (i = 0; i < 102413; i++)
+    for (i = 0; i < 99823; i++)
         if (ptr[i] != 'K') result = 0;
     printf(" ID 11: %s\n", result ? "success" : "failure");
 
