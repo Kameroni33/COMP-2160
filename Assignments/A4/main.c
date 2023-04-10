@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < 1946; i++)
         ptr[i] = 'J';
     ptr = (char*)retrieveObject(id11);
-    for (i = 0; i < 102413; i++)
+    for (i = 0; i < 99823; i++)
         ptr[i] = 'K';
     ptr = (char*)retrieveObject(id12);
     for (i = 0; i < 853; i++)
