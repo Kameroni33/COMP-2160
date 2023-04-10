@@ -324,10 +324,10 @@ void dumpPool( void )
 
     while (memBlockCurr != NULL)
     {
-        printf(" ID:   %lu\n", memBlockCurr->ref);
-        printf(" Addr: %d\n", memBlockCurr->startAddr);
-        printf(" Size: %d\n", memBlockCurr->numBytes);
-        printf(" Refs: %d\n\n", memBlockCurr->count);
+        printf("  ID:   %lu\n", memBlockCurr->ref);
+        printf("  Addr: %d\n", memBlockCurr->startAddr);
+        printf("  Size: %d\n", memBlockCurr->numBytes);
+        printf("  Refs: %d\n\n", memBlockCurr->count);
 
         allocatedMem += memBlockCurr->numBytes;
 

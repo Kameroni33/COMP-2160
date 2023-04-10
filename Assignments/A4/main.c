@@ -19,8 +19,6 @@ int main(int argc, char *argv[])
 
     dumpPool();
 
-    // 524288
-
     printf("2) Allocating memory the following...\n\n");
     printf(" ID 1: 2342 bytes (A)\n");
     printf(" ID 2: 645 bytes (B)\n");
@@ -70,7 +68,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < 73567; i++)
         ptr[i] = 'I';
 
-    printf("Expected Total Memory Usage: %d\n", 2342 + 645 + 67890 + 153 + 215438 + 42 + 132456 + 4536 + 73567);
+    printf("\nExpected Total Memory Usage: %d\n", 2342 + 645 + 67890 + 153 + 215438 + 42 + 132456 + 4536 + 73567);
     
     dumpPool();
 
