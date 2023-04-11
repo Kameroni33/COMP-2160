@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Dropping references for ID's 1, 4, 6, and 9...\n");
+    printf("3) Dropping references for ID's 1, 4, 6, and 9...\n\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
@@ -167,11 +167,37 @@ int main(int argc, char *argv[])
     printf("Expected ERROR (buffer full)\n");
     printf("\nResult: %s\n\n", result ? "success" : "failure");
 
-    printf("7) Try ...\n\n");
+    printf("7) Add references to the following...\n\n");
+    printf(" ID 3: +1\n");
+    printf(" ID 5: -1\n");
+    printf(" ID 8: +7\n");
 
+    addReference(id3);
+    dropReference(id5);
+    for (i = 0; i < 7; i++)
+        addReference(id8);
 
+    dumpPool();
 
+    printf("8) Add references to ID that doesn't exist...\n\n");
 
+    addReference(999);
+
+    printf("\nExpected ERROR (couldn't find reference)\n");
+
+    printf("9) Drop references from ID that doesn't exist...\n\n");
+
+    dropReference(999);
+
+    printf("\nExpected ERROR (couldn't find reference)\n");
+
+    printf("10) Retrieve pointer to ID that doesn't exist...\n\n");
+
+    ptr = retrieveObject(999);
+
+    print("\n%s\n", (ptr == NULL) ? "success" : "failure");
+
+    printf("\nExpected ERROR (couldn't find reference)\n\n");
 
     destroyPool();
 
