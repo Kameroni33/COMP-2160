@@ -195,9 +195,9 @@ int main(int argc, char *argv[])
 
     ptr = retrieveObject(999);
 
-    printf("\n%s\n", (ptr == NULL) ? "success" : "failure");
+    printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("\nExpected ERROR (couldn't find reference)\n\n");
+    printf("\n%s\n\n\n", (ptr == NULL) ? "success" : "failure");
 
     destroyPool();
 
