@@ -185,13 +185,13 @@ int main(int argc, char *argv[])
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("9) Drop references from ID that doesn't exist...\n\n");
+    printf("\n9) Drop references from ID that doesn't exist...\n\n");
 
     dropReference(999);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("10) Retrieve pointer to ID that doesn't exist...\n\n");
+    printf("\n10) Retrieve pointer to ID that doesn't exist...\n\n");
 
     ptr = retrieveObject(999);
 
