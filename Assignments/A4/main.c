@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
 
     ptr = retrieveObject(999);
 
-    print("\n%s\n", (ptr == NULL) ? "success" : "failure");
+    printf("\n%s\n", (ptr == NULL) ? "success" : "failure");
 
     printf("\nExpected ERROR (couldn't find reference)\n\n");
 
