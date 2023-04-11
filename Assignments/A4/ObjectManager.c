@@ -41,19 +41,11 @@ static unsigned char *currBuffer = buffer1;
 // points to the location of the next available memory location
 static int freeIndex = 0;
 
-// signatures for public methods
-void initPool( void );
-void destroyPool( void );
-Ref insertObject( const int size );
-void *retrieveObject( const Ref ref );
-void addReference( const Ref ref );
-void dropReference( const Ref ref );
-void dumpPool( void );
-
 // signatures for static methods
 static void compact( void );
 static Ref addMemBlock( const int size );
 static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock );
+static void checkState( void );
 
 // initPool()
 //  Perform required setup for our ObjectManager.
@@ -252,8 +244,6 @@ static void compact( void )
     // PRE-CONDITIONS:
 
 
-    // for testing
-    fprintf(stderr, "INFO: Compacting Buffer...\n");
 
     unsigned char *altBuffer;  // temporary pointer for currently unused buffer
     int altBufferIndex = 0;    // 'freeIndex' but for the altBuffer
@@ -298,6 +288,12 @@ static void compact( void )
         memBlockCurr = memBlockCurr->next;
     }
 
+    printf("\nCOMPACTING BUFFER INFORMATION:\n\n");
+    printf(" Num Objects: %d\n", numBlocks);
+    printf(" Original Size: %d bytes\n", freeIndex);
+    printf(" Compact Size: %d bytes\n", altBufferIndex);
+    printf(" Reclaimed Mem: %d bytes\n", freeIndex - altBufferIndex);
+
     // swap currBuffer to altBuffer (compacted)
     currBuffer = altBuffer;
     // update freeIndex to reflect compacted buffer
@@ -310,8 +306,10 @@ static void compact( void )
 void dumpPool( void )
 {
     // PRE-CONDITIONS:
+    checkState();
 
 
+    int memorySize = MEMORY_SIZE;
     int allocatedMem = 0;  // calculate total 'alloacted' memory
 
     // temporary pointers for traversing LinkedList
@@ -335,11 +333,11 @@ void dumpPool( void )
         memBlockCurr = memBlockCurr->next;
     }
 
-    printf(" Buffer Size: %d\n  #: allocated memory (%d)\n  -: free memory (%d)\n\n[", MEMORY_SIZE, allocatedMem, MEMORY_SIZE - allocatedMem);
+    printf(" Buffer Size: %d\n  #: allocated memory (%d)\n  -: free memory (%d)\n\n[", memorySize, allocatedMem, memorySize - allocatedMem);
 
     for (int i = 0; i < 50; i++)
     {
-        if (i < ((double)allocatedMem / 524288) * 50)
+        if (i < ((double)allocatedMem / memorySize) * 50)
         {
             printf("#");
         }
@@ -350,10 +348,10 @@ void dumpPool( void )
         }
     }
 
-    printf("] %.1f%% full\n\n", ((double)allocatedMem / 524288) * 100);
+    printf("] %.1f%% full\n\n", ((double)allocatedMem / memorySize) * 100);
 
     // POST-CONDITIONS:
-
+    checkState();
 }
 
 // Additional Functions...
@@ -456,4 +454,36 @@ static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock )
 
     // POST-CONDITIONS
 
+}
+
+// checkState()
+//  Invariance check function for Object Manager datastructures
+static void checkState( void )
+{
+    MemBlock *memBlockCurr;
+    int numBlocksCheck = 0;
+    int freeIndexCheck = 0;
+
+    // either the LinkedList is empty (NULL) or both pointers should be initialized (!NULL)
+    assert( (memBlockStart == NULL && memBlockEnd == NULL) || (memBlockStart != NULL && memBlockEnd != NULL) );
+
+    if (memBlockStart != NULL && memBlockEnd != NULL)
+    {
+        memBlockCurr = memBlockStart;
+
+        while (memBlockCurr != NULL)
+        {
+            assert(memBlockCurr->numBytes > 0 && memBlockCurr->numBytes <= MEMORY_SIZE);
+            assert(memBlockCurr->startAddr >= 0 && memBlockCurr->startAddr < MEMORY_SIZE);
+            assert(memBlockCurr->count > 0);
+
+            freeIndexCheck = (memBlockCurr->startAddr + memBlockCurr->numBytes) > freeIndexCheck ? (memBlockCurr->startAddr + memBlockCurr->numBytes) : freeIndexCheck;
+            numBlocksCheck++;
+
+            memBlockCurr = memBlockCurr->next;
+        }
+    }
+
+    assert(numBlocksCheck == numBlocks);
+    assert(freeIndexCheck <= freeIndex);  // can't account for deleted blocks
 }
