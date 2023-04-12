@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Dropping references for ID's 1 (edge case: first), 4, 6, and 9 (edge case: last)...\n\n");
+    printf("3) Dropping references for ID's 1 (edge case), 4, 6, and 9 (edge case)...\n\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     printf("4) Allocating memory for the following (should force a compact)...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
     printf(" ID 11: 99823 bytes (K)\n");
-    printf(" ID 12: 853 bytes (L)\n\n");
+    printf(" ID 12: 853 bytes (L)\n");
 
     id10 = insertObject(1946);
     id11 = insertObject(99823);
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
         if (ptr[i] != 'L') result = 0;
     printf(" ID 12: %s\n", result ? "success" : "failure");
 
-    printf("6) Add references to the following...\n\n");
+    printf("\n6) Add references to the following...\n\n");
     printf(" ID 3: +1 (total: 2)\n");
     printf(" ID 5: -1 (should get deleted)\n");
     printf(" ID 8: +7 (total: 8)\n");
@@ -170,10 +170,10 @@ int main(int argc, char *argv[])
 
     dumpPool();
 
-    printf("\n7) Allocate more memory than is available (failure case)...\n\n");
+    printf("7) Allocate more memory than is available (failure case)...\n");
 
     id1 = insertObject(99999);
-    result = (id1 == 0);
+    result = (id1 == NULL_REF);
 
     printf("\nExpected COMPACT\n");
     printf("Expected ERROR (buffer full)\n");
@@ -181,28 +181,36 @@ int main(int argc, char *argv[])
 
     printf("8) Add references to ID that doesn't exist (failure case)...\n\n");
 
-    addReference(999);
+    addReference(4);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
     printf("\n9) Drop references from ID that doesn't exist (failure case)...\n\n");
 
-    dropReference(999);
+    dropReference(6);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
     printf("\n10) Retrieve pointer to ID that doesn't exist (failure case)...\n\n");
 
-    ptr = retrieveObject(999);
+    ptr = retrieveObject(5);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("\n%s\n\n\n", (ptr == NULL) ? "success" : "failure");
+    printf("\n%s\n", (ptr == NULL) ? "success" : "failure");
 
-    printf("\n11) Re-Initialize Pool (without destory) and allocate the following...\n\n");
+    printf("\n11) Destory Pool...\n\n");
+
+    destroyPool();
+
+    printf("Expected Total Memory Usage: 0\n");
+
+    dumpPool();
+
+    printf("12) Re-Initialize Pool and allocate the following...\n\n");
     printf(" ID 1: 300 bytes (A)\n");
     printf(" ID 2: 2000 bytes (B)\n");
-    printf(" ID 3: 10000 bytes (C)\n");
+    printf(" ID 3: 10000 bytes (C)\n\n");
 
     initPool();
 
@@ -241,14 +249,6 @@ int main(int argc, char *argv[])
     for (i = 0; i < 10000; i++)
         if (ptr[i] != 'C') result = 0;
     printf(" ID 3: %s\n\n", result ? "success" : "failure");
-
-    printf("\n12) Destory Pool...\n\n");
-
-    destroyPool();
-
-    printf("Expected Total Memory Usage: 0\n");
-
-    dumpPool();
 
     printf("\nEnd of Process.\n");
     return 0;

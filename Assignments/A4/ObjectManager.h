@@ -1,6 +1,8 @@
 //This is the interface for the object manager.
 //Note: The terms object and block are used interchangably below.
 
+#include <assert.h>
+
 #ifndef _OBJECT_MANAGER_H
 #define _OBJECT_MANAGER_H
 

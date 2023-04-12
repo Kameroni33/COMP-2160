@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
-#include <assert.h>
 
 #include "ObjectManager.h"
 
@@ -28,6 +27,7 @@ struct MEMBLOCK
 static MemBlock *memBlockStart;  // start of linked list of blocks allocated
 static MemBlock *memBlockEnd;    // end of linked list of blocks allocated
 static int numBlocks;            // number of blocks allocated
+static int numBlocksCheck;  // for assert statements
 
 // our buffers. This is where we allocate memory from.  One of these is always the current buffer.  The other is used for swapping
 // during compaction stage.
@@ -40,6 +40,7 @@ static unsigned char *currBuffer = buffer1;
 
 // points to the location of the next available memory location
 static int freeIndex = 0;
+static int freeIndexCheck;  // for assert statements
 
 // signatures for static methods
 static void compact( void );
@@ -131,7 +132,6 @@ Ref insertObject( const int size )
     // POST-CONDITIONS:
     checkState();
 
-
     return result;
 }
 
@@ -141,7 +141,8 @@ Ref insertObject( const int size )
 void *retrieveObject( const Ref ref )
 {
     // PRE-CONDITIONS:
-
+    assert(ref > 0 && ref < nextRef);
+    checkState();
 
     void *objectPtr = NULL_REF;  // pointer to Object data
     int foundObject = 0;         // 'boolean' for if we have found the Object
@@ -255,7 +256,7 @@ void dropReference( const Ref ref )
 static void compact( void )
 {
     // PRE-CONDITIONS:
-    int freeIndexOld = freeIndex;  // for POST-CONDITION comparison
+    freeIndexCheck = freeIndex;  // for POST-CONDITION comparison
     checkState();
 
     unsigned char *altBuffer;  // temporary pointer for currently unused buffer
@@ -314,7 +315,7 @@ static void compact( void )
 
     // POST-CONDITIONS
     assert(currBuffer == buffer1 || currBuffer == buffer2);
-    assert(freeIndex <= freeIndexOld);
+    assert(freeIndex <= freeIndexCheck);
     checkState();
 }
 
@@ -475,8 +476,8 @@ static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock )
 static void checkState( void )
 {
     MemBlock *memBlockCurr;
-    int numBlocksCheck = 0;
-    int freeIndexCheck = 0;
+    numBlocksCheck = 0;
+    freeIndexCheck = 0;
 
     // either the LinkedList is empty (NULL) or both pointers should be initialized (!NULL)
     assert( (memBlockStart == NULL && memBlockEnd == NULL) || (memBlockStart != NULL && memBlockEnd != NULL) );

@@ -8,9 +8,9 @@ dev: ObjectManager main-test
 prod: ObjectManager main
 
 # Compile object files
-# Compile without ASSERTS
 ObjectManager: ObjectManager.c
-	$(CC) $(FLAGS) -c ObjectManager.c -o ObjectManager.o
+	$(CC) $(FLAGS) -DNDEBUG -c ObjectManager.c -o ObjectManager.o
+	$(CC) $(FLAGS) -c ObjectManager.c -o ObjectManager-test.o
 
 # Compile with ASSERTS
 main: main.c ObjectManager.o
@@ -18,7 +18,7 @@ main: main.c ObjectManager.o
 
 # Compile without ASSERTS
 main-test: main.c ObjectManager.o
-	$(CC) $(FLAGS) main.c ObjectManager.o -o main-test
+	$(CC) $(FLAGS) main.c ObjectManager-test.o -o main-test
 
 # Remove OBJFILES and PROGRAMS
 clean:
