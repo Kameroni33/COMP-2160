@@ -7,9 +7,9 @@
 #include "ObjectManager.h"
 
 // tracks the next reference (ID) to use, we start at 1 so we can use 0 as the NULL reference
-static Ref nextRef = 1;
+static Ref nextRef = 1;  // this value is never 'reset'. So theoretically a maximum of sizeof(unsigned long) values can be allocated
 
-// A Memblock holds the relevent information associated with an allocated block of memory by our memory manager
+// A MemBlock holds the relevent information associated with an allocated block of memory by our memory manager
 typedef struct MEMBLOCK MemBlock;
 
 
@@ -52,16 +52,20 @@ static void checkState( void );
 void initPool( void )
 {
     // PRE-CONDITIONS:
-
+    assert(memBlockStart == NULL);  // these values should already be
+    assert(memBlockEnd == NULL);    // NULL/0 if proper clean up was
+    assert(numBlocks == 0);         // performed (ie. destroyPool called)
+    assert(freeIndex == 0);
 
     numBlocks = 0;  // initalize numBlocks
+    freeIndex = 0;  // initalize freeIndex
 
     // Initialize our LinkedList to be EMPTY (ie. NULL pointers)
     memBlockStart = NULL;
     memBlockEnd = NULL;
 
     // POST-CONDITIONS
-    
+    checkState();
 }
 
 // destroyPool()
@@ -69,6 +73,7 @@ void initPool( void )
 void destroyPool( void )
 {
     // PRE-CONDTIONS:
+    checkState();
 
     // delete all Nodes from our LinkedList
     while (memBlockStart != NULL)
@@ -79,9 +84,13 @@ void destroyPool( void )
     }
 
     numBlocks = 0;  // reset numBlocks
+    freeIndex = 0;  // reset freeIndex
 
     // POST-CONDITIONS:
-
+    assert(memBlockStart == NULL);
+    assert(memBlockEnd == NULL);
+    assert(numBlocks == 0);
+    assert(freeIndex == 0);
 }
 
 // insertObject()  
@@ -93,6 +102,7 @@ Ref insertObject( const int size )
 {
     // PRE-CONDITIONS:
     assert(size > 0 && size < MEMORY_SIZE);
+    checkState();
 
     Ref result = NULL_REF;  // Ref of newly inserted Object or NULL_REF
 
@@ -119,6 +129,7 @@ Ref insertObject( const int size )
     }
 
     // POST-CONDITIONS:
+    checkState();
 
 
     return result;
@@ -132,8 +143,8 @@ void *retrieveObject( const Ref ref )
     // PRE-CONDITIONS:
 
 
-    void *objectPtr;      // pointer to Object data
-    int foundObject = 0;  // 'boolean' for if we have found the Object
+    void *objectPtr = NULL_REF;  // pointer to Object data
+    int foundObject = 0;         // 'boolean' for if we have found the Object
 
     // temporary pointer for traversing LinkedList
     MemBlock *memBlockCurr = memBlockStart;
@@ -158,7 +169,7 @@ void *retrieveObject( const Ref ref )
     }
 
     // POST-CONDITIONS:
-
+    checkState();
 
     return objectPtr;
 }
@@ -168,7 +179,8 @@ void *retrieveObject( const Ref ref )
 void addReference( const Ref ref )
 {
     // PRE-CONDITIONS:
-
+    assert(ref > 0 && ref < nextRef);
+    checkState();
 
     int foundObject = 0;  // 'boolean' for if we have found the Object
 
@@ -194,14 +206,15 @@ void addReference( const Ref ref )
     }
 
     // POST-CONDITIONS:
-
+    checkState();
 }
 
 // update our index to indicate that a reference is gone
 void dropReference( const Ref ref )
 {
     // PRE-CONDITIONS:
-
+    assert(ref > 0 && ref < nextRef);
+    checkState();
 
     int foundObject = 0;  // 'boolean' for if we have found the Object
 
@@ -235,15 +248,15 @@ void dropReference( const Ref ref )
     }
 
     // POST-CONDITIONS:
-
+    checkState();
 }
 
 // performs our garbage collection
 static void compact( void )
 {
     // PRE-CONDITIONS:
-
-
+    int freeIndexOld = freeIndex;  // for POST-CONDITION comparison
+    checkState();
 
     unsigned char *altBuffer;  // temporary pointer for currently unused buffer
     int altBufferIndex = 0;    // 'freeIndex' but for the altBuffer
@@ -300,14 +313,15 @@ static void compact( void )
     freeIndex = altBufferIndex;
 
     // POST-CONDITIONS
-
+    assert(currBuffer == buffer1 || currBuffer == buffer2);
+    assert(freeIndex <= freeIndexOld);
+    checkState();
 }
 
 void dumpPool( void )
 {
     // PRE-CONDITIONS:
     checkState();
-
 
     int memorySize = MEMORY_SIZE;
     int allocatedMem = 0;  // calculate total 'alloacted' memory
@@ -392,7 +406,7 @@ static Ref addMemBlock( const int size )
     freeIndex += size;  // update freeIndex
 
     // POST-CONDITIONS:
-
+    checkState();
 
     return memBlockNew->ref;
 }
@@ -453,7 +467,7 @@ static void delMemBlock( MemBlock *delBlock, MemBlock *prevBlock )
     free(delBlock);  // free Node's allocated memory
 
     // POST-CONDITIONS
-
+    checkState();
 }
 
 // checkState()

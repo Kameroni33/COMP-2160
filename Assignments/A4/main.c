@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // drop reference to id3
-    printf("3) Dropping references for ID's 1, 4, 6, and 9...\n\n");
+    printf("3) Dropping references for ID's 1 (edge case: first), 4, 6, and 9 (edge case: last)...\n\n");
     dropReference(id1);
     dropReference(id4);
     dropReference(id6);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     dumpPool();
 
     // allocate 10 to id3
-    printf("4) Allocating memory for the following...\n\n");
+    printf("4) Allocating memory for the following (should force a compact)...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
     printf(" ID 11: 99823 bytes (K)\n");
     printf(" ID 12: 853 bytes (L)\n\n");
@@ -158,19 +158,10 @@ int main(int argc, char *argv[])
         if (ptr[i] != 'L') result = 0;
     printf(" ID 12: %s\n", result ? "success" : "failure");
 
-    printf("\n6) Allocate more memory than is available...\n\n");
-
-    id1 = insertObject(99999);
-    result = (id1 == 0);
-
-    printf("\nExpected COMPACT\n");
-    printf("Expected ERROR (buffer full)\n");
-    printf("\nResult: %s\n\n", result ? "success" : "failure");
-
-    printf("7) Add references to the following...\n\n");
-    printf(" ID 3: +1\n");
-    printf(" ID 5: -1\n");
-    printf(" ID 8: +7\n");
+    printf("6) Add references to the following...\n\n");
+    printf(" ID 3: +1 (total: 2)\n");
+    printf(" ID 5: -1 (should get deleted)\n");
+    printf(" ID 8: +7 (total: 8)\n");
 
     addReference(id3);
     dropReference(id5);
@@ -179,19 +170,28 @@ int main(int argc, char *argv[])
 
     dumpPool();
 
-    printf("8) Add references to ID that doesn't exist...\n\n");
+    printf("\n7) Allocate more memory than is available (failure case)...\n\n");
+
+    id1 = insertObject(99999);
+    result = (id1 == 0);
+
+    printf("\nExpected COMPACT\n");
+    printf("Expected ERROR (buffer full)\n");
+    printf("\nResult: %s\n\n", result ? "success" : "failure");
+
+    printf("8) Add references to ID that doesn't exist (failure case)...\n\n");
 
     addReference(999);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("\n9) Drop references from ID that doesn't exist...\n\n");
+    printf("\n9) Drop references from ID that doesn't exist (failure case)...\n\n");
 
     dropReference(999);
 
     printf("\nExpected ERROR (couldn't find reference)\n");
 
-    printf("\n10) Retrieve pointer to ID that doesn't exist...\n\n");
+    printf("\n10) Retrieve pointer to ID that doesn't exist (failure case)...\n\n");
 
     ptr = retrieveObject(999);
 
@@ -199,9 +199,58 @@ int main(int argc, char *argv[])
 
     printf("\n%s\n\n\n", (ptr == NULL) ? "success" : "failure");
 
+    printf("\n11) Re-Initialize Pool (without destory) and allocate the following...\n\n");
+    printf(" ID 1: 300 bytes (A)\n");
+    printf(" ID 2: 2000 bytes (B)\n");
+    printf(" ID 3: 10000 bytes (C)\n");
+
+    initPool();
+
+    id1 = insertObject(300);
+    id2 = insertObject(2000);
+    id3 = insertObject(10000);
+
+    ptr = (char*)retrieveObject(id1);
+    for (i = 0; i < 300; i++)
+        ptr[i] = 'A';
+    ptr = (char*)retrieveObject(id2);
+    for (i = 0; i < 2000; i++)
+        ptr[i] = 'B';
+    ptr = (char*)retrieveObject(id3);
+    for (i = 0; i < 10000; i++)
+        ptr[i] = 'C';
+
+    printf("Expected Total Memory Usage: %d\n", 300 + 2000 + 10000);
+
+    dumpPool();
+
+    result = 1;
+    ptr = (char*)retrieveObject(id1);
+    for (i = 0; i < 300; i++)
+        if (ptr[i] != 'A') result = 0;
+    printf(" ID 1: %s\n", result ? "success" : "failure");
+
+    result = 1;
+    ptr = (char*)retrieveObject(id2);
+    for (i = 0; i < 2000; i++)
+        if (ptr[i] != 'B') result = 0;
+    printf(" ID 2: %s\n", result ? "success" : "failure");
+
+    result = 1;
+    ptr = (char*)retrieveObject(id3);
+    for (i = 0; i < 10000; i++)
+        if (ptr[i] != 'C') result = 0;
+    printf(" ID 3: %s\n\n", result ? "success" : "failure");
+
+    printf("\n12) Destory Pool...\n\n");
+
     destroyPool();
 
-    printf("End of Process.\n");
+    printf("Expected Total Memory Usage: 0\n");
+
+    dumpPool();
+
+    printf("\nEnd of Process.\n");
     return 0;
 }
 
