@@ -22,4 +22,4 @@ main-test: main.c ObjectManager.o
 
 # Remove OBJFILES and PROGRAMS
 clean:
-	rm -f ObjectManager.o main main-test
+	rm -f ObjectManager.o ObjectManager-test.o main main-test

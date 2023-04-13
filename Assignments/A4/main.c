@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
     
     dumpPool();
 
-    // drop reference to id3
     printf("3) Dropping references for ID's 1 (edge case), 4, 6, and 9 (edge case)...\n\n");
     dropReference(id1);
     dropReference(id4);
@@ -83,7 +82,6 @@ int main(int argc, char *argv[])
 
     dumpPool();
 
-    // allocate 10 to id3
     printf("4) Allocating memory for the following (should force a compact)...\n\n");
     printf(" ID 10: 1946 bytes (J)\n");
     printf(" ID 11: 99823 bytes (K)\n");
